@@ -25,25 +25,22 @@
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; }
   .shell { width: 100%; max-width: 680px; }
 
-  /* Header */
   .app-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
   .app-header .eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-600); margin-bottom: 6px; }
   .app-header h1 { font-size: 26px; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
 
-  /* Progress */
   .progress-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 2rem; }
   .progress-track { flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
   .progress-fill { height: 100%; background: var(--purple-600); border-radius: 2px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
   .progress-label { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-muted); white-space: nowrap; }
 
-  /* Steps */
   .step { display: none; }
   .step.active { display: block; animation: fadeIn 0.25s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* Intro */
-  .intro-body { margin-bottom: 2rem; }
-  .intro-body p { font-size: 15px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.5rem; }
+  /* ── Intro / form ── */
+  .intro-body { margin-bottom: 1.5rem; }
+  .intro-body > p { font-size: 15px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.5rem; }
   .levels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
   .level-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; }
   .level-card .num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--purple-600); margin-bottom: 4px; letter-spacing: 0.05em; }
@@ -53,7 +50,22 @@
   .cat-pill { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; border: 1px solid; opacity: 0.85; }
   .intro-note { font-size: 13px; color: var(--text-muted); margin-bottom: 2rem; }
 
-  /* Question */
+  .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .form-card h3 { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .form-row.single { grid-template-columns: 1fr; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label { font-size: 12px; font-weight: 500; color: var(--text-secondary); letter-spacing: 0.02em; }
+  .field input, .field select {
+    padding: 9px 12px; border: 1px solid var(--border-hover); border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary);
+    background: var(--bg); outline: none; transition: border-color 0.15s;
+  }
+  .field input:focus, .field select:focus { border-color: var(--purple-600); background: var(--surface); }
+  .field input::placeholder { color: var(--text-muted); }
+  .required-note { font-size: 12px; color: var(--text-muted); margin-bottom: 1.5rem; }
+
+  /* ── Question ── */
   .q-category { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
   .q-text { font-size: 19px; font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 1.75rem; }
   .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.25rem; }
@@ -66,43 +78,28 @@
   .option-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
   .option.selected .option-desc { color: var(--purple-800); }
 
-  /* Tip panel */
-  .tip-panel {
-    display: none;
-    margin-bottom: 1.5rem;
-    border-radius: var(--radius);
-    overflow: hidden;
-    animation: fadeIn 0.3s ease;
-  }
+  /* ── Tip panel ── */
+  .tip-panel { display: none; margin-bottom: 1.5rem; border-radius: var(--radius); overflow: hidden; animation: fadeIn 0.3s ease; }
   .tip-panel.visible { display: block; }
-  .tip-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 18px;
-    font-size: 11px;
-    font-weight: 600;
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .tip-icon {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    flex-shrink: 0;
-  }
-  .tip-body {
-    padding: 14px 18px 16px;
-    font-size: 14px;
-    line-height: 1.65;
-  }
+  .tip-header { display: flex; align-items: center; gap: 10px; padding: 12px 18px; font-size: 11px; font-weight: 600; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+  .tip-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+  .tip-body { padding: 14px 18px 16px; font-size: 14px; line-height: 1.65; }
 
-  /* Nav */
+  /* ── Reflection ── */
+  .reflection-wrap { margin-bottom: 1.5rem; }
+  .reflection-wrap label { display: block; font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 8px; }
+  .reflection-wrap p { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5; }
+  .reflection-wrap textarea {
+    width: 100%; min-height: 120px; padding: 12px 14px;
+    border: 1px solid var(--border-hover); border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary);
+    background: var(--surface); resize: vertical; outline: none;
+    transition: border-color 0.15s; line-height: 1.6;
+  }
+  .reflection-wrap textarea:focus { border-color: var(--purple-600); }
+  .reflection-wrap textarea::placeholder { color: var(--text-muted); }
+
+  /* ── Nav ── */
   .nav { display: flex; align-items: center; gap: 10px; }
   .btn { padding: 10px 20px; border-radius: var(--radius-sm); border: 1px solid var(--border-hover); background: transparent; cursor: pointer; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; color: var(--text-primary); transition: background 0.15s, border-color 0.15s; }
   .btn:hover { background: var(--purple-50); }
@@ -112,10 +109,12 @@
   .nav-spacer { flex: 1; }
   .nav-counter { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-muted); }
 
-  /* Results */
-  .results-top { margin-bottom: 2rem; }
-  .results-top h2 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
-  .results-top p { font-size: 14px; color: var(--text-secondary); }
+  /* ── Results ── */
+  .results-top { margin-bottom: 1.5rem; }
+  .results-top h2 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .results-top .meta { font-size: 13px; color: var(--text-secondary); display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 8px; }
+  .results-top .meta span { display: flex; align-items: center; gap: 5px; }
+  .results-top .meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple-600); display: inline-block; }
   .chart-container { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; display: flex; justify-content: center; }
   .chart-inner { position: relative; width: 100%; max-width: 420px; height: 420px; }
   .scores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
@@ -124,17 +123,54 @@
   .score-val { font-size: 24px; font-weight: 600; margin-bottom: 2px; }
   .score-label { font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); }
 
-  /* Loading & error */
+  /* ── Reflection display on results ── */
+  .reflection-result { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--purple-600); border-radius: var(--radius-sm); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+  .reflection-result .label { font-size: 11px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple-600); margin-bottom: 8px; }
+  .reflection-result .text { font-size: 14px; color: var(--text-primary); line-height: 1.65; }
+
+  /* ── Answer breakdown ── */
+  .breakdown-section { margin-bottom: 2rem; }
+  .breakdown-section h3 { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'DM Mono', monospace; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid; }
+  .breakdown-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 10px; }
+  .breakdown-q { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 8px; line-height: 1.4; }
+  .breakdown-answer { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .breakdown-badge { font-size: 10px; font-weight: 600; font-family: 'DM Mono', monospace; padding: 3px 8px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+  .breakdown-answer-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  .breakdown-tip { font-size: 12px; color: var(--text-muted); line-height: 1.55; border-top: 1px solid var(--border); padding-top: 8px; margin-top: 4px; }
+  .breakdown-tip-label { font-size: 10px; font-weight: 600; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; color: var(--text-muted); }
+
+  /* ── Results nav ── */
+  .results-nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; }
+
+  /* ── Loading / error ── */
   .loader { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 0; gap: 16px; }
   .loader-spinner { width: 32px; height: 32px; border: 2px solid var(--border); border-top-color: var(--purple-600); border-radius: 50%; animation: spin 0.7s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .loader-text { font-size: 14px; color: var(--text-muted); }
   .error-box { background: #fff0f0; border: 1px solid #f0b8b8; border-radius: var(--radius-sm); padding: 1.25rem 1.5rem; font-size: 14px; color: #882020; line-height: 1.6; }
   .error-box strong { display: block; margin-bottom: 4px; }
+  .field-error { font-size: 12px; color: #c0392b; margin-top: 3px; display: none; }
+  .field-error.visible { display: block; }
+
+  /* ── Print styles ── */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .shell { max-width: 100%; }
+    .app-header { border-bottom: 1px solid #ddd; }
+    .results-nav { display: none; }
+    .no-print { display: none !important; }
+    .chart-container { border: 1px solid #ddd; break-inside: avoid; }
+    .breakdown-section { break-inside: avoid; }
+    .breakdown-item { break-inside: avoid; border: 1px solid #ddd; }
+    .reflection-result { break-inside: avoid; border-left: 3px solid var(--purple-600); }
+    .scores-grid { break-inside: avoid; }
+    @page { margin: 1.5cm; }
+  }
 
   @media (max-width: 500px) {
     .levels-grid { grid-template-columns: 1fr; }
     .scores-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
     .q-text { font-size: 16px; }
   }
 </style>
@@ -157,14 +193,14 @@
   <div id="view-error" style="display:none;">
     <div class="error-box">
       <strong>Could not load question_bank.json</strong>
-      Make sure <code>question_bank.json</code> is in the same folder as this HTML file and that you're opening it via a local server (e.g. <code>npx serve .</code>). Browsers block local file fetches for security reasons.
+      Make sure <code>question_bank.json</code> is in the same folder as this file and open it via a local server (e.g. <code>npx serve .</code>) or GitHub Pages. Browsers block local file fetches for security reasons.
     </div>
   </div>
 
-  <!-- Intro -->
+  <!-- ── Step: Intro ── -->
   <div class="step" id="step-intro">
     <div class="intro-body">
-      <p>This assessment helps you reflect on where you are across six key soft skill areas. Pick the level that most honestly describes how you operate today — not where you'd like to be. After each answer, you'll receive a personalised coaching tip for reaching the next level.</p>
+      <p>This assessment helps you reflect on where you are across six key soft skill areas. Pick the level that most honestly describes how you operate today — not where you'd like to be. After each answer you'll receive a personalised coaching tip for reaching the next level.</p>
       <div class="levels-grid">
         <div class="level-card"><div class="num">Level 1</div><div class="name">Developing</div><div class="desc">Still learning or need significant guidance to apply consistently.</div></div>
         <div class="level-card"><div class="num">Level 2</div><div class="name">Proficient</div><div class="desc">Apply consistently in daily work with minimal oversight.</div></div>
@@ -175,10 +211,44 @@
       <div class="cats-row" id="cats-pills"></div>
       <p class="intro-note" id="intro-note"></p>
     </div>
-    <button class="btn btn-primary" onclick="startAssessment()">Start assessment →</button>
+
+    <!-- Participant details form -->
+    <div class="form-card">
+      <h3>Your details</h3>
+      <div class="form-row">
+        <div class="field">
+          <label for="field-name">Your name <span style="color:#c0392b">*</span></label>
+          <input type="text" id="field-name" placeholder="e.g. Alex Murphy" autocomplete="name" />
+          <span class="field-error" id="err-name">Please enter your name.</span>
+        </div>
+        <div class="field">
+          <label for="field-manager">Manager's name</label>
+          <input type="text" id="field-manager" placeholder="e.g. Jordan Lee" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="field">
+          <label for="field-level">Current seniority level <span style="color:#c0392b">*</span></label>
+          <select id="field-level">
+            <option value="" disabled selected>Select your level…</option>
+            <option value="Junior">Junior</option>
+            <option value="Regular">Regular</option>
+            <option value="Senior">Senior</option>
+            <option value="Principal">Principal</option>
+          </select>
+          <span class="field-error" id="err-level">Please select your seniority level.</span>
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <input type="text" id="field-date" readonly style="opacity:0.6; cursor:default;" />
+        </div>
+      </div>
+    </div>
+    <p class="required-note">* Required fields</p>
+    <button class="btn btn-primary" onclick="handleStart()">Start assessment →</button>
   </div>
 
-  <!-- Questions -->
+  <!-- ── Step: Questions ── -->
   <div class="step" id="step-questions">
     <div class="progress-wrap">
       <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
@@ -195,28 +265,57 @@
       <div class="tip-body" id="tip-body"></div>
     </div>
     <div class="nav">
-      <button class="btn" id="btn-back" onclick="goBack()">← Back</button>
+      <button class="btn no-print" id="btn-back" onclick="goBack()">← Back</button>
       <div class="nav-spacer"></div>
       <span class="nav-counter" id="nav-counter"></span>
-      <button class="btn btn-primary" id="btn-next" onclick="goNext()" disabled>Next →</button>
+      <button class="btn btn-primary no-print" id="btn-next" onclick="goNext()" disabled>Next →</button>
     </div>
   </div>
 
-  <!-- Results -->
-  <div class="step" id="step-results">
-    <div class="results-top">
-      <h2>Your results</h2>
-      <p>Average score across the randomly selected statements per category. Use this as a starting point for your next 1:1.</p>
+  <!-- ── Step: Reflection ── -->
+  <div class="step" id="step-reflection">
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" style="width:95%"></div></div>
+      <span class="progress-label">Almost done</span>
     </div>
+    <div class="reflection-wrap">
+      <label for="reflection-input">What is your main focus area for the next quarter?</label>
+      <p>Take a moment to reflect on what you've just answered. What one area do you most want to develop? What does progress look like for you personally?</p>
+      <textarea id="reflection-input" placeholder="Write your thoughts here — this will appear on your printed report and can serve as a starting point for your next 1:1 conversation…"></textarea>
+    </div>
+    <div class="nav">
+      <button class="btn no-print" onclick="show('step-questions'); currentQ = allQuestions.length - 1; renderQuestion();">← Back</button>
+      <div class="nav-spacer"></div>
+      <button class="btn btn-primary no-print" onclick="showResults()">See my results →</button>
+    </div>
+  </div>
+
+  <!-- ── Step: Results ── -->
+  <div class="step" id="step-results">
+
+    <div class="results-top">
+      <h2 id="results-heading">Results</h2>
+      <div class="meta" id="results-meta"></div>
+    </div>
+
     <div class="chart-container">
       <div class="chart-inner"><canvas id="radarChart"></canvas></div>
     </div>
+
     <div class="scores-grid" id="scores-grid"></div>
-    <div class="nav">
+
+    <div class="reflection-result" id="reflection-result" style="display:none;">
+      <div class="label">Focus area for next quarter</div>
+      <div class="text" id="reflection-display"></div>
+    </div>
+
+    <div class="results-nav no-print">
       <button class="btn" onclick="restart()">← Retake</button>
-      <div class="nav-spacer"></div>
       <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
     </div>
+
+    <div id="breakdown-container"></div>
+
   </div>
 
 </div>
@@ -227,7 +326,6 @@
 const QUESTIONS_PER_CAT  = 3;
 const QUESTION_BANK_FILE = 'question_bank.json';
 
-// ─── Tip colour themes per level (background, header-bg, text, header-text, icon) ──
 const TIP_THEMES = [
   { bg: '#FFF8E7', headerBg: '#FFF0CC', text: '#5a3e00', headerText: '#7a5200', icon: '→', iconBg: '#FFD966', iconColor: '#5a3e00', label: 'How to reach Proficient' },
   { bg: '#EAF7F0', headerBg: '#D0EDDD', text: '#0d4a2a', headerText: '#0d5c33', icon: '→', iconBg: '#5DCAA5', iconColor: '#fff',    label: 'How to reach Advocating' },
@@ -235,7 +333,13 @@ const TIP_THEMES = [
   { bg: '#F0FDF4', headerBg: '#DCFCE7', text: '#14532d', headerText: '#166534', icon: '★', iconBg: '#22C55E', iconColor: '#fff',    label: 'You\'re already at the top level' }
 ];
 
-// ─── State ─────────────────────────────────────────────────────────────────
+const LEVEL_BADGE = [
+  { label: 'Developing',  bg: '#FFF0CC', color: '#7a5200' },
+  { label: 'Proficient',  bg: '#D0EDDD', color: '#0d5c33' },
+  { label: 'Advocating',  bg: '#DCE8FF', color: '#1a3580' },
+  { label: 'Mastering',   bg: '#DCFCE7', color: '#166534' }
+];
+
 const levelNames = ["Developing", "Proficient", "Advocating", "Mastering"];
 const levelTags  = ["1 — Developing", "2 — Proficient", "3 — Advocating", "4 — Mastering"];
 
@@ -245,8 +349,19 @@ let currentQ     = 0;
 let answers      = [];
 let radarChart   = null;
 
+// Participant details
+let participantName    = '';
+let participantManager = '';
+let participantLevel   = '';
+let participantDate    = '';
+
 // ─── Boot ───────────────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
+  // Auto-fill date
+  const now = new Date();
+  participantDate = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  document.getElementById('field-date').value = participantDate;
+
   fetch(QUESTION_BANK_FILE)
     .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
     .then(data => {
@@ -276,7 +391,34 @@ function buildIntro() {
   });
   const bankSize = categories[0]?.bank?.length ?? 0;
   document.getElementById('intro-note').textContent =
-    `${QUESTIONS_PER_CAT} questions are randomly drawn from a bank of ${bankSize} per category. After each answer you'll see a tip on how to reach the next level.`;
+    `${QUESTIONS_PER_CAT} questions are randomly drawn from a bank of ${bankSize} per category. After each answer you'll see a coaching tip on how to reach the next level.`;
+}
+
+function handleStart() {
+  const nameEl  = document.getElementById('field-name');
+  const levelEl = document.getElementById('field-level');
+  let valid = true;
+
+  document.getElementById('err-name').classList.remove('visible');
+  document.getElementById('err-level').classList.remove('visible');
+
+  if (!nameEl.value.trim()) {
+    document.getElementById('err-name').classList.add('visible');
+    nameEl.focus();
+    valid = false;
+  }
+  if (!levelEl.value) {
+    document.getElementById('err-level').classList.add('visible');
+    if (valid) levelEl.focus();
+    valid = false;
+  }
+  if (!valid) return;
+
+  participantName    = nameEl.value.trim();
+  participantManager = document.getElementById('field-manager').value.trim();
+  participantLevel   = levelEl.value;
+
+  startAssessment();
 }
 
 // ─── Shuffle ────────────────────────────────────────────────────────────────
@@ -339,7 +481,6 @@ function renderQuestion() {
     opts.appendChild(btn);
   });
 
-  // Restore tip if this question was already answered
   if (answers[currentQ] !== null) {
     showTip(answers[currentQ], q);
   } else {
@@ -348,26 +489,24 @@ function renderQuestion() {
 
   const nb       = document.getElementById('btn-next');
   nb.disabled    = answers[currentQ] === null;
-  nb.textContent = currentQ === allQuestions.length - 1 ? 'See results →' : 'Next →';
+  nb.textContent = currentQ === allQuestions.length - 1 ? 'Next →' : 'Next →';
 }
 
 function selectOption(i, q) {
   answers[currentQ] = i;
-
   document.querySelectorAll('.option').forEach((el, idx) => {
     const sel          = idx === i;
     el.classList.toggle('selected', sel);
     el.style.borderColor = sel ? q.catColor    : 'var(--border)';
     el.style.background  = sel ? q.catBg       : 'var(--surface)';
   });
-
   showTip(i, q);
   document.getElementById('btn-next').disabled = false;
 }
 
 function showTip(levelIndex, q) {
-  const theme  = TIP_THEMES[levelIndex];
-  const tip    = q.tips?.[levelIndex] ?? '';
+  const theme = TIP_THEMES[levelIndex];
+  const tip   = q.tips?.[levelIndex] ?? '';
 
   const panel  = document.getElementById('tip-panel');
   const header = document.getElementById('tip-header');
@@ -385,7 +524,6 @@ function showTip(levelIndex, q) {
   body.style.background   = theme.bg;
   body.style.color        = theme.text;
   body.textContent        = tip;
-
   panel.classList.add('visible');
 }
 
@@ -396,7 +534,7 @@ function hideTip() {
 function goNext() {
   if (answers[currentQ] === null) return;
   if (currentQ === allQuestions.length - 1) {
-    showResults();
+    show('step-reflection');
   } else {
     currentQ++;
     renderQuestion();
@@ -413,6 +551,29 @@ function showResults() {
   document.getElementById('progress-fill').style.width  = '100%';
   document.getElementById('progress-label').textContent = '100%';
 
+  // Header
+  document.getElementById('results-heading').textContent =
+    `${participantName}'s Self-Assessment`;
+
+  const meta = document.getElementById('results-meta');
+  meta.innerHTML = '';
+  const metaItems = [
+    participantLevel,
+    participantDate,
+    participantManager ? `Manager: ${participantManager}` : null
+  ].filter(Boolean);
+  metaItems.forEach((item, i) => {
+    if (i > 0) {
+      const dot = document.createElement('span');
+      dot.innerHTML = '<span class="dot"></span>';
+      meta.appendChild(dot);
+    }
+    const s = document.createElement('span');
+    s.textContent = item;
+    meta.appendChild(s);
+  });
+
+  // Scores
   const catScores = categories.map((cat, ci) => {
     const qs  = allQuestions.map((q, i) => ({ q, i })).filter(({ q }) => q.catIndex === ci);
     const sum = qs.reduce((acc, { i }) => acc + (answers[i] === null ? 0 : answers[i] + 1), 0);
@@ -434,6 +595,16 @@ function showResults() {
     grid.appendChild(card);
   });
 
+  // Reflection
+  const reflectionText = document.getElementById('reflection-input').value.trim();
+  if (reflectionText) {
+    document.getElementById('reflection-display').textContent = reflectionText;
+    document.getElementById('reflection-result').style.display = 'block';
+  } else {
+    document.getElementById('reflection-result').style.display = 'none';
+  }
+
+  // Radar
   if (radarChart) radarChart.destroy();
   radarChart = new Chart(document.getElementById('radarChart').getContext('2d'), {
     type: 'radar',
@@ -473,6 +644,57 @@ function showResults() {
       plugins: { legend: { display: false } }
     }
   });
+
+  // Answer breakdown by category
+  buildBreakdown();
+}
+
+function buildBreakdown() {
+  const container = document.getElementById('breakdown-container');
+  container.innerHTML = '';
+
+  categories.forEach((cat, ci) => {
+    const catQs = allQuestions
+      .map((q, i) => ({ q, i }))
+      .filter(({ q }) => q.catIndex === ci);
+
+    if (!catQs.length) return;
+
+    const section = document.createElement('div');
+    section.className = 'breakdown-section';
+
+    const heading = document.createElement('h3');
+    heading.textContent = cat.name;
+    heading.style.color       = cat.color;
+    heading.style.borderColor = cat.color + '44';
+    section.appendChild(heading);
+
+    catQs.forEach(({ q, i }) => {
+      const answerIdx = answers[i];
+      if (answerIdx === null) return;
+
+      const badge  = LEVEL_BADGE[answerIdx];
+      const tip    = q.tips?.[answerIdx] ?? '';
+      const theme  = TIP_THEMES[answerIdx];
+
+      const item = document.createElement('div');
+      item.className = 'breakdown-item';
+      item.innerHTML = `
+        <div class="breakdown-q">${q.text}</div>
+        <div class="breakdown-answer">
+          <span class="breakdown-badge" style="background:${badge.bg}; color:${badge.color};">${badge.label}</span>
+          <span class="breakdown-answer-text">${q.options[answerIdx]}</span>
+        </div>
+        ${tip ? `
+        <div class="breakdown-tip">
+          <div class="breakdown-tip-label" style="color:${theme.headerText}">${theme.label}</div>
+          ${tip}
+        </div>` : ''}`;
+      section.appendChild(item);
+    });
+
+    container.appendChild(section);
+  });
 }
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -483,6 +705,11 @@ function show(id) {
 
 function restart() {
   if (radarChart) { radarChart.destroy(); radarChart = null; }
+  document.getElementById('reflection-input').value = '';
+  document.getElementById('field-name').value = '';
+  document.getElementById('field-manager').value = '';
+  document.getElementById('field-level').value = '';
+  participantName = ''; participantManager = ''; participantLevel = '';
   show('step-intro');
 }
 </script>
