@@ -1,0 +1,1484 @@
+[
+  {
+    "name": "Software Delivery",
+    "color": "#534AB7",
+    "bgLight": "#EEEDFE",
+    "bank": [
+      {
+        "text": "I participate in code reviews and use them as a learning and quality opportunity.",
+        "options": [
+          "I attend code reviews when asked but don't actively contribute.",
+          "I regularly participate and give constructive feedback on reviews.",
+          "I drive code review culture in my squad and encourage best practices.",
+          "I define code review standards and coach the team on deep technical quality."
+        ],
+        "tips": [
+          "Before your next review, spend 10 minutes reading the PR properly and write at least one comment — even a question. Make it a habit to leave the code better understood than when you found it.",
+          "Start suggesting code review guidelines to your squad — a simple checklist of what to look for. Facilitate a short retro on how your team currently reviews and what could improve.",
+          "Work with engineering leadership to formalise review standards. Run a workshop on what excellent code review looks like and create reference material others can use.",
+          "You're setting the standard. Keep coaching others and sharing your approach — your influence here shapes quality across the whole engineering org."
+        ]
+      },
+      {
+        "text": "I deliver solutions that are robust, well-tested and avoid technical debt.",
+        "options": [
+          "I sometimes deliver quick fixes that need rework later.",
+          "I consistently deliver clean, tested work with minimal shortcuts.",
+          "I push the squad to prioritise quality and flag risky shortcuts early.",
+          "I set the quality bar company-wide and shape how we approach technical debt."
+        ],
+        "tips": [
+          "Before closing a task, ask yourself: 'Would I be comfortable if a senior engineer reviewed this in 6 months?' If not, take 20 minutes to clean it up. Build that habit one ticket at a time.",
+          "Start flagging technical debt in sprint planning and advocate for time to address it. Create a team habit of labelling shortcuts so they don't become invisible.",
+          "Propose a technical debt review cycle in your team. Work with your EM to carve out regular time for quality improvements alongside feature work.",
+          "You're already shaping how the org thinks about quality. Document your approach and share it — it will help other squads raise their bar too."
+        ]
+      },
+      {
+        "text": "I adopt a design-first approach — thinking through the 'why', 'where' and 'how' before building.",
+        "options": [
+          "I tend to jump into implementation without a clear upfront design.",
+          "I regularly design before coding and document decisions for my work.",
+          "I facilitate design discussions in my squad and challenge ambiguity early.",
+          "I lead architectural design across initiatives and mentor others on design thinking."
+        ],
+        "tips": [
+          "Try writing a one-paragraph design note before starting your next task — just the problem, your approach, and one alternative you considered. It takes 10 minutes and saves hours.",
+          "Start running short design reviews before implementation on larger tasks. Invite one or two colleagues to challenge your approach — you'll catch more edge cases early.",
+          "Introduce a lightweight design doc template for your squad and make it a standard step before any significant feature. Share examples of good and bad design decisions to build muscle memory.",
+          "You're leading architectural thinking. Focus on mentoring others to develop this skill — pair on design reviews with less experienced engineers and teach them your reasoning process."
+        ]
+      },
+      {
+        "text": "I understand the data and business context behind what I'm building.",
+        "options": [
+          "I build what's specified without always understanding the broader context.",
+          "I make sure I understand the data and business goal before starting work.",
+          "I help my squad connect technical work to business outcomes and data quality.",
+          "I shape how the team understands and works with our data domain at a strategic level."
+        ],
+        "tips": [
+          "For your next ticket, spend 15 minutes asking: what decision does this enable? What happens if the data is wrong? Talk to the product manager or analyst who raised it.",
+          "Make it a habit to ask 'what business question does this answer?' in refinement sessions. Bring that context into your implementation decisions.",
+          "Run a session with your squad linking your current roadmap items to business metrics. Help engineers see the chain from their code to a business outcome.",
+          "You're already operating at a strategic level. Focus on documenting the domain knowledge you hold so it's not locked in your head — build a shared data dictionary or domain model."
+        ]
+      },
+      {
+        "text": "I question proposed solutions and push back constructively when I see a better approach.",
+        "options": [
+          "I tend to implement what's asked without challenging the approach.",
+          "I regularly ask 'why' and suggest alternatives when I see a better way.",
+          "I create space in my squad for healthy technical debate and better decisions.",
+          "I set the standard for solution quality and guide the org toward better technical choices."
+        ],
+        "tips": [
+          "Next time something feels off, write down your concern and one alternative before the standup. You don't have to challenge loudly — a well-framed question in a ticket comment is enough to start.",
+          "When you push back, follow it with a concrete alternative and your reasoning. 'I see a risk here because X — what if we tried Y instead?' is much more effective than just flagging a concern.",
+          "Explicitly invite challenge in design sessions: 'Does anyone see a problem with this approach?' Model the behaviour you want to see. Create a safe space for juniors to speak up.",
+          "Your technical judgement is trusted at the highest level. Focus on building that same critical thinking in others — teach them how you evaluate solutions, not just what the right answer is."
+        ]
+      },
+      {
+        "text": "I develop data pipelines and processes with autonomy and care for long-term maintainability.",
+        "options": [
+          "I need guidance to build pipelines and tend to focus on getting it working.",
+          "I build pipelines autonomously, with attention to robustness and future maintenance.",
+          "I review and guide my squad's pipeline designs for long-term health.",
+          "I define data engineering patterns and best practices adopted across the platform."
+        ],
+        "tips": [
+          "Pick one pipeline you've built recently and add proper error handling, logging and a README. Then ask a colleague to review it — treat it as a learning exercise.",
+          "Before starting your next pipeline, write down how it could fail and how you'd know. Build monitoring in from the start, not as an afterthought.",
+          "Introduce a pipeline design checklist for your squad: logging, failure handling, recovery, documentation. Run a review on an existing pipeline together as a learning exercise.",
+          "You're defining how the platform is built. Focus on making your patterns accessible — good documentation, worked examples and pairing sessions will help others follow your lead."
+        ]
+      },
+      {
+        "text": "I avoid over-engineering and know when a solution is complete enough to deliver value.",
+        "options": [
+          "I sometimes over-engineer or perfect things beyond what's needed.",
+          "I balance thoroughness with pragmatism and ship when it's good enough.",
+          "I coach my squad to avoid perfectionism and focus on delivering value incrementally.",
+          "I establish delivery principles that keep the org moving fast without sacrificing quality."
+        ],
+        "tips": [
+          "Before adding complexity, ask: 'Will this be needed in the next 3 months?' If not, log it as a future improvement and ship the simpler version. Practice the art of 'good enough for now'.",
+          "When reviewing others' work, recognise and praise pragmatic simplicity. Share examples of times you chose simplicity over elegance and the outcome was better for it.",
+          "Run a team discussion on your definition of 'done'. Help the squad align on what 'complete enough' means for different types of work — a quick bug fix vs a platform feature.",
+          "You're already setting the pace. Document your delivery philosophy so it outlasts your tenure — principles, examples and anti-patterns are valuable team assets."
+        ]
+      },
+      {
+        "text": "I drive clarity in requirements by identifying and resolving ambiguity early.",
+        "options": [
+          "I start work even when requirements are unclear and clarify as issues arise.",
+          "I ask the right questions upfront and flag ambiguity before it causes rework.",
+          "I model requirement clarity within my squad and help others ask the right questions.",
+          "I set standards for how we engage with product and stakeholders to ensure clarity at scale."
+        ],
+        "tips": [
+          "Before starting any task, write down the three biggest assumptions you're making. Check at least one with the ticket author before you start coding.",
+          "Create a personal checklist of questions you ask before starting work: acceptance criteria, edge cases, data quality expectations, definition of done. Share it with your squad.",
+          "Introduce a 'definition of ready' for your squad — tickets shouldn't be picked up until key questions are answered. Facilitate the team in building that checklist together.",
+          "Work with product and engineering leadership to create alignment standards for how requirements are written and reviewed before reaching engineering. Your experience is valuable input here."
+        ]
+      },
+      {
+        "text": "I write automated tests that give the team genuine confidence in what we ship.",
+        "options": [
+          "I write tests when asked but don't always think about coverage or confidence.",
+          "I regularly write meaningful tests across the testing pyramid for my work.",
+          "I raise the testing standards in my squad and review tests with the same rigour as code.",
+          "I define our test strategy and ensure it's applied consistently across the platform."
+        ],
+        "tips": [
+          "For your next feature, write the test first — even just one happy path test. Ask: what would make me confident this works in production? Start there.",
+          "Review your last three PRs and ask: would these tests catch a regression? If not, add one more meaningful test to each. Make it a closing habit.",
+          "Lead a squad workshop on test quality — what makes a test valuable vs fragile? Review a piece of existing test code together and identify improvements.",
+          "You're already defining test strategy. Focus on making it easy for others to follow — good tooling, clear examples and a testing guide reduce the friction of doing it right."
+        ]
+      },
+      {
+        "text": "I break down complex tasks into manageable, well-scoped pieces of work.",
+        "options": [
+          "I sometimes take on large chunks of work without breaking them down first.",
+          "I regularly decompose my work into well-scoped tasks that are easy to review and ship.",
+          "I help my squad improve how they scope and break down work before starting.",
+          "I establish estimation and decomposition practices that improve predictability across teams."
+        ],
+        "tips": [
+          "When you pick up a large task, spend 15 minutes breaking it into steps before touching the code. If a step takes more than a day, break it down further. Small PRs ship faster and get better reviews.",
+          "Pair with a colleague on decomposing a complex piece of work before your next sprint. Teaching decomposition makes you better at it too.",
+          "Introduce story splitting as a team ritual — run a session before each sprint where you decompose any ticket larger than 3 points together as a squad.",
+          "You're already influencing delivery predictability. Share your decomposition approach with other squads and work with your EM to embed it into planning ceremonies."
+        ]
+      },
+      {
+        "text": "I ensure my work is ready for review with clear context, clean diffs and relevant tests.",
+        "options": [
+          "I submit my work when it's functionally complete, without always thinking about reviewability.",
+          "I consistently prepare my PRs with clear descriptions, small diffs and relevant tests.",
+          "I set expectations in my squad for what good pull requests look like.",
+          "I define PR standards and tooling that make code review efficient and high quality org-wide."
+        ],
+        "tips": [
+          "Before opening your next PR, read your own diff top to bottom as if you're the reviewer. Add a description explaining what changed and why. This one habit dramatically reduces review cycles.",
+          "Create a PR template for your squad — a short checklist: description, test coverage, screenshots if UI, any deployment notes. It takes 30 minutes to make and saves hours every week.",
+          "Run a session with your squad on what makes a great PR vs a frustrating one. Agree on standards together and commit to them. Recognition when someone nails it goes a long way.",
+          "You're already influencing PR culture. Document your standards, automate what you can (linters, templates, CI checks) and share the playbook with other squads."
+        ]
+      },
+      {
+        "text": "I consider non-functional requirements — performance, scalability and reliability — in my designs.",
+        "options": [
+          "I focus on making features work correctly and address performance issues reactively.",
+          "I proactively consider performance and reliability as part of my designs.",
+          "I help my squad reason about non-functional requirements during design and review.",
+          "I define how the org approaches NFRs and ensure they are built into our delivery process."
+        ],
+        "tips": [
+          "For your next design, add a 'What could go wrong at scale?' section. Even a brief bullet list forces you to think beyond the happy path. Share it in your PR description.",
+          "Start adding NFR questions to your design reviews: 'What's the expected query volume?' 'What happens if this service is slow?' Build the habit of asking before building.",
+          "Introduce NFR acceptance criteria to your squad's definition of ready. Work with your EM to make non-functional requirements a first-class part of every significant ticket.",
+          "You're already operating at this level. Focus on making NFR thinking accessible — a practical guide or checklist will help less experienced engineers build this habit."
+        ]
+      },
+      {
+        "text": "I contribute to maintaining accurate documentation for the systems I work on.",
+        "options": [
+          "I focus on the code and rarely update or create documentation.",
+          "I keep documentation up to date as a natural part of completing my work.",
+          "I champion documentation culture in my squad and treat it as a deliverable.",
+          "I ensure that knowledge capture and documentation standards are consistent across the org."
+        ],
+        "tips": [
+          "Add 'update the README' to your definition of done for your next task. Just one paragraph describing what changed. Small, consistent updates compound into great documentation.",
+          "Schedule a documentation review with your squad once a quarter. Pick one system and spend an hour updating its docs together. Make it a low-stakes, collaborative activity.",
+          "Work with your squad to agree documentation standards — what needs a README, what needs a runbook, what needs an ADR. Make them part of your PR checklist.",
+          "You're setting the documentation standard for the org. Focus on tooling and templates that make good documentation the path of least resistance for every engineer."
+        ]
+      },
+      {
+        "text": "I manage my own time and workload effectively to deliver reliably.",
+        "options": [
+          "I sometimes misjudge effort or lose track of priorities under pressure.",
+          "I reliably manage my workload, flag risks early and deliver on my commitments.",
+          "I help my squad develop stronger planning habits and flag delivery risks together.",
+          "I create structures and rituals that improve delivery predictability across teams."
+        ],
+        "tips": [
+          "At the start of each day, write down your top three priorities. At the end of the week, review whether you delivered them. Identify one recurring blocker and address it proactively.",
+          "Build a habit of flagging delivery risks 2–3 days before a deadline — not at the deadline. Practice the phrase: 'I'm at risk of missing X by Y because Z. I need help with W.'",
+          "Run a short retro with your squad specifically on estimation accuracy. Identify the top three reasons things take longer than expected and address them as a team.",
+          "You're already creating delivery reliability at scale. Share the rituals and structures that work for you — your playbook will help other squads build the same predictability."
+        ]
+      },
+      {
+        "text": "I seek out and incorporate feedback on my work before it reaches production.",
+        "options": [
+          "I tend to work independently and share my work only when it's done.",
+          "I proactively seek early feedback and iterate based on what I hear.",
+          "I build a culture of early feedback in my squad and encourage iterative ways of working.",
+          "I model collaborative delivery across the org and embed feedback loops in our processes."
+        ],
+        "tips": [
+          "Share a draft or WIP branch with one colleague before your next PR is ready. Even 10 minutes of early feedback can save hours of rework. Get comfortable with showing unfinished work.",
+          "Introduce 'draft PRs' as a team habit — open them early, mark them as WIP, and ask for design-level feedback before the implementation is locked in.",
+          "Run a team session on 'how do we get feedback earlier?' Identify three specific touch points in your delivery flow where earlier input would reduce rework.",
+          "You're already modelling collaborative delivery. Document the feedback loops that work and help other squads adopt them — faster feedback cycles are a competitive advantage."
+        ]
+      },
+      {
+        "text": "I have a strong awareness of common engineering anti-patterns and actively avoid them.",
+        "options": [
+          "I'm aware of some anti-patterns but don't always catch them in my own work.",
+          "I consistently recognise and avoid common anti-patterns in my code and designs.",
+          "I help my squad identify and avoid anti-patterns through reviews and knowledge sharing.",
+          "I build organisation-wide awareness of anti-patterns through standards, reviews and coaching."
+        ],
+        "tips": [
+          "Pick one anti-pattern you know you're prone to and actively look for it in your next PR. Read one article or book chapter on it this week. Awareness is the first step to change.",
+          "During code reviews, when you spot an anti-pattern, name it clearly and explain why it's a risk. Link to a reference if you can. This teaches others while improving the code.",
+          "Run a 'hall of fame / hall of shame' session with your squad — review anonymised examples of good and bad patterns in your own codebase. Make it fun, not judgmental.",
+          "You're already shaping engineering quality at scale. Write up the most common anti-patterns you see across the org and turn them into a living engineering guide."
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Continuous Improvement",
+    "color": "#0F6E56",
+    "bgLight": "#E1F5EE",
+    "bank": [
+      {
+        "text": "I actively keep up with new tools, technologies and practices relevant to my work.",
+        "options": [
+          "I learn reactively when a new tool is introduced by someone else.",
+          "I regularly read, experiment and stay current with industry trends.",
+          "I share new learnings proactively with my squad and run knowledge sessions.",
+          "I shape our technical roadmap based on emerging trends and coach others to stay ahead."
+        ],
+        "tips": [
+          "Subscribe to one engineering newsletter this week (e.g. Data Engineering Weekly, The Pragmatic Engineer). Block 30 minutes on Fridays to read it. Small, consistent exposure beats reactive catch-up.",
+          "After learning something useful, write a 3-bullet summary and share it in your team channel. Teaching accelerates your own learning and builds your reputation as someone who grows.",
+          "Organise a monthly 'what's new' session in your squad — 15 minutes where each person shares one thing they've learned. Rotate the host. Make learning a team habit.",
+          "You're already influencing the technical direction. Document the signals you use to evaluate new tools and share your evaluation framework — it will help the org make better decisions faster."
+        ]
+      },
+      {
+        "text": "I suggest and act on improvements to processes, ways of working and tooling.",
+        "options": [
+          "I notice things that could improve but rarely raise them.",
+          "I regularly raise improvement ideas and participate in initiatives.",
+          "I drive improvement projects and involve others in shaping change.",
+          "I contribute to long-term technical and process vision aligned with company strategy."
+        ],
+        "tips": [
+          "Next time you notice something that slows you down, write it up as a one-paragraph improvement proposal and share it in your team channel. You don't need permission to raise an idea.",
+          "Pick one improvement you've already raised and volunteer to own it. Even small wins — a faster pipeline, a cleaner onboarding doc — build your credibility as a driver of change.",
+          "Run a quarterly improvement backlog session with your squad. Let everyone raise friction points, vote on priorities and assign owners. Make improvement a structured team activity.",
+          "You're already operating at a strategic level. Connect your improvement initiatives to company OKRs — this helps secure buy-in and resources for the changes that matter most."
+        ]
+      },
+      {
+        "text": "I see challenges as opportunities and maintain a growth mindset.",
+        "options": [
+          "I sometimes feel stuck or discouraged when facing new challenges.",
+          "I approach challenges constructively and seek help when needed.",
+          "I energise my squad to tackle challenges and model resilience.",
+          "I build a culture of learning from failure and continuous growth across teams."
+        ],
+        "tips": [
+          "When you feel stuck, write down what you've tried and what you think might work next. This simple act shifts your mindset from 'I'm failing' to 'I'm problem-solving'. Then ask for help.",
+          "Next time a challenge comes up, be explicit about your approach: 'I'm not sure how to do this yet, but here's how I'm going to figure it out.' That framing builds psychological safety for others.",
+          "When your squad faces setbacks, acknowledge the difficulty and then redirect to learning: 'That was hard — what did we learn? What would we do differently?' Make it a ritual.",
+          "You're already building a growth culture. Formalise it — blameless post-mortems, failure-sharing sessions, public recognition of learning from mistakes. Make it structural, not just cultural."
+        ]
+      },
+      {
+        "text": "I prioritise clarity in information sharing so insights don't get lost or diluted.",
+        "options": [
+          "I share updates when asked but don't always think about how to make them clear.",
+          "I consistently communicate in a focused, structured way that highlights what matters.",
+          "I coach my squad on clear communication and reduce noise in team updates.",
+          "I set communication standards across the org that improve signal-to-noise at scale."
+        ],
+        "tips": [
+          "Before your next update or message, ask: 'What does the reader need to know and do?' Cut anything else. Practice writing the headline first, then the detail.",
+          "Review the last three updates you shared. Were the key insights easy to find? Could they be misread? Edit one of them as an exercise in clarity.",
+          "Run a team session on communication standards — what goes in a ticket update vs a Slack message vs a status report? Shared norms reduce noise significantly.",
+          "You're already operating at this level. Document communication standards and make them part of onboarding. Good communication hygiene compounds across every team that adopts it."
+        ]
+      },
+      {
+        "text": "I actively participate in innovation initiatives and bring forward strategic ideas.",
+        "options": [
+          "I attend innovation sessions when required but don't usually bring my own ideas.",
+          "I contribute ideas to innovation days and improvement initiatives regularly.",
+          "I help my squad build a backlog of aligned innovation ideas and prioritise them.",
+          "I lead innovation strategy and ensure our efforts are tied to long-term company direction."
+        ],
+        "tips": [
+          "Keep a running note of things that frustrate you or feel like they could be 10x better. Before the next innovation day, pick the one with the most business impact and prepare a one-pager.",
+          "Before the next innovation session, research whether your idea has been tried before — internally or externally. Coming with prior art and a refined proposal makes your idea much more credible.",
+          "Help your squad build an always-on innovation backlog — a shared doc where anyone can log ideas at any time. Review it quarterly and pick the best ones to develop before innovation days.",
+          "You're already leading innovation strategy. Focus on building the infrastructure for innovation — not just generating ideas, but creating the system that evaluates, prioritises and executes them."
+        ]
+      },
+      {
+        "text": "I balance autonomy with collaboration — knowing when to act independently and when to align.",
+        "options": [
+          "I tend to either wait for direction or act alone without checking in enough.",
+          "I make good judgements about when to proceed independently and when to align with others.",
+          "I help my squad develop this balance and reduce unnecessary blockers or misalignments.",
+          "I model and coach the right level of autonomy vs alignment across engineering."
+        ],
+        "tips": [
+          "For your next task, ask yourself: 'Is this decision reversible and low-impact? If yes, just do it. If not, check in first.' That simple question improves your autonomy judgment significantly.",
+          "When you check in with someone, be specific: 'I'm about to do X — does that conflict with anything you know?' That's far more effective than asking for permission.",
+          "Run a team discussion on 'what decisions can we make without checking in?' Explicitly documenting team autonomy boundaries reduces unnecessary interruptions and builds trust.",
+          "You're already modelling healthy autonomy. Coach your squad individually on where their autonomy boundary sits and how to expand it gradually through demonstrated judgement."
+        ]
+      },
+      {
+        "text": "I propose improvements to data quality, tools and review processes.",
+        "options": [
+          "I flag data quality issues when I find them but don't proactively look for them.",
+          "I regularly identify and raise data quality issues and propose fixes.",
+          "I lead data quality initiatives and help my squad build quality into their processes.",
+          "I own data quality as a strategic concern and drive platform-wide improvements."
+        ],
+        "tips": [
+          "Schedule a 30-minute data quality audit on your area of ownership. Look for undocumented assumptions, missing validations or known issues that haven't been fixed. Log what you find.",
+          "Turn your data quality findings into a short proposal: the issue, its business impact, and a suggested fix. Bringing solutions — not just problems — gets traction faster.",
+          "Run a data quality review with your squad — pick the three highest-risk datasets and review them together. Make data quality a standing agenda item in your squad health reviews.",
+          "You're already owning data quality strategically. Focus on making quality measurable — dashboards, SLAs, anomaly alerts. What gets measured gets improved."
+        ]
+      },
+      {
+        "text": "I am passionate about data and technology and stay current with what's relevant.",
+        "options": [
+          "I focus on the tasks at hand and don't spend much time exploring outside my role.",
+          "I follow trends in data and tech and connect them to my day-to-day work.",
+          "I energise my squad around new ideas and create enthusiasm for learning.",
+          "I build a culture of technical curiosity and thought leadership across the organisation."
+        ],
+        "tips": [
+          "Spend 20 minutes this week exploring one technology adjacent to your current work — a new framework, a tool a competitor uses, or a technique you've heard about but never tried.",
+          "The next time you learn something interesting, connect it explicitly to a current problem: 'This reminds me of the issue we had with X. Could this approach help?' That connection is what makes learning valuable.",
+          "Start a 'tech radar' for your squad — a shared doc where you track technologies you're adopting, experimenting with, or avoiding and why. It builds collective awareness and drives learning.",
+          "You're already a source of technical inspiration. Write, speak or share externally — blogs, conference talks, internal guilds. Thought leadership attracts great engineers and shapes the field."
+        ]
+      },
+      {
+        "text": "I regularly reflect on my own performance and seek feedback to grow.",
+        "options": [
+          "I reflect on my work mainly during formal review cycles when prompted.",
+          "I proactively seek feedback between reviews and act on what I hear.",
+          "I model a reflective practice in my squad and make space for others to grow.",
+          "I embed feedback and growth rituals across teams that drive continuous development."
+        ],
+        "tips": [
+          "Block 15 minutes every Friday for a personal retro: what went well, what was hard, what would you do differently? After four weeks, review your notes — patterns will emerge.",
+          "Ask one colleague every two weeks: 'Is there one thing I could do differently that would make your work easier?' Act on their answer visibly. Close the loop with them.",
+          "Create space in your 1:1s for your team members to give you feedback — not just receive it. Saying 'What's one thing I could improve?' models the behaviour you want to see.",
+          "You're already driving a feedback culture. Make it structural — feedback checkpoints, growth plans tied to specific behaviours, recognition of growth publicly. Systems outlast good intentions."
+        ]
+      },
+      {
+        "text": "I take part in retrospectives and help translate insights into meaningful action.",
+        "options": [
+          "I attend retros but don't always contribute ideas or follow through on actions.",
+          "I actively contribute to retros and follow up on the actions I own.",
+          "I facilitate effective retros for my squad and ensure actions are tracked and completed.",
+          "I improve how we run retrospectives across teams and embed a culture of continuous learning."
+        ],
+        "tips": [
+          "Before your next retro, spend five minutes writing down two things: one thing that genuinely helped the team this sprint and one thing that slowed you down. Come prepared — it makes retros better for everyone.",
+          "When you own a retro action, give it a deadline and check in publicly on progress. Even saying 'I didn't get to this — here's why and here's my new plan' is valuable accountability.",
+          "Try a different retro format once a quarter — '4Ls', 'Start / Stop / Continue', or 'Sailboat'. Different formats surface different insights. Then make sure at least two actions get completed before the next sprint.",
+          "You're already improving how teams learn. Document the retro formats and practices that work best for your context — a shared playbook helps other squads avoid reinventing the wheel."
+        ]
+      },
+      {
+        "text": "I learn from incidents, failures and mistakes rather than moving on without reflection.",
+        "options": [
+          "I fix issues when they happen but don't always take time to understand why they occurred.",
+          "I regularly write up or discuss what went wrong and what I'll do differently.",
+          "I lead post-mortems and blameless reviews in my squad and share learnings broadly.",
+          "I define how we learn from failure at scale and ensure insights improve our whole platform."
+        ],
+        "tips": [
+          "After your next bug or incident, spend 15 minutes writing a personal post-mortem: what happened, why, what you'd do differently. You don't have to share it — the act of writing it is what matters.",
+          "Share a brief write-up of one recent failure with your squad — focus on the system or process failure, not individual blame. Normalising this makes it easier for others to do the same.",
+          "Introduce blameless post-mortems as a team standard. Use a template: timeline, root cause, contributing factors, actions. Make sharing them in the team channel part of the process.",
+          "You're already building a learning culture around failure. Now focus on the feedback loop — are the actions from post-mortems actually getting done? Close the loop on your learnings."
+        ]
+      },
+      {
+        "text": "I experiment and validate ideas before committing to a full implementation.",
+        "options": [
+          "I tend to implement fully before discovering whether the approach works.",
+          "I regularly prototype, spike or validate assumptions before building in earnest.",
+          "I encourage my squad to validate early and create space for experimentation.",
+          "I establish a culture of hypothesis-driven development and validated learning across the org."
+        ],
+        "tips": [
+          "Before your next significant feature, write down the top three assumptions you're making. Then identify the cheapest way to test at least one of them before writing production code.",
+          "Timebox your next spike to one day. Define upfront what question you're trying to answer. If you can't answer it in a day, the hypothesis needs to be smaller.",
+          "Introduce spikes as a first-class item in your sprint planning. Help the team see experimentation as risk reduction, not wasted time. Track how many assumptions were validated before building.",
+          "You're already leading a hypothesis-driven culture. Make the learning visible — share spike outcomes, validated vs invalidated assumptions, and the decisions they informed. Visible learning compounds."
+        ]
+      },
+      {
+        "text": "I seek out learning opportunities beyond my immediate role — courses, conferences, communities.",
+        "options": [
+          "I learn primarily through my day-to-day work and don't seek external learning.",
+          "I regularly pursue external learning that I can connect to my work.",
+          "I share external learnings with my squad and advocate for learning time and budget.",
+          "I build a learning culture across the org and connect external trends to our strategy."
+        ],
+        "tips": [
+          "Identify one skill gap you want to close this quarter. Find one concrete resource — a course, a book, a community — and block two hours per week to engage with it consistently.",
+          "After completing a course or attending a talk, write a one-page 'what I learned and how I'll apply it' summary. Sharing it with your team makes the investment worthwhile for everyone.",
+          "Advocate for a team learning budget and learning time — even one afternoon per sprint dedicated to exploration pays dividends. Put a concrete proposal to your EM.",
+          "You're already connecting learning to strategy. Build a learning roadmap for your team — aligned to your technical direction, with time and budget allocated. Make growth a planned activity, not a side effect."
+        ]
+      },
+      {
+        "text": "I share what I've learned from completed work so others can benefit.",
+        "options": [
+          "I focus on completing my work and rarely take time to share what I learned.",
+          "I regularly document or present learnings after finishing significant work.",
+          "I create structures in my squad for knowledge capture after every major initiative.",
+          "I build knowledge-sharing habits into how the whole engineering org operates."
+        ],
+        "tips": [
+          "At the end of your next initiative, write a 5-bullet 'lessons learned' note and drop it in your team channel. It takes 10 minutes and helps whoever works on that area next.",
+          "Schedule a short 'initiative retrospective' with your squad after finishing each significant piece of work. Not just what went wrong — also what techniques and approaches worked well.",
+          "Build knowledge capture into your team's definition of done — every initiative over a certain size should end with a written summary or a short demo. Make it a norm, not an exception.",
+          "You're already building institutional knowledge. Work on discoverability — a shared wiki, a knowledge base, a tagging system. Knowledge that can't be found is knowledge that doesn't exist."
+        ]
+      },
+      {
+        "text": "I adapt my approach when something isn't working, rather than persisting with a failing strategy.",
+        "options": [
+          "I sometimes stick to my initial approach even when signals suggest it's not working.",
+          "I regularly notice when something isn't working and adapt my approach early.",
+          "I coach my squad to spot these signals and pivot confidently without losing momentum.",
+          "I create an org-wide culture of adaptability that treats changing course as strength, not failure."
+        ],
+        "tips": [
+          "Set a personal checkpoint when starting any significant piece of work: 'If I haven't made clear progress in two days, I'll step back and reassess.' Naming the trigger in advance makes it easier to act on.",
+          "When you change approach, say so explicitly: 'I tried X and it wasn't working because Y, so I'm switching to Z.' That transparency builds trust and models good engineering judgment.",
+          "Create a team norm: it's always OK to say 'this approach isn't working — here's what I'm seeing and here's what I'd try instead.' Celebrate the judgment call, not just the solution.",
+          "You're already modelling adaptability. Now build it into how you plan — shorter feedback loops, explicit go/no-go checkpoints, and retrospectives that ask 'are we still on the right path?' at every stage."
+        ]
+      },
+      {
+        "text": "I contribute to a shared understanding of what 'good' looks like in my team's work.",
+        "options": [
+          "I follow the team's standards without much input into how they're defined.",
+          "I actively contribute to shaping what good looks like and help others understand it.",
+          "I lead efforts to codify standards in my squad and make them visible and actionable.",
+          "I define engineering quality standards and ensure they're embedded across the organisation."
+        ],
+        "tips": [
+          "In your next code review or design discussion, articulate why you think something is good or could be better. 'This is clean because X' teaches others what you value — and what good looks like.",
+          "Propose a team working session to define what 'good' means for one specific area — code quality, ticket descriptions, test coverage. Shared definitions make standards actionable.",
+          "Build a team playbook — a living document with examples of good work, coding patterns, and anti-patterns specific to your domain. Review it quarterly and update it as your standards evolve.",
+          "You're already setting standards at scale. Focus on adoption — how do you make the right way the easy way? Tooling, templates, automated checks and pairing all help make standards stick."
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Risk Mitigation",
+    "color": "#993C1D",
+    "bgLight": "#FAECE7",
+    "bank": [
+      {
+        "text": "I proactively identify potential issues and think through their causes and effects.",
+        "options": [
+          "I address problems when they surface but rarely anticipate them.",
+          "I regularly think ahead and flag risks before they become issues.",
+          "I help my squad build a risk-aware mindset and challenge assumptions.",
+          "I define risk frameworks and ensure long-term decisions are stress-tested across the org."
+        ],
+        "tips": [
+          "Before starting your next task, spend five minutes asking: 'What could go wrong? What am I assuming? What happens if this fails?' Write down your top two risks and share them in your ticket.",
+          "Add a 'risks and mitigations' section to your next design or PR description. Even two bullets forces you to think ahead — and it signals maturity to your reviewers.",
+          "Run a pre-mortem with your squad before your next major release: 'Imagine it's three months from now and this has failed — what went wrong?' It's one of the best risk identification techniques available.",
+          "You're already defining how the org thinks about risk. Focus on making risk frameworks lightweight and usable — heavy processes get ignored. The best risk management is the one that actually gets done."
+        ]
+      },
+      {
+        "text": "I take ownership of service health and production stability.",
+        "options": [
+          "I handle tasks assigned to me but leave monitoring to others.",
+          "I keep an eye on production health and act on alerts in my area.",
+          "I drive incident response and post-mortems within my squad.",
+          "I shape how we approach production ownership and reliability across teams."
+        ],
+        "tips": [
+          "Set up a personal dashboard for the services you work on. Know the normal baseline for your key metrics so you can spot anomalies. Ownership starts with awareness.",
+          "Next time an alert fires — even a minor one — dig into the root cause instead of just acknowledging it. Document what you find. You'll learn more from ten small investigations than one big incident.",
+          "Introduce an on-call rotation review with your squad. Are alerts meaningful? Is the on-call burden fair? Are post-mortems producing real improvements? Health of the on-call practice predicts reliability.",
+          "You're already shaping reliability culture. Focus on making ownership explicit — who owns what service, what their SLOs are, and what escalation path exists. Clarity prevents things falling through cracks."
+        ]
+      },
+      {
+        "text": "I consider long-term risk and impact, not just immediate delivery.",
+        "options": [
+          "I focus mainly on getting the task done within the sprint.",
+          "I regularly weigh short-term delivery against long-term health.",
+          "I challenge my squad to think beyond the immediate and evaluate downstream impact.",
+          "I ensure architectural and product decisions account for long-term risk at a company level."
+        ],
+        "tips": [
+          "For your next significant decision, ask: 'Will this still make sense in 12 months?' If you can't answer confidently, flag it. One question can surface a risk nobody else has noticed.",
+          "When you're about to make a pragmatic shortcut, write it down explicitly: 'We're doing X now because Y — the long-term risk is Z. We should revisit this by [date].' Naming the trade-off is half the battle.",
+          "Introduce 'long-term implications' as a standing question in your design reviews. Even one minute of forward-looking discussion per design decision adds up to significantly better architecture.",
+          "You're already thinking at a strategic horizon. Focus on making long-term thinking contagious — teach others the mental models you use to evaluate future risk, not just the conclusions you reach."
+        ]
+      },
+      {
+        "text": "I share feedback on current processes to highlight what's working and what isn't.",
+        "options": [
+          "I keep observations to myself unless directly asked.",
+          "I regularly share feedback constructively to improve team processes.",
+          "I create structured space for my squad to surface and act on process feedback.",
+          "I embed a feedback culture that drives continuous process improvement company-wide."
+        ],
+        "tips": [
+          "The next time you feel friction in a process, write one sentence: what's slow, what's unclear, or what's causing unnecessary work. Share it in your next retro. That's it — start there.",
+          "When sharing process feedback, lead with the impact: 'When we do X, it causes Y, which means Z for the team.' That framing makes feedback actionable rather than just venting.",
+          "Introduce a 'process health check' once per quarter — a dedicated session where the squad reviews its ways of working. Give it structure: what's working, what's slowing us down, what should we try?",
+          "You're already driving process improvement at scale. Now focus on closing the loop — what percentage of process improvements actually get implemented? Track it and make it visible."
+        ]
+      },
+      {
+        "text": "I use analytical thinking to connect causes with effects when investigating problems.",
+        "options": [
+          "I tend to fix the symptom without always finding the root cause.",
+          "I regularly dig into root causes and document findings for the team.",
+          "I coach my squad to think analytically and run structured problem-solving sessions.",
+          "I define how we approach complex problem-solving at an organisational level."
+        ],
+        "tips": [
+          "Next time you fix a bug, ask 'why' five times before you close the ticket. Document the chain. You'll often find that what looked like a one-line fix is actually a symptom of something deeper.",
+          "Practice structured root cause analysis — even a simple 'fishbone' diagram or '5 Whys' write-up takes 15 minutes and dramatically improves the quality of your incident reports.",
+          "Run a root cause analysis workshop with your squad using a real recent incident. Walk through it together step by step. The goal isn't blame — it's building a shared mental model for better investigation.",
+          "You're already leading analytical capability. Codify your problem-solving approach — a documented framework others can follow raises the floor for the whole org, not just the people you work with directly."
+        ]
+      },
+      {
+        "text": "I understand the risks and impact of my decisions before acting.",
+        "options": [
+          "I sometimes act quickly without fully assessing the impact.",
+          "I consistently assess risk before making decisions in my area.",
+          "I help my squad develop risk awareness in their daily decision-making.",
+          "I ensure all major decisions across the org are made with a clear understanding of risk and trade-offs."
+        ],
+        "tips": [
+          "Before your next significant technical decision, write two sentences: 'If this goes wrong, the impact will be X. The likelihood is Y.' That simple framing changes how you approach the decision.",
+          "Get into the habit of distinguishing reversible from irreversible decisions. Reversible decisions can be made quickly and cheaply. Irreversible ones deserve much more care and stakeholder input.",
+          "Run a 'decision log' with your squad — a lightweight record of significant decisions, their rationale and their trade-offs. Reviewing it quarterly builds collective risk intuition over time.",
+          "You're already ensuring risk-aware decision-making at scale. Focus on decision quality — not just process. Are decisions being made with the right people, the right information and the right time horizon in mind?"
+        ]
+      },
+      {
+        "text": "I escalate concerns early rather than waiting for problems to grow.",
+        "options": [
+          "I sometimes hold back concerns hoping things will resolve themselves.",
+          "I raise concerns promptly and with the right context for decision-makers.",
+          "I model early escalation in my squad and build psychological safety to surface issues.",
+          "I create org-wide norms for healthy escalation and blameless problem-solving."
+        ],
+        "tips": [
+          "Practice this framing: 'I have a concern about X. I might be wrong, but I want to raise it early rather than later.' That phrase removes the fear of being wrong and makes escalation feel safe.",
+          "Calibrate your escalation threshold — you're looking for the point where waiting is more costly than raising the issue. When in doubt, surface it. The cost of a false alarm is low. The cost of silence can be high.",
+          "Make it explicit with your squad: 'I'd rather you raise something early and be wrong than wait until it's a crisis.' Back that up by responding positively every time someone does escalate early.",
+          "You're already building healthy escalation culture. Formalise it — clear escalation paths, defined severity levels, and positive recognition when early escalation avoids a bigger problem. Make the behaviour visible."
+        ]
+      },
+      {
+        "text": "I ensure our solutions are resilient and handle failure scenarios gracefully.",
+        "options": [
+          "I focus on the happy path and handle edge cases reactively.",
+          "I design for failure and test edge cases as a regular part of my work.",
+          "I push my squad to build resilience into designs and review for failure modes.",
+          "I define resilience standards and ensure they're applied across the platform."
+        ],
+        "tips": [
+          "For your next feature, write down three failure scenarios before coding: 'What if the upstream service is slow? What if the data is malformed? What if this runs at 10x expected volume?' Then handle at least one of them.",
+          "Add a 'failure modes' section to your PR descriptions. Even one sentence on how your code behaves under failure conditions forces you to think about it — and tells reviewers what to look for.",
+          "Run a chaos engineering exercise with your squad — even a simple one. Turn off a dependency in a staging environment and see what happens. The findings are almost always educational.",
+          "You're already defining resilience standards. Focus on making them testable — runbooks, failure drills, defined SLOs. Standards that can't be verified against don't get followed."
+        ]
+      },
+      {
+        "text": "I monitor alerts and dashboards and act on anomalies before they become incidents.",
+        "options": [
+          "I check dashboards when something is raised, but don't actively monitor.",
+          "I regularly review relevant metrics and respond to anomalies in my area.",
+          "I help my squad set up and own monitoring that enables proactive response.",
+          "I define our observability strategy and ensure it covers the full platform."
+        ],
+        "tips": [
+          "Make checking your service's key metrics a daily two-minute habit. Set up a personal bookmark to the dashboards most relevant to your work. Familiarity with the baseline is what makes anomalies visible.",
+          "Next time you add a feature, add one metric with it — a counter, a latency measure, or an error rate. Ask: 'How will I know in production if this is working?' and make sure the answer isn't just 'no alerts'.",
+          "Run a monitoring review with your squad: are all your services covered? Are alerts actionable? Are there dashboards for every key business metric? Fix the top three gaps as a team.",
+          "You're already defining observability strategy. Focus on alert quality — alert fatigue is a real risk. Every alert should be actionable, assigned and meaningful. Audit yours and eliminate the noise."
+        ]
+      },
+      {
+        "text": "I document and communicate risk clearly so stakeholders can make informed decisions.",
+        "options": [
+          "I keep risk awareness mostly to myself and raise it verbally when pressed.",
+          "I document risks clearly and flag them to the right people with appropriate context.",
+          "I help my squad build habits around risk communication in planning and delivery.",
+          "I define how we communicate risk to stakeholders and leadership across the organisation."
+        ],
+        "tips": [
+          "The next time you spot a risk, write it up in one sentence in the relevant ticket or channel: 'Risk: if X happens, Y is the impact. Mitigation: Z.' That habit builds trust with stakeholders over time.",
+          "Learn to frame risks in business terms, not just technical ones. 'This could cause a 4-hour outage during peak trading hours' is more actionable for a stakeholder than 'the database might have a lock contention issue'.",
+          "Introduce a risk register for your squad's current initiatives — a simple table: risk, likelihood, impact, owner, mitigation. Review it in your weekly sync. Visibility drives action.",
+          "You're already communicating risk at a leadership level. Focus on the risk communication lifecycle — risks should be raised, tracked, mitigated and closed. Build the process that makes that loop visible."
+        ]
+      },
+      {
+        "text": "I consider security implications when building or reviewing solutions.",
+        "options": [
+          "I focus on functionality and address security concerns when flagged.",
+          "I proactively think about security in my designs and flag concerns during reviews.",
+          "I embed security thinking in my squad's design and review processes.",
+          "I define security standards and ensure they're applied consistently across the platform."
+        ],
+        "tips": [
+          "Add three security questions to your personal code review checklist: 'Could this expose sensitive data? Could this be manipulated with unexpected input? Does this require authentication?' Start there.",
+          "Take a free OWASP top 10 refresher — it takes an hour and covers the most common vulnerabilities. Then look for one of those patterns in your current codebase.",
+          "Run a threat modelling session with your squad on your most exposed service. It doesn't need to be formal — 30 minutes asking 'how could this be abused?' often surfaces more than a full security audit.",
+          "You're already defining security standards. Make them developer-friendly — security that's hard to follow gets bypassed. Focus on building security into your CI/CD pipeline and making the right choice the easy choice."
+        ]
+      },
+      {
+        "text": "I build contingency thinking into project plans — considering what could go wrong and preparing for it.",
+        "options": [
+          "I plan for the expected path and deal with surprises as they arise.",
+          "I regularly think through risks and blockers when planning my work.",
+          "I help my squad plan for contingencies and build appropriate buffers.",
+          "I embed risk-adjusted planning across teams and ensure we're prepared for uncertainty."
+        ],
+        "tips": [
+          "Before your next sprint, identify the one task most likely to take longer than estimated. Add a 20% buffer to it. Track whether you were right. Calibrating your estimates improves over time.",
+          "For your next project plan, write a 'plan B' for your riskiest dependency: 'If X is delayed, we'll do Y instead.' Having a fallback named in advance prevents panic when you need it.",
+          "Run a risk planning session before each major initiative: what are the top five things that could derail this? What would we do in each case? Make it a standard part of project kickoffs.",
+          "You're already embedding risk-adjusted planning. Focus on making uncertainty visible to stakeholders — confidence intervals, dependency maps and explicit assumptions in project plans help everyone make better decisions."
+        ]
+      },
+      {
+        "text": "I learn from near-misses and close calls, not just full incidents.",
+        "options": [
+          "I move on after a near-miss if nothing actually went wrong.",
+          "I treat near-misses as learning opportunities and document what I discover.",
+          "I create space in my squad to discuss near-misses openly and improve from them.",
+          "I build a system for capturing and learning from near-misses at scale."
+        ],
+        "tips": [
+          "The next time something almost goes wrong, write a two-sentence note: what happened and what prevented it becoming an incident. Send it to your squad. The pattern of near-misses often predicts the next big incident.",
+          "Introduce 'near-miss' as a category in your team's incident tracking. Even if nothing broke, document it. The habits you build from near-misses are the ones that prevent real incidents.",
+          "Create a safe space in your team's retro for sharing near-misses without judgment. Celebrate the person who surfaced one — they took a risk by sharing it and made the team safer.",
+          "You're already building a mature safety culture. Focus on the systemic signal — what patterns emerge across near-misses over time? The answer often points to a deeper architectural or process risk."
+        ]
+      },
+      {
+        "text": "I am aware of the downstream impact my work has on other teams or systems.",
+        "options": [
+          "I focus primarily on my own area and don't always think about downstream effects.",
+          "I regularly consider how my changes affect other systems and teams.",
+          "I help my squad reason about cross-system dependencies and communicate changes proactively.",
+          "I design for platform-wide impact awareness and ensure changes are coordinated org-wide."
+        ],
+        "tips": [
+          "Before your next deployment, ask: 'Who else consumes this service or data? Have I notified them?' A quick Slack message to the right channel is all it takes to prevent a downstream surprise.",
+          "Draw a simple dependency map for the service you work on most — what does it depend on and what depends on it? Keeping this mental model fresh helps you reason about impact before you act.",
+          "Introduce a 'downstream impact' section to your squad's change process. Before any significant release, review the dependency list together. One conversation catches most cross-team issues.",
+          "You're already coordinating changes at platform scale. Focus on tooling — service catalogs, dependency graphs, automated change notifications. Manual coordination doesn't scale; good systems do."
+        ]
+      },
+      {
+        "text": "I validate assumptions before building, rather than discovering problems after shipping.",
+        "options": [
+          "I discover flawed assumptions during or after implementation more often than before.",
+          "I regularly challenge assumptions upfront through spikes, questions or data.",
+          "I coach my squad to surface and test assumptions before committing to an approach.",
+          "I build assumption-testing into our delivery methodology across the engineering org."
+        ],
+        "tips": [
+          "Before starting your next task, write down 'I am assuming that...' five times and complete each sentence. Then ask: which of these would be most costly if wrong? Validate that one first.",
+          "Build a personal habit of 'spike before build' for any work involving significant technical uncertainty. Even a two-hour spike that fails is cheaper than two weeks of building in the wrong direction.",
+          "Introduce assumption logging to your squad's delivery process — a section in every design doc listing key assumptions and how they were validated (or flagged as unvalidated). Visible assumptions get challenged.",
+          "You're already embedding validated learning. Focus on the measurement — how often do late-stage assumption failures occur? Track them, share the data and use it to strengthen the case for earlier validation."
+        ]
+      },
+      {
+        "text": "I maintain clear ownership boundaries so nothing falls through the cracks between teams.",
+        "options": [
+          "I sometimes assume someone else owns something that turns out to be unclaimed.",
+          "I clarify ownership in my area and make sure handoffs are clean and documented.",
+          "I ensure ownership is explicit across everything my squad is responsible for.",
+          "I define ownership models across the org that eliminate ambiguity at scale."
+        ],
+        "tips": [
+          "If you ever think 'someone should look at this' — that someone is you. Either own it or explicitly hand it to someone who will. Vague ownership is how things fall through the cracks.",
+          "Map your ownership boundaries explicitly: what services, datasets and processes are you responsible for? Share that map with your squad. What's missing becomes visible immediately.",
+          "Run an ownership audit with your squad — go through your services and ask 'who is on call for this? who maintains this? who improves this?' Fill any gaps before they become incidents.",
+          "You're already defining ownership models at scale. Focus on making ownership visible in tooling — service registries, on-call rotations, responsibility matrices. What's not written down doesn't get maintained."
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Technical Excellence",
+    "color": "#185FA5",
+    "bgLight": "#E6F1FB",
+    "bank": [
+      {
+        "text": "I have deep knowledge of the technologies I work with day-to-day.",
+        "options": [
+          "I can complete tasks with guidance but lack depth in some areas.",
+          "I'm proficient in our stack and go deep when debugging or implementing features.",
+          "I'm a go-to resource in my squad and review complex designs confidently.",
+          "I'm a domain expert who validates architectural proposals and mentors others."
+        ],
+        "tips": [
+          "Pick the one technology you use most and spend 30 minutes per week going deeper — read the official docs, explore the internals, or try a feature you haven't used before. Depth compounds over time.",
+          "Next time you debug a tricky issue, go one level deeper than the fix — understand why the problem occurred at the framework or infrastructure level. Document what you find.",
+          "Start running technical deep-dives for your squad on the areas you know best. Teaching forces you to organise your knowledge and reveals gaps you didn't know you had.",
+          "You're already operating as a domain expert. Focus on building the next generation of expertise in your team — your job is to make yourself replaceable at the knowledge level, while moving to the next frontier."
+        ]
+      },
+      {
+        "text": "I write clean, maintainable, self-explaining code that avoids unnecessary complexity.",
+        "options": [
+          "My code works but sometimes needs refactoring for clarity or maintainability.",
+          "I consistently write clean, readable code with sensible abstractions.",
+          "I champion clean code standards and guide my squad through code reviews.",
+          "I define coding standards and elevate quality across the engineering organisation."
+        ],
+        "tips": [
+          "After finishing your next piece of code, read it as if you're seeing it for the first time in 6 months. If anything is unclear, rename it, extract it or add a comment. Build the habit of the 'future reader' check.",
+          "Pick up a copy of 'Clean Code' or 'A Philosophy of Software Design' and read one chapter per week. Apply one principle from each chapter to your work immediately.",
+          "Run a code readability session with your squad — pick a real piece of code and spend 30 minutes improving it together. Focus on naming, structure and removing unnecessary cleverness.",
+          "You're already setting the quality standard. Write up your code quality principles in a team document — with real examples from your codebase. Good and bad. Make the standard concrete and shareable."
+        ]
+      },
+      {
+        "text": "I adapt quickly to new languages, tools or architectural patterns when needed.",
+        "options": [
+          "I struggle to switch contexts without significant ramp-up time.",
+          "I pick up new tools and patterns reliably with some self-directed learning.",
+          "I help my squad evaluate and adopt new technologies effectively.",
+          "I lead technology adoption decisions and build organisational capability around them."
+        ],
+        "tips": [
+          "Build a personal 'new technology onboarding' process — the same five steps every time: hello world, official docs, one real-world project, one blog post, one colleague to ask. Repeatability reduces ramp-up time.",
+          "The next time you pick up a new tool, write a short 'getting started' guide as you learn. It forces you to organise your knowledge and becomes useful for the next person who joins.",
+          "Run a technology evaluation exercise with your squad — pick a tool you're considering and run a structured assessment: pros, cons, migration cost, community health. Build the evaluation muscle as a team.",
+          "You're already leading technology adoption. Focus on change management — new tools fail not because of technical reasons but because of adoption. Build onboarding, documentation and champions into every rollout."
+        ]
+      },
+      {
+        "text": "I understand data warehousing concepts and apply them effectively in my work.",
+        "options": [
+          "I have a basic understanding but need guidance applying warehousing concepts.",
+          "I apply data warehousing principles reliably in my day-to-day work.",
+          "I guide my squad on data modelling and warehousing best practices.",
+          "I define our data modelling strategy and ensure consistency across the platform."
+        ],
+        "tips": [
+          "Spend two hours this week reading about the Kimball vs Inmon approach to data warehousing — understand the trade-offs and where your current architecture fits. Context makes daily decisions much clearer.",
+          "Review one data model you've built recently and assess it against dimensional modelling best practices. Could grain be clearer? Are there missing dimensions? Treat it as a learning exercise.",
+          "Run a data modelling review with your squad — pick an existing model, walk through it together and identify improvements. Build the shared vocabulary and judgment your team needs.",
+          "You're already defining data modelling strategy. Focus on consistency and documentation — a shared data model catalogue, naming conventions and design decision records make the strategy durable."
+        ]
+      },
+      {
+        "text": "I follow industry trends and current best practices in my area of expertise.",
+        "options": [
+          "I focus on what's needed for current tasks without following broader trends.",
+          "I stay current with industry practices and apply relevant ones to my work.",
+          "I actively share relevant trends with my squad and drive their adoption.",
+          "I evaluate and set the direction for which industry practices we adopt as an organisation."
+        ],
+        "tips": [
+          "Subscribe to one curated industry newsletter this week. Block 20 minutes on Friday to read it. The goal isn't to learn everything — it's to develop a feel for what's changing in the field.",
+          "When you read about an industry practice, ask: 'Does this solve a problem we have?' If yes, write a one-paragraph proposal and share it with your team. The best adoption starts with a clear problem statement.",
+          "Build a team 'tech radar' — a simple quadrant tracking tools you're adopting, experimenting with, holding steady on, and avoiding. Review it quarterly. It makes your collective stance on technology visible.",
+          "You're already setting technology direction. Focus on evaluation rigour — not every trend is worth adopting. Document your evaluation criteria and share your reasoning when you say no to something as well as yes."
+        ]
+      },
+      {
+        "text": "I ensure I understand why existing tools and processes were chosen before suggesting changes.",
+        "options": [
+          "I sometimes suggest alternatives without fully understanding current choices.",
+          "I take time to understand the context and constraints behind existing decisions.",
+          "I help my squad appreciate the history and rationale before changing direction.",
+          "I maintain institutional knowledge and guide the org in making informed evolution decisions."
+        ],
+        "tips": [
+          "Before suggesting a change to any tool or process, ask one person who's been on the team longer than you: 'Why did we choose this? What did we try before?' You'll often discover constraints you hadn't considered.",
+          "Start maintaining an architecture decision record (ADR) for significant decisions — even brief ones. Capturing 'why we chose this' makes future evolution much easier and less likely to repeat past mistakes.",
+          "Run an 'archaeology session' with your squad — pick one tool or pattern in your stack and trace its history together. Why was it chosen? What alternatives were considered? What's changed since?",
+          "You're already the custodian of institutional knowledge. Focus on making it accessible — decision records, architecture diagrams and annotated code are how that knowledge survives team changes."
+        ]
+      },
+      {
+        "text": "I propose and implement practical improvements in performance, reliability or maintainability.",
+        "options": [
+          "I implement what's needed but don't often look for improvement opportunities.",
+          "I regularly spot and raise practical improvements in the systems I work on.",
+          "I drive improvement initiatives within my squad and demonstrate their value.",
+          "I lead platform-wide improvement programmes with measurable impact."
+        ],
+        "tips": [
+          "After your next feature, spend 30 minutes looking at the system you just touched: is there a slow query, a fragile dependency, or a confusing abstraction nearby? Log it as a 'fast follow' improvement and do it before closing the ticket.",
+          "When you raise an improvement, estimate its impact: 'This would reduce query time by ~30% and remove a common source of on-call alerts.' Proposals with clear value get prioritised.",
+          "Introduce a 'platform health' section to your squad's sprint retrospective. What's the top technical improvement we could make this sprint? Own it and show the before/after.",
+          "You're already driving platform improvements at scale. Focus on measurement — before and after metrics, incident counts, deployment frequency. Quantified improvements build the case for continued investment."
+        ]
+      },
+      {
+        "text": "I provide data modelling and solution design that solves the right problem effectively.",
+        "options": [
+          "I implement solutions as directed without always contributing to the design.",
+          "I design solutions independently that are fit for purpose and well-structured.",
+          "I review and guide data modelling decisions in my squad for quality and scalability.",
+          "I own the data modelling approach for the platform and set standards across teams."
+        ],
+        "tips": [
+          "Before your next implementation, write a one-paragraph design note: what's the problem, what's your approach, and what's one alternative you considered. Even brief design thinking improves solution quality.",
+          "Ask to be included in design discussions for the work you'll implement. If design happens without you, ask for the rationale — understanding the 'why' makes the 'how' significantly better.",
+          "Run design reviews for significant work in your squad. Use a simple checklist: does this solve the right problem? Does it scale? Is it maintainable? What does failure look like?",
+          "You're already owning solution design at platform level. Focus on enabling others — design review templates, worked examples and pairing sessions help your approach become the team's approach."
+        ]
+      },
+      {
+        "text": "I debug complex problems effectively and get to the root cause efficiently.",
+        "options": [
+          "I can debug straightforward issues but struggle with complex or unfamiliar problems.",
+          "I work through complex bugs systematically and document my findings.",
+          "I coach others on effective debugging approaches and help unblock the squad.",
+          "I establish debugging and diagnostic practices that raise capability across the org."
+        ],
+        "tips": [
+          "Build a personal debugging protocol: reproduce first, isolate second, hypothesise third, verify fourth. Never skip straight to a fix. The discipline of reproduction alone prevents hours of wasted effort.",
+          "The next time you solve a tricky bug, write a short post-mortem: what was the symptom, what was the cause, what did you try that didn't work and why. Share it with your team.",
+          "Run a debugging workshop with your squad using a real recent bug. Walk through it step by step — what tools were used, what mental models were applied, what could have been faster?",
+          "You're already setting the standard for diagnosis. Build it into your platform — better logging, better tracing, better error messages. The best debugging is fast because the system makes the right answer obvious."
+        ]
+      },
+      {
+        "text": "I understand and apply software architecture principles appropriate to the problem at hand.",
+        "options": [
+          "I implement within existing architectures but don't always understand the design decisions.",
+          "I understand our architecture well and make decisions consistent with it.",
+          "I contribute to architectural decisions in my squad and review designs with confidence.",
+          "I lead architectural design across the org and ensure our systems are coherent and scalable."
+        ],
+        "tips": [
+          "Read one of the architecture decision records (ADRs) in your codebase this week — if there aren't any, find out why a key component was built the way it was. Understanding the 'why' changes how you work with it.",
+          "When making a technical decision, explicitly state which architectural principle you're applying and why. 'I'm choosing X over Y because it keeps this service stateless, which is important for our scaling approach.'",
+          "Volunteer to lead or co-lead your squad's next architectural decision. Prepare a written proposal, present it, incorporate feedback. The practice of structured architectural reasoning grows quickly.",
+          "You're already leading architecture across the org. Focus on coherence — as systems grow, architectural decisions made in isolation create friction. Your job is to ensure the pieces fit together well."
+        ]
+      },
+      {
+        "text": "I ensure my code is observable — easy to monitor, trace and diagnose in production.",
+        "options": [
+          "I don't often think about observability when writing code.",
+          "I regularly add appropriate logging, metrics and tracing to the code I ship.",
+          "I help my squad treat observability as a first-class concern in every delivery.",
+          "I define our observability standards and ensure they're consistently applied across the platform."
+        ],
+        "tips": [
+          "Add one 'observability question' to your PR checklist: 'If this fails silently in production, how would I know?' Then make sure the answer isn't 'I wouldn't'.",
+          "Review the logging in your last three PRs. Are errors structured and searchable? Are there metrics for the operations that matter? Add what's missing — observability retrofitted is better than observability absent.",
+          "Run an observability review with your squad on one of your most important services. Can you answer: is it healthy, is it fast, who is using it and how? Fill the gaps as a team.",
+          "You're already defining observability standards. Focus on making them the default — pre-built dashboards, logging libraries with sane defaults, CI checks that fail on unobservable code. The right thing should be the easy thing."
+        ]
+      },
+      {
+        "text": "I review technical designs critically, considering edge cases, scalability and long-term fit.",
+        "options": [
+          "I read technical designs but don't always provide detailed or critical feedback.",
+          "I give thorough, thoughtful feedback on technical designs in my area.",
+          "I lead design reviews in my squad and ensure edge cases and trade-offs are addressed.",
+          "I validate and shape complex technical designs across the org and mentor others to do the same."
+        ],
+        "tips": [
+          "For your next design review, write down three questions before you start reading: 'What are the edge cases? What happens under load? What's the migration path?' Force yourself to find answers.",
+          "When giving design feedback, go beyond 'this looks good' or 'this looks risky'. Say why: 'This approach won't scale past X because Y. Have you considered Z?' Specific feedback is actionable feedback.",
+          "Introduce a design review template for your squad: problem statement, solution approach, alternatives considered, trade-offs, open questions. Structured reviews catch more issues and are faster to run.",
+          "You're already validating designs at org level. Focus on building the next generation of design reviewers — teach them the questions you ask and the mental models you use, not just the answers you give."
+        ]
+      },
+      {
+        "text": "I keep technical complexity under control as systems evolve over time.",
+        "options": [
+          "I build what's needed and leave complexity management to others.",
+          "I regularly refactor and simplify as I work, keeping complexity in check.",
+          "I help my squad prioritise technical simplicity alongside feature delivery.",
+          "I set and enforce complexity management standards that keep our platform maintainable at scale."
+        ],
+        "tips": [
+          "Apply the Boy Scout Rule: every time you touch a piece of code, leave it slightly cleaner than you found it. Extract one confusing variable name. Remove one dead code path. Small consistent improvements add up.",
+          "Allocate 10% of your time in each sprint to simplification. Pick the most complex thing you've touched recently and make it simpler. Track it in your sprint board as a real task, not an afterthought.",
+          "Run a complexity audit with your squad. Identify the three most complex areas of your codebase and agree on a simplification roadmap. Prioritise it alongside features in each sprint.",
+          "You're already managing complexity at scale. Focus on the system that prevents complexity from accumulating in the first place — architectural guardrails, review checklists and regular simplification sprints."
+        ]
+      },
+      {
+        "text": "I can reason about and improve the performance characteristics of the systems I work on.",
+        "options": [
+          "I focus on correctness and address performance issues only when they cause problems.",
+          "I proactively profile, measure and optimise the systems I work on.",
+          "I guide my squad to reason about performance and build it into their delivery.",
+          "I define performance engineering practices and ensure the platform meets its SLAs."
+        ],
+        "tips": [
+          "Before closing your next feature, add one performance question: 'What's the expected p95 latency for this operation? How does it behave under 10x load?' You don't need to fix everything — just make performance visible.",
+          "Profile one service you own this month. Use your observability tooling to find the slowest query or heaviest operation. Understanding the baseline makes future optimisation much more targeted.",
+          "Introduce performance benchmarks to your squad's CI pipeline for critical paths. Regressions are much cheaper to catch before production than after. Set one threshold and automate one check.",
+          "You're already defining performance engineering. Focus on SLOs — agreed targets make performance objective, not subjective. Work with your EM and product to set meaningful SLOs and hold the platform to them."
+        ]
+      },
+      {
+        "text": "I apply the right level of abstraction — neither too concrete nor too generic.",
+        "options": [
+          "I sometimes over-abstract or under-abstract, making code harder to work with.",
+          "I consistently apply abstractions that make my code easier to read and reuse.",
+          "I guide my squad on abstraction decisions during design and review.",
+          "I establish abstraction principles that are adopted across the engineering organisation."
+        ],
+        "tips": [
+          "Follow the Rule of Three: don't abstract until you've seen the same pattern three times. Early abstraction often guesses wrong about what needs to vary. Wait for the third instance before generalising.",
+          "When you review a piece of code, ask: 'Does this abstraction hide complexity or add it?' Good abstractions make the calling code simpler. Bad ones force callers to understand the abstraction to use it.",
+          "Run a 'leaky abstraction' review with your squad — find one example where an abstraction forces the caller to know about its implementation details. Refactor it together and discuss what made it better.",
+          "You're already guiding abstraction decisions at org level. Document your principles — with real examples from your codebase — and use them in design reviews. Concrete examples teach abstraction better than theory."
+        ]
+      },
+      {
+        "text": "I proactively share technical knowledge that helps the team work more effectively.",
+        "options": [
+          "I focus on my own work and share knowledge when directly asked.",
+          "I regularly share useful techniques, tools or findings with my team.",
+          "I organise knowledge-sharing sessions and ensure learnings are captured for the squad.",
+          "I build technical knowledge-sharing practices that elevate capability across the whole org."
+        ],
+        "tips": [
+          "Once a week, share one thing you've learned in your team channel — a technique, a useful command, a debugging trick. Keep it to three lines. Low friction sharing compounds into a learning culture.",
+          "The next time you solve a non-trivial problem, write a short internal blog post or wiki page. It takes 20 minutes, it helps future you, and it signals that your team values captured knowledge.",
+          "Organise a monthly 'show and tell' in your squad — 15 minutes where one person shares something technical they've learned or built recently. Rotate the presenter. Keep it lightweight and positive.",
+          "You're already building knowledge-sharing culture. Focus on discoverability and searchability — knowledge that's shared but can't be found is knowledge that doesn't exist. Invest in your team's knowledge infrastructure."
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Embracing Ownership",
+    "color": "#BA7517",
+    "bgLight": "#FAEEDA",
+    "bank": [
+      {
+        "text": "I take full responsibility for the tasks I own — including quality, timing and communication.",
+        "options": [
+          "I complete what's asked but sometimes need reminders or miss updates.",
+          "I own my tasks end-to-end and communicate proactively on blockers or changes.",
+          "I model strong ownership and hold my squad to high accountability standards.",
+          "I set the ownership culture across the team and serve as a trusted advisor."
+        ],
+        "tips": [
+          "For your next task, set a personal commitment: 'I will update the ticket every day and flag blockers within 4 hours of discovering them.' Track your own reliability. Consistent small habits build a strong reputation.",
+          "Practice the ownership update formula: 'Status: X. Progress: Y. Blockers: Z. ETA: W.' Short, clear, proactive. Send it before anyone asks. Over time it builds a level of trust that opens more opportunities.",
+          "When you see a team member struggling with ownership, coach them with a specific example: 'When I was in that situation, I found it helpful to do X.' Model the behaviour, then help them build it.",
+          "You're already shaping ownership culture. Make it structural — agreed communication cadences, clear accountability in planning, and public recognition of reliable delivery. Culture is behaviour made consistent."
+        ]
+      },
+      {
+        "text": "I monitor production and proactively contribute to platform health and firefighting.",
+        "options": [
+          "I address incidents when escalated to me but don't monitor proactively.",
+          "I keep tabs on production health and respond quickly to issues in my area.",
+          "I lead firefighting efforts and drive improvements after incidents.",
+          "I shape how we handle production at scale and build resilience into our platform."
+        ],
+        "tips": [
+          "Set up a two-minute daily habit: check the health dashboard for the services you own. Know what 'normal' looks like. That baseline awareness is what makes you the first to notice when something's wrong.",
+          "The next time an incident happens — even a small one — write a three-sentence summary afterward: what happened, what you did, what you'll prevent next time. Make it a personal habit before making it a team standard.",
+          "Lead your squad's next incident retrospective. Use a structured template: timeline, root cause, contributing factors, action items. Make sure each action has an owner and a due date.",
+          "You're already shaping reliability culture. Focus on reducing incident frequency, not just improving response time. Better monitoring, better resilience patterns and better runbooks prevent more incidents than faster response."
+        ]
+      },
+      {
+        "text": "I provide timely, proactive communication to stakeholders on scope, blockers and progress.",
+        "options": [
+          "I tend to communicate reactively when asked for updates.",
+          "I proactively raise blockers, estimation changes and progress updates.",
+          "I ensure my squad communicates consistently with all relevant stakeholders.",
+          "I frame technical decisions in business value terms for executive audiences."
+        ],
+        "tips": [
+          "Practice the '24-hour rule': if something will affect your delivery by more than half a day, communicate it within 24 hours of knowing. The earlier you flag it, the more options everyone has.",
+          "Identify your key stakeholders for your current work and set a weekly update cadence. One short message — progress, risks, next steps — keeps everyone aligned and prevents escalations.",
+          "Introduce stakeholder communication as a squad responsibility. Who are the key stakeholders for each initiative? Who owns the update? What's the cadence? Make it explicit in your project kickoffs.",
+          "You're already communicating at executive level. Focus on the narrative: stakeholders don't just want status — they want to understand whether they should worry. Frame updates around decisions, not activities."
+        ]
+      },
+      {
+        "text": "I feel responsible for the overall success of my squad's projects, not just my own tasks.",
+        "options": [
+          "I focus on my own tasks and leave broader project health to others.",
+          "I keep an eye on squad progress and step in to help when I see a gap.",
+          "I actively manage squad-level delivery health and remove blockers for others.",
+          "I own delivery outcomes across multiple squads and create accountability structures."
+        ],
+        "tips": [
+          "In your next standup, consciously ask: 'Is there anything blocking anyone else that I could help with?' Even if you can't always help, the habit of looking beyond your own tasks shifts your mindset.",
+          "After your own work is in a good state, take 30 minutes to review the squad board. Are any tickets at risk? Is anything blocked that you could unblock? Proactive squad awareness is the foundation of team ownership.",
+          "Introduce a weekly squad health check — a 10-minute review of the sprint board together. Are we on track? What's at risk? Who needs help? Make collective delivery health everyone's responsibility.",
+          "You're already managing delivery health at scale. Focus on building the systems that make risk visible early — burndown charts, blocker tracking, dependency maps. The goal is collective awareness, not individual heroics."
+        ]
+      },
+      {
+        "text": "I understand quality as a process, not a role, and contribute to it throughout delivery.",
+        "options": [
+          "I see quality as primarily the responsibility of QA or testers.",
+          "I build quality into my work at every stage, not just at the end.",
+          "I help my squad adopt quality-first thinking throughout the full SDLC.",
+          "I define quality culture and processes that span the entire engineering organisation."
+        ],
+        "tips": [
+          "Shift your quality mindset: quality is the cost of not writing tests, not documenting decisions, and not reviewing carefully. Name those costs explicitly next time you feel the temptation to skip them.",
+          "Start involving yourself in acceptance criteria before you start building. The earlier you understand what 'done' looks like, the less rework you'll do at the end.",
+          "Run a quality workshop with your squad — map out your SDLC and identify where quality checks happen. Are they front-loaded enough? Are they automated where they could be? Build the shared understanding.",
+          "You're already defining quality culture. Focus on making the right habits easy — checklists, templates, automated gates. Quality that depends on individual discipline doesn't scale. Systems do."
+        ]
+      },
+      {
+        "text": "I am proactive in both firefighting and platform improvement tasks.",
+        "options": [
+          "I tend to focus on my assigned work and respond to incidents when called upon.",
+          "I balance reactive firefighting with proactive improvements in my area.",
+          "I help my squad build habits around both incident response and proactive improvement.",
+          "I design systems and team structures that reduce firefighting through better platform health."
+        ],
+        "tips": [
+          "Allocate 10% of your time each sprint specifically to proactive improvements — fixes that aren't blocking anything yet but will if left alone. Track this on your board and protect it.",
+          "Keep a 'paper cut' list — a rolling note of small annoyances, fragile scripts, manual processes and undocumented systems. Spend one Friday afternoon per month working through the top three.",
+          "Introduce 'platform health sprints' or a rotating platform improvement allocation for your squad. Make proactive work visible and valued alongside feature delivery.",
+          "You're already designing for reduced firefighting. Measure it — track incident frequency, mean time to recovery and platform health metrics over time. The trend tells you whether your investments are paying off."
+        ]
+      },
+      {
+        "text": "I value long-term platform health as much as feature delivery.",
+        "options": [
+          "I prioritise feature delivery and treat platform health as a secondary concern.",
+          "I consistently advocate for time to address technical health alongside features.",
+          "I ensure my squad balances delivery with investment in long-term platform quality.",
+          "I influence roadmap and resourcing decisions to ensure platform health is a strategic priority."
+        ],
+        "tips": [
+          "Start naming the cost of deferred platform health in concrete terms: 'Every time we skip this, it adds X hours to future deployments.' Making the cost visible is the first step to getting it prioritised.",
+          "Propose a simple team agreement: for every five feature points we deliver, one point goes to platform health. Even a rough ratio creates the expectation that health investment is normal and planned.",
+          "Track your squad's technical debt as a visible backlog item, not just a verbal concern. Bring it to sprint planning with estimated impact. Visibility is the first step to prioritisation.",
+          "You're already influencing the roadmap. Build the business case — calculate what platform instability costs in engineering time, customer impact and opportunity cost. Make the ROI of health investment undeniable."
+        ]
+      },
+      {
+        "text": "I act proactively when I see a need, rather than waiting to be asked.",
+        "options": [
+          "I wait for clear instruction before taking action.",
+          "I act on my initiative when I see something that needs doing.",
+          "I encourage a proactive mindset in my squad and recognise initiative in others.",
+          "I build an organisation-wide culture of proactivity and psychological safety to act."
+        ],
+        "tips": [
+          "The next time you notice something that needs fixing, ask yourself: 'Is this clearly outside my scope, or am I just waiting for permission I don't need?' Then act. Build confidence in small decisions first.",
+          "Practice the habit of 'act and communicate' rather than 'wait for approval': take the action, then immediately let the relevant person know what you did and why. This is leadership without authority.",
+          "When someone in your squad takes proactive action, recognise it explicitly: 'I noticed you fixed that without being asked — that's exactly the kind of initiative that makes this team stronger.' Positive reinforcement shapes behaviour.",
+          "You're already building a proactive culture. Make psychological safety explicit — tell your team that acting on initiative is valued, that mistakes from proactive action are learning opportunities, not failures."
+        ]
+      },
+      {
+        "text": "I follow through on commitments and flag early when I'm at risk of missing them.",
+        "options": [
+          "I sometimes miss commitments without warning, or realise too late to flag it.",
+          "I reliably deliver on my commitments and flag risks early when things change.",
+          "I help my squad build reliable delivery habits and raise risks as a team.",
+          "I create accountability and early-warning systems that make delivery predictable across teams."
+        ],
+        "tips": [
+          "Set a personal rule: if you realise you're at risk of missing a commitment, you have 24 hours to flag it. Anything beyond that is a reliability failure. Practice the early flag — it gets easier each time.",
+          "Track your own delivery reliability over a month: how often did you deliver what you said by when you said it? Where you missed — why? Identify the pattern and address the root cause.",
+          "Run a squad exercise on commitment quality: what makes a commitment reliable? Break down your sprint commitments into the factors that make them risky — dependencies, complexity, ambiguity — and mitigate them upfront.",
+          "You're already creating delivery predictability. Focus on the system — good capacity planning, explicit assumptions, visible dependencies and clear escalation paths are what make reliability structural rather than personal."
+        ]
+      },
+      {
+        "text": "I take ownership of my own professional development and growth.",
+        "options": [
+          "I rely on my manager to identify growth areas and set learning goals for me.",
+          "I actively drive my own development with clear goals and regular reflection.",
+          "I support my squad members in owning their growth journeys.",
+          "I build a culture where every engineer takes agency over their own development."
+        ],
+        "tips": [
+          "Write down three skills you want to develop in the next six months and one concrete action for each. Share them with your manager at your next 1:1. Naming your goals makes them real and gets you support.",
+          "Treat your development like a project: set a goal, define what success looks like, identify resources, and review progress monthly. The engineers who grow fastest are the ones who manage their own growth.",
+          "In your next 1:1 with a team member, ask them: 'What do you want to be doing in a year that you're not doing today?' Then help them identify one concrete first step. Agency starts with a question.",
+          "You're already building a growth culture. Make development visible — growth plans, learning goals, regular check-ins on progress. Culture is practice made visible. What you track and celebrate is what grows."
+        ]
+      },
+      {
+        "text": "I treat our codebase and systems with care — keeping things clean and well-maintained.",
+        "options": [
+          "I focus on getting my tasks done and leave cleanup for later.",
+          "I regularly leave things in a better state than I found them.",
+          "I instil a 'leave it better' mindset in my squad as a core part of how we work.",
+          "I embed codebase stewardship into our engineering culture and delivery standards."
+        ],
+        "tips": [
+          "Adopt the Boy Scout Rule as a personal standard: every time you work in a file, make one small improvement that isn't directly related to your task — a rename, a comment, a dead code removal. It adds up fast.",
+          "The next time you find something confusing in the codebase, fix it immediately if it takes under 10 minutes, or log it in a 'cleanup backlog' if it's bigger. Don't just note it mentally and move on.",
+          "Create a team 'codebase health' ritual — one afternoon per sprint where the squad spends time on cleanup, documentation and simplification. No features. Just stewardship. Track the before/after.",
+          "You're already building stewardship culture. Make it structural — codebase health metrics, cleanup sprints in your planning cadence, and explicit recognition of the engineers who leave things better than they find them."
+        ]
+      },
+      {
+        "text": "I participate actively in surveys, reviews and organisational health initiatives.",
+        "options": [
+          "I complete surveys when chased and give minimal input in review processes.",
+          "I engage thoughtfully with feedback mechanisms and share honest, constructive input.",
+          "I encourage my squad to engage actively and help create psychological safety to do so.",
+          "I design and improve how we gather and act on feedback across the engineering organisation."
+        ],
+        "tips": [
+          "Before your next survey or review, spend five minutes thinking about what you genuinely want to say. Honest, specific feedback is infinitely more valuable than quick generic responses.",
+          "Close the feedback loop: after sharing feedback, follow up to see what happened with it. If nothing changed, ask why. If it did, acknowledge it. Engaged feedback cultures depend on people seeing that input matters.",
+          "In your next team meeting, explicitly invite input on how the team is working: 'What's one thing about how we operate that you wish were different?' Then act on one thing. Visible action creates psychological safety.",
+          "You're already designing feedback systems. Focus on the action rate — what percentage of feedback leads to visible change? Low action rates kill future engagement. Make sure responses to feedback are always communicated."
+        ]
+      },
+      {
+        "text": "I keep my stakeholders appropriately informed without overwhelming them with detail.",
+        "options": [
+          "I share too much or too little depending on the situation.",
+          "I calibrate my updates to what stakeholders actually need to know and act on.",
+          "I help my squad develop stakeholder communication habits that build trust.",
+          "I set the standard for how engineering communicates with business stakeholders at all levels."
+        ],
+        "tips": [
+          "Before your next stakeholder update, ask: 'What does this person need to decide or do based on what I tell them?' Write to that question — everything else is noise.",
+          "Learn to separate status (what's happening) from signal (what should you care about). Most stakeholders want signal. Status is available in your project tool — they don't need you to repeat it.",
+          "Run a stakeholder mapping exercise with your squad. For each initiative: who are the stakeholders, what do they care about, and what's their preferred update format and frequency? Write it down and honour it.",
+          "You're already setting communication standards. Invest in templates and examples — a well-crafted status update template that your squad can use saves time and ensures consistency across all your communications."
+        ]
+      },
+      {
+        "text": "I make sure incidents and outages result in lasting improvements, not just short-term fixes.",
+        "options": [
+          "I fix the immediate problem and move on without always ensuring lasting change.",
+          "I consistently follow up on incidents to ensure root causes are addressed durably.",
+          "I lead post-incident reviews in my squad and track improvements to completion.",
+          "I design our incident response process to embed lasting improvement at scale."
+        ],
+        "tips": [
+          "The next time you close an incident, add one follow-up ticket before marking it resolved: the root cause fix, not the workaround. Make this a personal policy. Workarounds create future incidents.",
+          "After each post-mortem, assign every action item a named owner and a due date. Then add a follow-up in two weeks to check progress. Without this, post-mortems produce insight but not change.",
+          "Run a 'post-mortem action review' with your squad monthly — review the actions from past post-mortems. What got done? What didn't? Why? This single habit dramatically improves incident learning.",
+          "You're already designing for lasting improvement. Track your incident action completion rate. Low completion rates indicate a systemic problem — not enough time, wrong owners, or unclear actions. Fix the system."
+        ]
+      },
+      {
+        "text": "I manage scope creep actively and push back when expectations grow beyond what's agreed.",
+        "options": [
+          "I tend to absorb extra scope without flagging the impact on delivery.",
+          "I track scope changes and raise their impact proactively with the right people.",
+          "I help my squad manage scope and protect delivery commitments as a team.",
+          "I establish how we negotiate and manage scope across initiatives at an org level."
+        ],
+        "tips": [
+          "When new scope arrives mid-sprint, say this: 'I can do that — and if I do, here's what it will move. Which would you prefer?' That one question shifts the conversation from 'yes' to 'trade-off'.",
+          "Document scope in your sprint planning explicitly — not just what's in, but what's explicitly out. 'Out of scope: X, Y, Z' prevents the most common form of scope creep: things that were never quite agreed to be out.",
+          "Run a scope management session with your squad before your next release: review the original scope vs current scope. How much grew? Why? What should we do about it? Build the awareness before it becomes a crisis.",
+          "You're already managing scope at org level. Focus on the upstream fix — better requirements and clearer scope boundaries at the start of an initiative prevent most scope creep. Invest in kickoff quality."
+        ]
+      },
+      {
+        "text": "I ensure smooth handoffs when work transitions between team members or squads.",
+        "options": [
+          "I hand off work verbally without always ensuring the recipient has full context.",
+          "I document and communicate handoffs clearly so nothing is lost in transition.",
+          "I build strong handoff practices in my squad that prevent knowledge loss.",
+          "I define handoff standards across the org that keep delivery continuity high."
+        ],
+        "tips": [
+          "Before handing off any piece of work, write a brief 'context note': current state, outstanding decisions, known risks, next steps. Even five bullet points prevents hours of re-investigation by the recipient.",
+          "Build a personal handoff template: what does the new owner need to know to pick this up without a conversation with you? Use it every time. The test is: could they work on it if you were unavailable?",
+          "Run a squad exercise on handoff quality — review a recent handoff that went well and one that didn't. What made the difference? Turn the learnings into a simple handoff checklist.",
+          "You're already defining handoff standards at scale. Make them enforced by process rather than goodwill — handoff documentation as part of definition of done, reviewed in sprint ceremonies before work closes."
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Leading by Example",
+    "color": "#993556",
+    "bgLight": "#FBEAF0",
+    "bank": [
+      {
+        "text": "I communicate complex ideas clearly and adapt my style to my audience.",
+        "options": [
+          "I sometimes struggle to tailor my communication to non-technical audiences.",
+          "I regularly adapt how I explain things depending on who I'm speaking with.",
+          "I coach my squad on communication and facilitate cross-team knowledge sharing.",
+          "I represent the team externally and communicate technical status as business value."
+        ],
+        "tips": [
+          "Before your next cross-functional conversation, ask yourself: 'What does this person care about most? What do they need to decide?' Then start there — not with your technical context.",
+          "Try the 'newspaper test' on your next technical update: if this were a headline, what would it say in plain language? If you can't write that headline, your message isn't clear enough yet.",
+          "Run a communication workshop with your squad — have two engineers explain the same technical concept, one to a technical audience and one to a non-technical stakeholder. Debrief the differences.",
+          "You're already communicating at an executive level. Focus on storytelling — data and status are necessary, but a narrative with a clear 'so what' is what moves people to act."
+        ]
+      },
+      {
+        "text": "I support and develop less experienced colleagues through pairing, feedback and mentoring.",
+        "options": [
+          "I focus mainly on my own work and help others when directly asked.",
+          "I regularly pair with and give feedback to less experienced colleagues.",
+          "I take an active mentoring role and contribute to onboarding and squad growth.",
+          "I build a mentoring culture and develop engineering talent across the company."
+        ],
+        "tips": [
+          "Block one hour per week for informal knowledge sharing — pairing on a problem, reviewing a colleague's approach, or answering questions in depth. Consistent small investments compound into significant development.",
+          "The next time a junior engineer asks you a question, resist answering immediately. Ask them what they've tried and what they think. Guide rather than tell. This one habit develops engineers faster than any other.",
+          "Propose a formal buddy or mentoring system for new joiners in your squad. Even a lightweight structure — weekly check-in, clear expectations — dramatically improves time-to-productivity and retention.",
+          "You're already building mentoring culture. Now systematise it — mentoring guidelines, matched pairings, progress tracking and feedback loops. Culture without structure is difficult to sustain at scale."
+        ]
+      },
+      {
+        "text": "I foster a culture of respect, psychological safety and team ownership.",
+        "options": [
+          "I try to be respectful but don't actively shape team culture.",
+          "I consistently model respect and encourage open, constructive dialogue.",
+          "I actively discourage blame culture and champion a 'we got this' mentality.",
+          "I define and embed cultural values that make our engineering org a great place to work."
+        ],
+        "tips": [
+          "Notice the small moments — how you react when someone makes a mistake, how you respond to an idea you think is wrong, how you treat interruptions. Culture is built in the small moments, not the big ones.",
+          "The next time something goes wrong, say this first: 'OK, what do we need to do to move forward?' before assigning any cause. That single habit shifts a team from blame to problem-solving.",
+          "Introduce a 'team norms' document with your squad — three or four agreed behaviours that define how you work together. Review it in your retro quarterly. Written norms become real norms.",
+          "You're already shaping culture at scale. Make it explicit and measurable — engagement surveys, retention data, promotion rates. Culture should be tracked and improved like any other system."
+        ]
+      },
+      {
+        "text": "I demonstrate enthusiasm and bring positive energy to the challenges my team faces.",
+        "options": [
+          "I get the work done but don't always bring energy or enthusiasm to the team.",
+          "I consistently show up with a positive attitude and contribute to team morale.",
+          "I actively energise my squad during difficult periods and celebrate progress.",
+          "I shape the motivational culture of the engineering org and inspire others to lead with energy."
+        ],
+        "tips": [
+          "Notice your own energy at work this week. What conditions bring out your best? What drains you? Understanding your own motivation is the first step to bringing more of it — and knowing when you need to recharge.",
+          "Celebrate small wins publicly and specifically: 'Great job on getting that pipeline running — I know it was a tough problem and the team really benefited.' Specific recognition is far more energising than generic praise.",
+          "During difficult sprints or challenging projects, open your next team meeting with a genuine acknowledgement: 'This has been hard. Here's what we've achieved despite that.' Recognition in difficulty builds resilience.",
+          "You're already shaping motivational culture. Invest in understanding what energises each person on your team — it's different for everyone. Tailored motivation is what separates good managers from great ones."
+        ]
+      },
+      {
+        "text": "I drive the adoption of best practices within my team.",
+        "options": [
+          "I follow best practices myself but don't actively promote them to others.",
+          "I regularly share best practices and reference them in code reviews and discussions.",
+          "I lead best practice adoption initiatives and create learning opportunities for my squad.",
+          "I define engineering best practices for the organisation and ensure they're adopted at scale."
+        ],
+        "tips": [
+          "The next time you apply a best practice in your code, add a brief comment explaining why. That single habit educates reviewers and gradually shifts the team's shared understanding of what good looks like.",
+          "When you share a best practice, always lead with the 'why': 'We do this because it prevents X and makes Y easier.' Without context, best practices feel like arbitrary rules.",
+          "Propose a squad 'best practice backlog' — a shared list of practices the team wants to adopt, with owners and timelines. Treat it like a mini roadmap for engineering quality.",
+          "You're already defining best practices at org scale. Focus on adoption infrastructure — linting rules, templates, automated checks, worked examples. The best practice that's automatic is the one that actually gets followed."
+        ]
+      },
+      {
+        "text": "I can express concerns or disagreements in a respectful, constructive way.",
+        "options": [
+          "I sometimes avoid difficult conversations or express frustration unproductively.",
+          "I regularly give direct, respectful feedback and raise concerns clearly.",
+          "I model constructive challenge in my squad and make it safe for others to do the same.",
+          "I set the standard for healthy, high-trust communication across the engineering organisation."
+        ],
+        "tips": [
+          "Practice this formula for disagreement: 'I see it differently — here's my concern, here's my reasoning, and I'm open to being convinced otherwise.' That structure keeps you honest, direct and non-combative.",
+          "Prepare for difficult conversations in advance. Write down what you want to say, how the other person is likely to hear it, and how you'll respond to pushback. Preparation turns anxiety into confidence.",
+          "Make disagreement visible and valued in your team: 'Does anyone see it differently? Challenge me.' When someone does push back, thank them — even if you don't change your mind. Make challenge feel safe.",
+          "You're already modelling healthy challenge. Now focus on developing it in others — coaching them on how to frame a disagreement, how to separate the idea from the person, and how to escalate when needed."
+        ]
+      },
+      {
+        "text": "I apply analytical thinking when decisions are being made, keeping the end goal in mind.",
+        "options": [
+          "I tend to focus on the immediate problem without always stepping back to the big picture.",
+          "I regularly think from the end goal backward and structure my analysis accordingly.",
+          "I coach my squad to think analytically and challenge decisions that lack strategic grounding.",
+          "I establish analytical thinking frameworks used across the org for complex decisions."
+        ],
+        "tips": [
+          "Before your next decision, write one sentence: 'The end goal is X. This decision moves us toward/away from it because Y.' That simple step reconnects immediate choices to strategic direction.",
+          "Practice 'working backward' on your next proposal — start from the desired outcome and reason back to what needs to happen. It's a more reliable path to good decisions than starting from where you are.",
+          "Introduce structured decision-making to your squad — a lightweight template: problem, options, trade-offs, recommendation, open questions. It takes 10 minutes and dramatically improves decision quality.",
+          "You're already coaching analytical thinking at scale. Make your mental models explicit and shareable — the frameworks you use to think through decisions are among the most valuable things you can teach."
+        ]
+      },
+      {
+        "text": "I share knowledge and contribute to cross-team learning and collaboration.",
+        "options": [
+          "I share within my immediate team but rarely contribute to wider knowledge sharing.",
+          "I regularly contribute to demos, write-ups or sessions that benefit other teams.",
+          "I organise and drive knowledge sharing initiatives that connect squads.",
+          "I build knowledge-sharing structures and communities of practice that span the organisation."
+        ],
+        "tips": [
+          "After your next initiative, volunteer to present a 10-minute 'what we learned' to the wider engineering team. You'll get more feedback, build relationships, and the habit of sharing externally compounds over time.",
+          "Write one internal post or wiki page per month about something you've built or learned. It doesn't need to be long — three paragraphs is enough. Consistent sharing builds your reputation and the team's knowledge base.",
+          "Propose a cross-squad demo day — monthly, 30 minutes, three teams share what they've built. It's lightweight, builds alignment and surfaces unexpected overlap and opportunities for collaboration.",
+          "You're already building knowledge-sharing infrastructure. Focus on sustainability — communities of practice need a regular cadence, a clear purpose and rotating leadership to avoid the 'one hero' problem."
+        ]
+      },
+      {
+        "text": "I help new team members get up to speed quickly and feel welcomed.",
+        "options": [
+          "I point newcomers to resources when asked but don't proactively support onboarding.",
+          "I actively support new joiners, pair with them and help them navigate the team.",
+          "I design and improve our onboarding experience so every new joiner ramps up quickly.",
+          "I build onboarding programmes that scale across the org and set new hires up for long-term success."
+        ],
+        "tips": [
+          "The next time someone joins your team, reach out on day one and offer a specific help: 'I'll pair with you on your first ticket.' Small proactive gestures at the start shape the whole onboarding experience.",
+          "Write down the three things you wish you'd known in your first week. Share them with the next new joiner. Repeat this habit and you'll gradually build a great informal onboarding resource.",
+          "Audit your team's onboarding experience — ask a recent joiner what was clear, what was confusing, and what was missing. Use their feedback to improve the process. New joiners are your best onboarding consultants.",
+          "You're already building scalable onboarding. Focus on the 90-day arc, not just the first week — what does a new engineer need to achieve to feel fully capable at 30, 60 and 90 days? Design for that progression."
+        ]
+      },
+      {
+        "text": "I give timely, specific and actionable feedback to colleagues.",
+        "options": [
+          "I give general or vague feedback and tend to delay it until formal review cycles.",
+          "I regularly give specific, timely feedback that helps colleagues improve.",
+          "I coach my squad on giving and receiving feedback well, and make it a team habit.",
+          "I embed a feedback culture across the org that is continuous, specific and high quality."
+        ],
+        "tips": [
+          "Use the SBI model for feedback: Situation (when/where), Behaviour (what they did), Impact (what effect it had). 'In the design review yesterday, when you challenged the approach, it led to a significantly better outcome.' That's actionable.",
+          "Give feedback within 48 hours of the event — the closer to the moment, the more useful it is. Delayed feedback loses context and emotional relevance.",
+          "Introduce a team feedback ritual — a lightweight peer feedback round at the end of each sprint, or before each performance cycle. Even one piece of feedback per person per month creates a feedback culture.",
+          "You're already building a feedback culture. Make it two-way and multi-directional — upward feedback, peer feedback, cross-team feedback. The richness of your feedback system determines the speed of your team's growth."
+        ]
+      },
+      {
+        "text": "I take responsibility for my mistakes and use them to improve, without excessive self-criticism.",
+        "options": [
+          "I sometimes deflect or downplay mistakes rather than owning and learning from them.",
+          "I acknowledge my mistakes clearly, understand what went wrong and improve.",
+          "I model healthy accountability in my squad and make it safe for others to own mistakes.",
+          "I build a blameless culture across the org where mistakes lead to learning, not fear."
+        ],
+        "tips": [
+          "The next time you make a mistake, say it clearly and early: 'I got that wrong. Here's what happened and here's what I'm doing about it.' No minimising, no deflecting. That clarity builds more trust than getting it right.",
+          "Separate the mistake from your identity: 'I made a wrong call on X' is true and useful. 'I'm bad at X' is a story that prevents learning. Practice the former. Drop the latter.",
+          "When someone on your team makes a mistake, respond with curiosity rather than judgment: 'What happened? What would you do differently?' That response tells the whole team how mistakes are treated here.",
+          "You're already building blameless culture. Make it structural — blameless post-mortems in your incident process, explicit team norms around mistakes, and public modelling of accountability by leadership. Culture requires infrastructure."
+        ]
+      },
+      {
+        "text": "I facilitate productive meetings — ensuring they have a clear purpose, outcome and follow-up.",
+        "options": [
+          "I attend meetings and contribute when asked but don't often shape how they run.",
+          "I regularly facilitate meetings with clear agendas and ensure actions are captured.",
+          "I coach my squad on running effective meetings and cut unnecessary ones.",
+          "I define meeting culture across the org to make collaboration efficient and purposeful."
+        ],
+        "tips": [
+          "Before your next meeting, write a one-line purpose: 'The goal of this meeting is to decide X / align on Y / unblock Z.' Share it in the invite. If you can't write that sentence, consider whether the meeting is needed.",
+          "End every meeting you run with two questions: 'What are the action items and who owns each?' Write them down and send a summary in Slack. Five minutes of follow-up makes meetings useful instead of theatrical.",
+          "Audit your squad's recurring meetings. For each one: what decision does this produce? If the answer is 'we share updates', consider whether async would work better. Fewer, better meetings is a competitive advantage.",
+          "You're already defining meeting culture. Focus on defaults and norms — default meeting lengths, required agendas, async-first culture, and clear guidance on what warrants a meeting vs a Slack message. Defaults become culture."
+        ]
+      },
+      {
+        "text": "I build trust with peers and stakeholders through consistent, reliable behaviour.",
+        "options": [
+          "I focus on delivering my work but don't actively think about how I'm building trust.",
+          "I consistently follow through on commitments and communicate honestly, which builds trust.",
+          "I help my squad build trust with stakeholders through reliable delivery and communication.",
+          "I shape how engineering builds trust with the rest of the organisation at a systemic level."
+        ],
+        "tips": [
+          "Trust is built through small consistent acts over time. Pick one area — commitments, communication, quality — and focus on being exceptionally reliable there for the next 30 days. Reliability in one area builds trust broadly.",
+          "When you make a commitment, say it explicitly and then deliver — or communicate early if you can't. 'I said I would do X by Y — here's where I am' builds more trust than silent delivery or silent failure.",
+          "Run a trust exercise with your squad — ask: 'What does your stakeholder need to trust us more, and what's one thing we could change to earn it?' The answers often reveal simple, actionable improvements.",
+          "You're already shaping how engineering builds trust at scale. Focus on the moments that matter most — major incidents, project failures, scope changes. How you behave when things go wrong matters more than when things go right."
+        ]
+      },
+      {
+        "text": "I influence decisions through well-reasoned arguments rather than authority or persistence.",
+        "options": [
+          "I sometimes rely on repetition or seniority rather than building a compelling case.",
+          "I regularly make data-informed, well-structured arguments that move others to act.",
+          "I coach my squad to influence through clarity and evidence rather than hierarchy.",
+          "I model and develop the art of technical persuasion across the engineering organisation."
+        ],
+        "tips": [
+          "Before your next proposal, ask: 'What would it take to convince someone who disagrees with me?' Then build the argument that answers that question. The strongest proposals anticipate and address objections.",
+          "Use data as your primary persuasion tool. 'Here are three incidents caused by this pattern in the last 6 months' is more compelling than 'I've seen this cause problems before'. Numbers build cases.",
+          "When you coach others on influencing, focus on preparation: how well do they understand the audience? Have they anticipated objections? Is their ask clear? Influence is a craft that improves with deliberate practice.",
+          "You're already modelling the art of persuasion. Write about it — a post on how you evaluate proposals, how you build consensus, or how you present technical trade-offs to non-technical audiences is genuinely valuable."
+        ]
+      },
+      {
+        "text": "I create an environment where everyone's ideas and contributions are valued.",
+        "options": [
+          "I engage with ideas that are put forward but don't actively create space for quieter voices.",
+          "I regularly invite input from all team members and acknowledge contributions fairly.",
+          "I design team rituals that surface diverse perspectives and make inclusion explicit.",
+          "I build an inclusive engineering culture where belonging and contribution are felt at every level."
+        ],
+        "tips": [
+          "In your next meeting, actively direct a question to someone who hasn't spoken: 'We haven't heard from you on this — what's your take?' That simple act changes who gets to influence decisions.",
+          "When someone raises an idea, acknowledge it before evaluating it: 'That's an interesting angle — here's what I like about it and here's where I have a question.' Acknowledgement before critique creates safety to share.",
+          "Review who speaks in your team meetings. If the same two people dominate every discussion, introduce structured techniques: round-robins, written input before meetings, or breakout discussions for bigger groups.",
+          "You're already building an inclusive culture. Make it measurable — track participation in discussions, idea contributions and promotion rates across the team. What you measure signals what you value."
+        ]
+      },
+      {
+        "text": "I lead initiatives from start to finish with minimal oversight and clear communication throughout.",
+        "options": [
+          "I need regular check-ins and guidance to keep an initiative on track.",
+          "I drive initiatives independently, keeping stakeholders informed and resolving blockers.",
+          "I lead multiple initiatives in parallel and help my squad do the same confidently.",
+          "I build the delivery leadership capability across the org so initiatives succeed at scale."
+        ],
+        "tips": [
+          "On your next initiative, write a one-page plan before starting: goal, milestones, dependencies, risks, and how you'll communicate progress. Sharing it with your manager before you start reduces check-ins dramatically.",
+          "Build the habit of a weekly initiative summary: what happened, what's next, what's at risk. Send it to stakeholders unprompted. You become known as someone who runs initiatives that don't need managing.",
+          "Volunteer to lead a cross-team initiative — something that requires you to coordinate people who don't report to you. That's where leadership without authority develops fastest.",
+          "You're already building delivery leadership at scale. Focus on the capability transfer — how do you develop the next generation of initiative leads? Delegation, coaching and structured ownership development are the tools."
+        ]
+      }
+    ]
+  }
+]

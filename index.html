@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soft Skills Self-Assessment</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --purple-50: #EEEDFE;
+    --purple-600: #534AB7;
+    --purple-800: #3C3489;
+    --text-primary: #1a1a2e;
+    --text-secondary: #64648a;
+    --text-muted: #9999bb;
+    --bg: #f5f4fc;
+    --surface: #ffffff;
+    --border: rgba(83,74,183,0.12);
+    --border-hover: rgba(83,74,183,0.35);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; }
+  .shell { width: 100%; max-width: 680px; }
+
+  /* Header */
+  .app-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .app-header .eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-600); margin-bottom: 6px; }
+  .app-header h1 { font-size: 26px; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
+
+  /* Progress */
+  .progress-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 2rem; }
+  .progress-track { flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--purple-600); border-radius: 2px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+  .progress-label { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+
+  /* Steps */
+  .step { display: none; }
+  .step.active { display: block; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Intro */
+  .intro-body { margin-bottom: 2rem; }
+  .intro-body p { font-size: 15px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.5rem; }
+  .levels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
+  .level-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; }
+  .level-card .num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--purple-600); margin-bottom: 4px; letter-spacing: 0.05em; }
+  .level-card .name { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+  .level-card .desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .cats-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0.75rem; }
+  .cat-pill { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; border: 1px solid; opacity: 0.85; }
+  .intro-note { font-size: 13px; color: var(--text-muted); margin-bottom: 2rem; }
+
+  /* Question */
+  .q-category { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .q-text { font-size: 19px; font-weight: 500; line-height: 1.45; color: var(--text-primary); margin-bottom: 1.75rem; }
+  .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.25rem; }
+  .option { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: border-color 0.15s, background 0.15s, transform 0.1s; text-align: left; width: 100%; }
+  .option:hover { border-color: var(--border-hover); background: var(--purple-50); transform: translateX(2px); }
+  .option-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; background: var(--purple-50); color: var(--purple-600); flex-shrink: 0; font-family: 'DM Mono', monospace; transition: background 0.15s, color 0.15s; }
+  .option.selected .option-num { background: var(--purple-600); color: #fff; }
+  .option-body { flex: 1; }
+  .option-level { font-size: 11px; font-weight: 600; color: var(--purple-600); letter-spacing: 0.05em; margin-bottom: 3px; font-family: 'DM Mono', monospace; text-transform: uppercase; }
+  .option-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
+  .option.selected .option-desc { color: var(--purple-800); }
+
+  /* Tip panel */
+  .tip-panel {
+    display: none;
+    margin-bottom: 1.5rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    animation: fadeIn 0.3s ease;
+  }
+  .tip-panel.visible { display: block; }
+  .tip-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .tip-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .tip-body {
+    padding: 14px 18px 16px;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* Nav */
+  .nav { display: flex; align-items: center; gap: 10px; }
+  .btn { padding: 10px 20px; border-radius: var(--radius-sm); border: 1px solid var(--border-hover); background: transparent; cursor: pointer; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; color: var(--text-primary); transition: background 0.15s, border-color 0.15s; }
+  .btn:hover { background: var(--purple-50); }
+  .btn:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+  .btn-primary { background: var(--purple-600); color: #fff; border-color: var(--purple-600); }
+  .btn-primary:hover { background: var(--purple-800); border-color: var(--purple-800); }
+  .nav-spacer { flex: 1; }
+  .nav-counter { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-muted); }
+
+  /* Results */
+  .results-top { margin-bottom: 2rem; }
+  .results-top h2 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+  .results-top p { font-size: 14px; color: var(--text-secondary); }
+  .chart-container { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; display: flex; justify-content: center; }
+  .chart-inner { position: relative; width: 100%; max-width: 420px; height: 420px; }
+  .scores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
+  .score-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; }
+  .score-cat { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 500; }
+  .score-val { font-size: 24px; font-weight: 600; margin-bottom: 2px; }
+  .score-label { font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); }
+
+  /* Loading & error */
+  .loader { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 0; gap: 16px; }
+  .loader-spinner { width: 32px; height: 32px; border: 2px solid var(--border); border-top-color: var(--purple-600); border-radius: 50%; animation: spin 0.7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loader-text { font-size: 14px; color: var(--text-muted); }
+  .error-box { background: #fff0f0; border: 1px solid #f0b8b8; border-radius: var(--radius-sm); padding: 1.25rem 1.5rem; font-size: 14px; color: #882020; line-height: 1.6; }
+  .error-box strong { display: block; margin-bottom: 4px; }
+
+  @media (max-width: 500px) {
+    .levels-grid { grid-template-columns: 1fr; }
+    .scores-grid { grid-template-columns: 1fr; }
+    .q-text { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="app-header">
+    <div class="eyebrow">Engineering Growth</div>
+    <h1>Soft Skills Self-Assessment</h1>
+  </div>
+
+  <!-- Loading -->
+  <div id="view-loading" class="loader">
+    <div class="loader-spinner"></div>
+    <span class="loader-text">Loading question bank…</span>
+  </div>
+
+  <!-- Error -->
+  <div id="view-error" style="display:none;">
+    <div class="error-box">
+      <strong>Could not load question_bank.json</strong>
+      Make sure <code>question_bank.json</code> is in the same folder as this HTML file and that you're opening it via a local server (e.g. <code>npx serve .</code>). Browsers block local file fetches for security reasons.
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <div class="step" id="step-intro">
+    <div class="intro-body">
+      <p>This assessment helps you reflect on where you are across six key soft skill areas. Pick the level that most honestly describes how you operate today — not where you'd like to be. After each answer, you'll receive a personalised coaching tip for reaching the next level.</p>
+      <div class="levels-grid">
+        <div class="level-card"><div class="num">Level 1</div><div class="name">Developing</div><div class="desc">Still learning or need significant guidance to apply consistently.</div></div>
+        <div class="level-card"><div class="num">Level 2</div><div class="name">Proficient</div><div class="desc">Apply consistently in daily work with minimal oversight.</div></div>
+        <div class="level-card"><div class="num">Level 3</div><div class="name">Advocating</div><div class="desc">Actively promote this within your squad and ensure others follow it.</div></div>
+        <div class="level-card"><div class="num">Level 4</div><div class="name">Mastering</div><div class="desc">Go-to expert who coaches others and shapes how we do this company-wide.</div></div>
+      </div>
+      <p style="margin-bottom:0.5rem; font-size:14px;">The six categories covered:</p>
+      <div class="cats-row" id="cats-pills"></div>
+      <p class="intro-note" id="intro-note"></p>
+    </div>
+    <button class="btn btn-primary" onclick="startAssessment()">Start assessment →</button>
+  </div>
+
+  <!-- Questions -->
+  <div class="step" id="step-questions">
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <span class="progress-label" id="progress-label"></span>
+    </div>
+    <div class="q-category" id="q-category"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="options" id="q-options"></div>
+    <div class="tip-panel" id="tip-panel">
+      <div class="tip-header" id="tip-header">
+        <div class="tip-icon" id="tip-icon"></div>
+        <span id="tip-heading-text"></span>
+      </div>
+      <div class="tip-body" id="tip-body"></div>
+    </div>
+    <div class="nav">
+      <button class="btn" id="btn-back" onclick="goBack()">← Back</button>
+      <div class="nav-spacer"></div>
+      <span class="nav-counter" id="nav-counter"></span>
+      <button class="btn btn-primary" id="btn-next" onclick="goNext()" disabled>Next →</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="step" id="step-results">
+    <div class="results-top">
+      <h2>Your results</h2>
+      <p>Average score across the randomly selected statements per category. Use this as a starting point for your next 1:1.</p>
+    </div>
+    <div class="chart-container">
+      <div class="chart-inner"><canvas id="radarChart"></canvas></div>
+    </div>
+    <div class="scores-grid" id="scores-grid"></div>
+    <div class="nav">
+      <button class="btn" onclick="restart()">← Retake</button>
+      <div class="nav-spacer"></div>
+      <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// ─── Config ────────────────────────────────────────────────────────────────
+const QUESTIONS_PER_CAT  = 3;
+const QUESTION_BANK_FILE = 'question_bank.json';
+
+// ─── Tip colour themes per level (background, header-bg, text, header-text, icon) ──
+const TIP_THEMES = [
+  { bg: '#FFF8E7', headerBg: '#FFF0CC', text: '#5a3e00', headerText: '#7a5200', icon: '→', iconBg: '#FFD966', iconColor: '#5a3e00', label: 'How to reach Proficient' },
+  { bg: '#EAF7F0', headerBg: '#D0EDDD', text: '#0d4a2a', headerText: '#0d5c33', icon: '→', iconBg: '#5DCAA5', iconColor: '#fff',    label: 'How to reach Advocating' },
+  { bg: '#EEF4FF', headerBg: '#DCE8FF', text: '#1a2f6b', headerText: '#1a3580', icon: '→', iconBg: '#4A78E0', iconColor: '#fff',    label: 'How to reach Mastering' },
+  { bg: '#F0FDF4', headerBg: '#DCFCE7', text: '#14532d', headerText: '#166534', icon: '★', iconBg: '#22C55E', iconColor: '#fff',    label: 'You\'re already at the top level' }
+];
+
+// ─── State ─────────────────────────────────────────────────────────────────
+const levelNames = ["Developing", "Proficient", "Advocating", "Mastering"];
+const levelTags  = ["1 — Developing", "2 — Proficient", "3 — Advocating", "4 — Mastering"];
+
+let categories   = [];
+let allQuestions = [];
+let currentQ     = 0;
+let answers      = [];
+let radarChart   = null;
+
+// ─── Boot ───────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  fetch(QUESTION_BANK_FILE)
+    .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+    .then(data => {
+      categories = data;
+      document.getElementById('view-loading').style.display = 'none';
+      buildIntro();
+      show('step-intro');
+    })
+    .catch(err => {
+      console.error('Failed to load question bank:', err);
+      document.getElementById('view-loading').style.display = 'none';
+      document.getElementById('view-error').style.display   = 'block';
+    });
+});
+
+// ─── Intro ──────────────────────────────────────────────────────────────────
+function buildIntro() {
+  const row = document.getElementById('cats-pills');
+  categories.forEach(cat => {
+    const pill         = document.createElement('span');
+    pill.className     = 'cat-pill';
+    pill.textContent   = cat.name;
+    pill.style.color       = cat.color;
+    pill.style.borderColor = cat.color;
+    pill.style.background  = cat.bgLight;
+    row.appendChild(pill);
+  });
+  const bankSize = categories[0]?.bank?.length ?? 0;
+  document.getElementById('intro-note').textContent =
+    `${QUESTIONS_PER_CAT} questions are randomly drawn from a bank of ${bankSize} per category. After each answer you'll see a tip on how to reach the next level.`;
+}
+
+// ─── Shuffle ────────────────────────────────────────────────────────────────
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ─── Assessment flow ────────────────────────────────────────────────────────
+function buildQuestions() {
+  allQuestions = [];
+  categories.forEach((cat, ci) => {
+    shuffle(cat.bank).slice(0, QUESTIONS_PER_CAT).forEach(q => {
+      allQuestions.push({ catIndex: ci, catName: cat.name, catColor: cat.color, catBg: cat.bgLight, ...q });
+    });
+  });
+}
+
+function startAssessment() {
+  buildQuestions();
+  currentQ = 0;
+  answers  = new Array(allQuestions.length).fill(null);
+  show('step-questions');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q     = allQuestions[currentQ];
+  const total = allQuestions.length;
+  const pct   = Math.round((currentQ / total) * 100);
+
+  document.getElementById('progress-fill').style.width  = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '%';
+  document.getElementById('q-category').textContent     = q.catName;
+  document.getElementById('q-category').style.color     = q.catColor;
+  document.getElementById('q-text').textContent         = q.text;
+  document.getElementById('nav-counter').textContent    = (currentQ + 1) + ' / ' + total;
+  document.getElementById('btn-back').disabled          = currentQ === 0;
+
+  const opts = document.getElementById('q-options');
+  opts.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option' + (answers[currentQ] === i ? ' selected' : '');
+    btn.innerHTML = `
+      <div class="option-num">${i + 1}</div>
+      <div class="option-body">
+        <div class="option-level">${levelTags[i]}</div>
+        <div class="option-desc">${opt}</div>
+      </div>`;
+    if (answers[currentQ] === i) {
+      btn.style.borderColor = q.catColor;
+      btn.style.background  = q.catBg;
+    }
+    btn.onclick = () => selectOption(i, q);
+    opts.appendChild(btn);
+  });
+
+  // Restore tip if this question was already answered
+  if (answers[currentQ] !== null) {
+    showTip(answers[currentQ], q);
+  } else {
+    hideTip();
+  }
+
+  const nb       = document.getElementById('btn-next');
+  nb.disabled    = answers[currentQ] === null;
+  nb.textContent = currentQ === allQuestions.length - 1 ? 'See results →' : 'Next →';
+}
+
+function selectOption(i, q) {
+  answers[currentQ] = i;
+
+  document.querySelectorAll('.option').forEach((el, idx) => {
+    const sel          = idx === i;
+    el.classList.toggle('selected', sel);
+    el.style.borderColor = sel ? q.catColor    : 'var(--border)';
+    el.style.background  = sel ? q.catBg       : 'var(--surface)';
+  });
+
+  showTip(i, q);
+  document.getElementById('btn-next').disabled = false;
+}
+
+function showTip(levelIndex, q) {
+  const theme  = TIP_THEMES[levelIndex];
+  const tip    = q.tips?.[levelIndex] ?? '';
+
+  const panel  = document.getElementById('tip-panel');
+  const header = document.getElementById('tip-header');
+  const icon   = document.getElementById('tip-icon');
+  const label  = document.getElementById('tip-heading-text');
+  const body   = document.getElementById('tip-body');
+
+  panel.style.border      = `1px solid ${theme.headerBg}`;
+  header.style.background = theme.headerBg;
+  header.style.color      = theme.headerText;
+  icon.style.background   = theme.iconBg;
+  icon.style.color        = theme.iconColor;
+  icon.textContent        = theme.icon;
+  label.textContent       = theme.label;
+  body.style.background   = theme.bg;
+  body.style.color        = theme.text;
+  body.textContent        = tip;
+
+  panel.classList.add('visible');
+}
+
+function hideTip() {
+  document.getElementById('tip-panel').classList.remove('visible');
+}
+
+function goNext() {
+  if (answers[currentQ] === null) return;
+  if (currentQ === allQuestions.length - 1) {
+    showResults();
+  } else {
+    currentQ++;
+    renderQuestion();
+  }
+}
+
+function goBack() {
+  if (currentQ > 0) { currentQ--; renderQuestion(); }
+}
+
+// ─── Results ────────────────────────────────────────────────────────────────
+function showResults() {
+  show('step-results');
+  document.getElementById('progress-fill').style.width  = '100%';
+  document.getElementById('progress-label').textContent = '100%';
+
+  const catScores = categories.map((cat, ci) => {
+    const qs  = allQuestions.map((q, i) => ({ q, i })).filter(({ q }) => q.catIndex === ci);
+    const sum = qs.reduce((acc, { i }) => acc + (answers[i] === null ? 0 : answers[i] + 1), 0);
+    return parseFloat((sum / qs.length).toFixed(2));
+  });
+
+  const grid = document.getElementById('scores-grid');
+  grid.innerHTML = '';
+  categories.forEach((cat, i) => {
+    const avg  = catScores[i];
+    const lIdx = Math.min(Math.max(Math.round(avg) - 1, 0), 3);
+    const card = document.createElement('div');
+    card.className        = 'score-card';
+    card.style.borderLeft = `3px solid ${cat.color}`;
+    card.innerHTML = `
+      <div class="score-cat">${cat.name}</div>
+      <div class="score-val" style="color:${cat.color}">${avg.toFixed(1)}</div>
+      <div class="score-label">${levelNames[lIdx]}</div>`;
+    grid.appendChild(card);
+  });
+
+  if (radarChart) radarChart.destroy();
+  radarChart = new Chart(document.getElementById('radarChart').getContext('2d'), {
+    type: 'radar',
+    data: {
+      labels: categories.map(c => c.name),
+      datasets: [{
+        label: 'Your score',
+        data: catScores,
+        backgroundColor: 'rgba(83,74,183,0.12)',
+        borderColor: '#534AB7',
+        borderWidth: 2,
+        pointBackgroundColor: categories.map(c => c.color),
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointRadius: 6,
+        pointHoverRadius: 8
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      scales: {
+        r: {
+          min: 0, max: 4,
+          ticks: {
+            stepSize: 1,
+            font: { size: 10, family: 'DM Mono' },
+            color: '#9999bb',
+            backdropColor: 'transparent',
+            callback: v => ['','1','2','3','4'][v] || ''
+          },
+          grid:        { color: 'rgba(83,74,183,0.1)' },
+          angleLines:  { color: 'rgba(83,74,183,0.1)' },
+          pointLabels: { font: { size: 12, weight: '500', family: 'DM Sans' }, color: '#1a1a2e' }
+        }
+      },
+      plugins: { legend: { display: false } }
+    }
+  });
+}
+
+// ─── Helpers ────────────────────────────────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function restart() {
+  if (radarChart) { radarChart.destroy(); radarChart = null; }
+  show('step-intro');
+}
+</script>
+</body>
+</html>
