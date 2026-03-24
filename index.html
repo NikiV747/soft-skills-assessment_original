@@ -1,195 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soft Skills Self-Assessment</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --purple-50: #EEEDFE; --purple-600: #534AB7; --purple-800: #3C3489;
-    --text-primary: #1a1a2e; --text-secondary: #64648a; --text-muted: #9999bb;
-    --bg: #f5f4fc; --surface: #ffffff;
-    --border: rgba(83,74,183,0.12); --border-hover: rgba(83,74,183,0.35);
-    --radius: 14px; --radius-sm: 8px;
-    --green-bg: #EAF7F0; --green-border: #5DCAA5; --green-text: #0d4a2a;
-    --amber-bg: #FFF8E7; --amber-text: #5a3e00;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text-primary); min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; }
-  .shell { width: 100%; max-width: 680px; }
-  .app-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
-  .app-header .eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--purple-600); margin-bottom: 6px; }
-  .app-header h1 { font-size: 26px; font-weight: 600; line-height: 1.2; }
-  .progress-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 2rem; }
-  .progress-track { flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
-  .progress-fill { height: 100%; background: var(--purple-600); border-radius: 2px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
-  .progress-label { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-muted); white-space: nowrap; }
-  .step { display: none; }
-  .step.active { display: block; animation: fadeIn 0.25s ease; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-  .intro-body { margin-bottom: 1.5rem; }
-  .intro-body > p { font-size: 15px; line-height: 1.7; color: var(--text-secondary); margin-bottom: 1.5rem; }
-  .levels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
-  .level-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; }
-  .level-card .num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--purple-600); margin-bottom: 4px; }
-  .level-card .name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-  .level-card .desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
-  .cats-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 0.75rem; }
-  .cat-pill { font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 100px; border: 1px solid; opacity: 0.85; }
-  .intro-note { font-size: 13px; color: var(--text-muted); margin-bottom: 2rem; }
-  .form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; }
-  .form-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 1rem; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-  .field { display: flex; flex-direction: column; gap: 5px; }
-  .field label { font-size: 12px; font-weight: 500; color: var(--text-secondary); }
-  .field input, .field select { padding: 9px 12px; border: 1px solid var(--border-hover); border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary); background: var(--bg); outline: none; transition: border-color 0.15s; }
-  .field input:focus, .field select:focus { border-color: var(--purple-600); background: var(--surface); }
-  .field input::placeholder { color: var(--text-muted); }
-  .field-error { font-size: 12px; color: #c0392b; margin-top: 3px; display: none; }
-  .field-error.visible { display: block; }
-  .required-note { font-size: 12px; color: var(--text-muted); margin-bottom: 1.5rem; }
-  .q-category { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
-  .q-text { font-size: 19px; font-weight: 500; line-height: 1.45; margin-bottom: 1.75rem; }
-  .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.25rem; }
-  .option { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: border-color 0.15s, background 0.15s, transform 0.1s; text-align: left; width: 100%; }
-  .option:hover { border-color: var(--border-hover); background: var(--purple-50); transform: translateX(2px); }
-  .option-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; background: var(--purple-50); color: var(--purple-600); flex-shrink: 0; font-family: 'DM Mono', monospace; transition: background 0.15s, color 0.15s; }
-  .option.selected .option-num { background: var(--purple-600); color: #fff; }
-  .option-body { flex: 1; }
-  .option-level { font-size: 11px; font-weight: 600; color: var(--purple-600); letter-spacing: 0.05em; margin-bottom: 3px; font-family: 'DM Mono', monospace; text-transform: uppercase; }
-  .option-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
-  .option.selected .option-desc { color: var(--purple-800); }
-  .tip-panel { display: none; margin-bottom: 1.5rem; border-radius: var(--radius); overflow: hidden; animation: fadeIn 0.3s ease; }
-  .tip-panel.visible { display: block; }
-  .tip-header { display: flex; align-items: center; gap: 10px; padding: 12px 18px; font-size: 11px; font-weight: 600; font-family: 'DM Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
-  .tip-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
-  .tip-body { padding: 14px 18px 16px; font-size: 14px; line-height: 1.65; }
-  .reflection-wrap { margin-bottom: 1.5rem; }
-  .reflection-wrap label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; }
-  .reflection-wrap p { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5; }
-  .reflection-wrap textarea { width: 100%; min-height: 120px; padding: 12px 14px; border: 1px solid var(--border-hover); border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary); background: var(--surface); resize: vertical; outline: none; transition: border-color 0.15s; line-height: 1.6; }
-  .reflection-wrap textarea:focus { border-color: var(--purple-600); }
-  .reflection-wrap textarea::placeholder { color: var(--text-muted); }
-  .nav { display: flex; align-items: center; gap: 10px; }
-  .btn { padding: 10px 20px; border-radius: var(--radius-sm); border: 1px solid var(--border-hover); background: transparent; cursor: pointer; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; color: var(--text-primary); transition: background 0.15s, border-color 0.15s; }
-  .btn:hover { background: var(--purple-50); }
-  .btn:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
-  .btn-primary { background: var(--purple-600); color: #fff; border-color: var(--purple-600); }
-  .btn-primary:hover { background: var(--purple-800); border-color: var(--purple-800); }
-  .nav-spacer { flex: 1; }
-  .nav-counter { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-muted); }
-  .results-top { margin-bottom: 1.5rem; }
-  .results-top h2 { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
-  .results-meta { font-size: 13px; color: var(--text-secondary); display: flex; flex-wrap: wrap; gap: 6px 16px; }
-  .results-meta .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--text-muted); display: inline-block; margin-right: 2px; vertical-align: middle; }
-  .chart-container { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.5rem; display: flex; justify-content: center; }
-  .chart-inner { position: relative; width: 100%; max-width: 420px; height: 420px; }
-  .scores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
-  .score-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; }
-  .score-cat { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; font-weight: 500; }
-  .score-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 2px; }
-  .score-val { font-size: 24px; font-weight: 600; }
-  .score-benchmark { font-size: 12px; color: var(--text-muted); }
-  .score-level-label { font-size: 11px; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
-  .score-indicator { font-size: 12px; font-weight: 500; padding: 3px 8px; border-radius: 100px; display: inline-block; }
-  .score-indicator.above { background: var(--green-bg); color: var(--green-text); }
-  .score-indicator.on    { background: #EEF4FF; color: #1a3580; }
-  .score-indicator.below { background: var(--amber-bg); color: var(--amber-text); }
-  .callout-banner { border-radius: var(--radius-sm); padding: 14px 18px; margin-bottom: 1.5rem; font-size: 14px; line-height: 1.6; border: 1px solid; }
-  .callout-banner.positive { background: var(--green-bg); border-color: var(--green-border); color: var(--green-text); }
-  .callout-banner.neutral  { background: #EEF4FF; border-color: #B5D4F4; color: #1a3580; }
-  .callout-banner strong { font-weight: 600; display: block; margin-bottom: 3px; }
-  .reflection-result { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--purple-600); border-radius: var(--radius-sm); padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
-  .reflection-result .rlabel { font-size: 11px; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.08em; color: var(--purple-600); margin-bottom: 8px; }
-  .reflection-result .rtext { font-size: 14px; line-height: 1.65; }
-  .benchmark-section { margin-bottom: 1.5rem; }
-  .benchmark-section h3 { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'DM Mono', monospace; color: var(--text-secondary); margin-bottom: 10px; }
-  .benchmark-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; font-size: 13px; }
-  .benchmark-table th { background: var(--bg); padding: 9px 12px; font-weight: 600; font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); border-bottom: 1px solid var(--border); text-align: left; }
-  .benchmark-table th:not(:first-child) { text-align: center; }
-  .benchmark-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
-  .benchmark-table td:not(:first-child) { text-align: center; font-family: 'DM Mono', monospace; }
-  .benchmark-table tr:last-child td { border-bottom: none; }
-  .bench-cell { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 26px; border-radius: 4px; font-size: 12px; font-weight: 500; }
-  .bench-cell.active { font-weight: 700; }
-  .results-nav { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; }
-  .breakdown-section { margin-bottom: 2rem; }
-  .breakdown-section h3 { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'DM Mono', monospace; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid; }
-  .breakdown-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 10px; }
-  .breakdown-q { font-size: 13px; font-weight: 500; margin-bottom: 8px; line-height: 1.4; }
-  .breakdown-answer { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 6px; }
-  .breakdown-badge { font-size: 10px; font-weight: 600; font-family: 'DM Mono', monospace; padding: 3px 8px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
-  .breakdown-answer-text { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
-  .breakdown-tip { font-size: 12px; color: var(--text-muted); line-height: 1.55; border-top: 1px solid var(--border); padding-top: 8px; margin-top: 4px; }
-  .breakdown-tip-label { font-size: 10px; font-weight: 600; font-family: 'DM Mono', monospace; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
-  .loader { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem 0; gap: 16px; }
-  .loader-spinner { width: 32px; height: 32px; border: 2px solid var(--border); border-top-color: var(--purple-600); border-radius: 50%; animation: spin 0.7s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .loader-text { font-size: 14px; color: var(--text-muted); }
-  .error-box { background: #fff0f0; border: 1px solid #f0b8b8; border-radius: var(--radius-sm); padding: 1.25rem 1.5rem; font-size: 14px; color: #882020; line-height: 1.6; }
-  .error-box strong { display: block; margin-bottom: 4px; }
-  @media print {
-    body { background: #fff; padding: 0; }
-    .shell { max-width: 100%; }
-    .no-print { display: none !important; }
-    .chart-container, .scores-grid, .callout-banner, .reflection-result,
-    .benchmark-section, .breakdown-section, .breakdown-item { break-inside: avoid; }
-    @page { margin: 1.5cm; }
-  }
-  @media (max-width: 500px) {
-    .levels-grid, .form-row, .scores-grid { grid-template-columns: 1fr; }
-    .q-text { font-size: 16px; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soft Skills Self-Assessment</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="shell">
 
-  <div class="app-header">
+  <!-- ══════════════════════════════════════════
+       App header — visible on every step
+  ══════════════════════════════════════════ -->
+  <header class="app-header">
     <div class="eyebrow">Engineering Growth</div>
     <h1>Soft Skills Self-Assessment</h1>
-  </div>
+  </header>
 
+  <!-- ══════════════════════════════════════════
+       Loading state — shown while JSON fetches
+  ══════════════════════════════════════════ -->
   <div id="view-loading" class="loader">
     <div class="loader-spinner"></div>
     <span class="loader-text">Loading question bank…</span>
   </div>
+
+  <!-- ══════════════════════════════════════════
+       Error state — shown if JSON fails to load
+  ══════════════════════════════════════════ -->
   <div id="view-error" style="display:none;">
     <div class="error-box">
       <strong>Could not load question_bank.json</strong>
-      Make sure both files are in the same folder and served via a local server or GitHub Pages.
+      Make sure <code>question_bank.json</code> is in the same folder as this
+      file and open it via a local server (e.g. <code>npx serve .</code>) or
+      GitHub Pages. Browsers block local file fetches for security reasons.
     </div>
   </div>
 
-  <!-- Intro -->
+  <!-- ══════════════════════════════════════════
+       Step 1 — Intro & participant details form
+  ══════════════════════════════════════════ -->
   <div class="step" id="step-intro">
+
     <div class="intro-body">
-      <p>This assessment helps you reflect on where you are across six key soft skill areas. Pick the level that most honestly describes how you operate today — not where you'd like to be. After each answer you'll receive a personalised coaching tip for reaching the next level.</p>
+      <p>
+        This assessment helps you reflect on where you are across six key soft
+        skill areas. Pick the level that most honestly describes how you operate
+        today — not where you'd like to be. After each answer you'll receive a
+        personalised coaching tip for reaching the next level.
+      </p>
+
+      <!-- Level definitions -->
       <div class="levels-grid">
-        <div class="level-card"><div class="num">Level 1</div><div class="name">Developing</div><div class="desc">Still learning or need significant guidance to apply consistently.</div></div>
-        <div class="level-card"><div class="num">Level 2</div><div class="name">Proficient</div><div class="desc">Apply consistently in daily work with minimal oversight.</div></div>
-        <div class="level-card"><div class="num">Level 3</div><div class="name">Advocating</div><div class="desc">Actively promote this within your squad and ensure others follow it.</div></div>
-        <div class="level-card"><div class="num">Level 4</div><div class="name">Mastering</div><div class="desc">Go-to expert who coaches others and shapes how we do this company-wide.</div></div>
+        <div class="level-card">
+          <div class="num">Level 1</div>
+          <div class="name">Developing</div>
+          <div class="desc">Still learning or need significant guidance to apply consistently.</div>
+        </div>
+        <div class="level-card">
+          <div class="num">Level 2</div>
+          <div class="name">Proficient</div>
+          <div class="desc">Apply consistently in daily work with minimal oversight.</div>
+        </div>
+        <div class="level-card">
+          <div class="num">Level 3</div>
+          <div class="name">Advocating</div>
+          <div class="desc">Actively promote this within your squad and ensure others follow it.</div>
+        </div>
+        <div class="level-card">
+          <div class="num">Level 4</div>
+          <div class="name">Mastering</div>
+          <div class="desc">Go-to expert who coaches others and shapes how we do this company-wide.</div>
+        </div>
       </div>
-      <p style="margin-bottom:0.5rem;font-size:14px;">The six categories covered:</p>
+
+      <!-- Category pills — populated by JS -->
+      <p style="margin-bottom:0.5rem; font-size:14px;">The six categories covered:</p>
       <div class="cats-row" id="cats-pills"></div>
+
+      <!-- Random draw note — populated by JS -->
       <p class="intro-note" id="intro-note"></p>
     </div>
+
+    <!-- Participant details form -->
     <div class="form-card">
       <h3>Your details</h3>
+
       <div class="form-row">
         <div class="field">
           <label for="field-name">Your name <span style="color:#c0392b">*</span></label>
-          <input type="text" id="field-name" placeholder="e.g. Alex Murphy" autocomplete="name" />
+          <input type="text" id="field-name" placeholder="e.g. Alex Murphy" autocomplete="name">
           <span class="field-error" id="err-name">Please enter your name.</span>
         </div>
         <div class="field">
           <label for="field-manager">Manager's name</label>
-          <input type="text" id="field-manager" placeholder="e.g. Jordan Lee" />
+          <input type="text" id="field-manager" placeholder="e.g. Jordan Lee">
         </div>
       </div>
+
       <div class="form-row">
         <div class="field">
           <label for="field-level">Current seniority level <span style="color:#c0392b">*</span></label>
@@ -204,23 +112,37 @@
         </div>
         <div class="field">
           <label>Date</label>
-          <input type="text" id="field-date" readonly style="opacity:0.6;cursor:default;" />
+          <input type="text" id="field-date" readonly style="opacity:0.6; cursor:default;">
         </div>
       </div>
     </div>
+
     <p class="required-note">* Required fields</p>
     <button class="btn btn-primary" onclick="handleStart()">Start assessment →</button>
-  </div>
 
-  <!-- Questions -->
+  </div><!-- /step-intro -->
+
+
+  <!-- ══════════════════════════════════════════
+       Step 2 — Questions
+  ══════════════════════════════════════════ -->
   <div class="step" id="step-questions">
+
     <div class="progress-wrap">
-      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
       <span class="progress-label" id="progress-label"></span>
     </div>
+
+    <!-- Category label & question text — populated by JS -->
     <div class="q-category" id="q-category"></div>
-    <div class="q-text" id="q-text"></div>
+    <div class="q-text"     id="q-text"></div>
+
+    <!-- Answer options — populated by JS -->
     <div class="options" id="q-options"></div>
+
+    <!-- Coaching tip — shown after selecting an answer -->
     <div class="tip-panel" id="tip-panel">
       <div class="tip-header" id="tip-header">
         <div class="tip-icon" id="tip-icon"></div>
@@ -228,62 +150,127 @@
       </div>
       <div class="tip-body" id="tip-body"></div>
     </div>
-    <div class="nav no-print">
-      <button class="btn" id="btn-back" onclick="goBack()">← Back</button>
+
+    <div class="nav">
+      <button class="btn no-print" id="btn-back" onclick="goBack()">← Back</button>
       <div class="nav-spacer"></div>
       <span class="nav-counter" id="nav-counter"></span>
-      <button class="btn btn-primary" id="btn-next" onclick="goNext()" disabled>Next →</button>
+      <button class="btn btn-primary no-print" id="btn-next" onclick="goNext()" disabled>Next →</button>
     </div>
-  </div>
 
-  <!-- Reflection -->
-  <div class="step" id="step-reflection">
-    <div class="progress-wrap">
-      <div class="progress-track"><div class="progress-fill" style="width:95%"></div></div>
-      <span class="progress-label">Almost done</span>
-    </div>
-    <div class="reflection-wrap">
-      <label for="reflection-input">What is your main focus area for the next quarter?</label>
-      <p>Take a moment to reflect on what you've just answered. What one area do you most want to develop? What does progress look like for you personally?</p>
-      <textarea id="reflection-input" placeholder="Write your thoughts here — this will appear on your printed report and can serve as a starting point for your next 1:1 conversation…"></textarea>
-    </div>
-    <div class="nav no-print">
-      <button class="btn" onclick="goBackToLastQuestion()">← Back</button>
-      <div class="nav-spacer"></div>
-      <button class="btn btn-primary" onclick="showResults()">See my results →</button>
-    </div>
-  </div>
+  </div><!-- /step-questions -->
 
-  <!-- Results -->
+
+  <!-- ══════════════════════════════════════════
+       Step 3 — Results (includes inline reflection)
+  ══════════════════════════════════════════ -->
   <div class="step" id="step-results">
+
+    <!-- Heading & participant metadata -->
     <div class="results-top">
       <h2 id="results-heading">Results</h2>
-      <div class="results-meta" id="results-meta"></div>
+      <div class="meta" id="results-meta"></div>
     </div>
+
+    <!-- Spider / radar chart -->
     <div class="chart-container">
-      <div class="chart-inner"><canvas id="radarChart"></canvas></div>
+      <div class="chart-inner">
+        <canvas id="radarChart"></canvas>
+      </div>
+      <div id="chart-legend" class="chart-legend"></div>
     </div>
+
+    <!-- Score cards with benchmark indicators — populated by JS -->
     <div class="scores-grid" id="scores-grid"></div>
-    <div id="callout-wrap"></div>
-    <div class="reflection-result" id="reflection-result" style="display:none;">
-      <div class="rlabel">Focus area for next quarter</div>
-      <div class="rtext" id="reflection-display"></div>
+
+    <!-- Strengths callout — shown when engineer exceeds benchmark -->
+    <div class="strengths-box" id="strengths-box" style="display:none;">
+      <div class="label">Exceeding expectations</div>
+      <ul id="strengths-list"></ul>
     </div>
-    <div class="benchmark-section" id="benchmark-section"></div>
-    <div class="results-nav no-print">
+
+    <!-- Seniority benchmark reference table — populated by JS -->
+    <div class="benchmark-section">
+      <div class="section-label">Seniority benchmark reference</div>
+      <table class="benchmark-table" id="benchmark-table"></table>
+    </div>
+
+    <!-- ── Inline reflection — editable until submitted ── -->
+    <div id="reflection-input-section">
+      <div class="reflection-wrap">
+        <label for="reflection-input">What is your main focus area for the next quarter?</label>
+        <p>
+          Now that you've seen your scores, take a moment to reflect. What one
+          area do you most want to develop? What does progress look like for
+          you personally?
+        </p>
+        <textarea
+          id="reflection-input"
+          placeholder="Write your thoughts here — this will appear on your printed report and serve as a starting point for your next 1:1 conversation…"
+        ></textarea>
+      </div>
+      <div class="nav">
+        <button class="btn no-print" onclick="restart()">← Retake</button>
+        <div class="nav-spacer"></div>
+        <button class="btn btn-primary no-print" onclick="submitReflection()">
+          Submit &amp; see full breakdown →
+        </button>
+      </div>
+    </div>
+
+    <!-- ── Locked reflection display (shown after submit) ── -->
+    <div class="reflection-result" id="reflection-result" style="display:none;">
+      <div class="label">Focus area for next quarter</div>
+      <div class="text" id="reflection-display"></div>
+    </div>
+
+    <!-- Print / retake — only shown after reflection submitted -->
+    <div class="results-nav no-print" id="results-nav" style="display:none;">
       <button class="btn" onclick="restart()">← Retake</button>
       <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
     </div>
-    <div id="breakdown-container"></div>
-  </div>
 
-</div>
+    <!-- Full answer breakdown — only shown after reflection submitted -->
+    <div id="breakdown-section" style="display:none;">
+      <div class="breakdown-title">Full answer breakdown</div>
+      <div id="breakdown-container"></div>
+    </div>
+
+  </div><!-- /step-results -->
+
+</div><!-- /shell -->
+
+<!-- ══════════════════════════════════════════
+     External libraries
+══════════════════════════════════════════ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+<!-- ══════════════════════════════════════════
+     Application script
+══════════════════════════════════════════ -->
 <script>
+// ─── Config ────────────────────────────────────────────────────────────────
 const QUESTIONS_PER_CAT  = 3;
 const QUESTION_BANK_FILE = 'question_bank.json';
 
-// Seniority benchmarks — expected score per category [SD, CI, RM, TE, EO, LE]
+// ─── Category styles ───────────────────────────────────────────────────────
+// Presentational data keyed by category name.
+// Kept here (not in question_bank.json) because colours are a UI concern,
+// not a content concern.
+const CATEGORY_STYLES = {
+  'Software Delivery':    { color: '#534AB7', bgLight: '#EEEDFE' },
+  'Continuous Improvement': { color: '#0F6E56', bgLight: '#E1F5EE' },
+  'Risk Mitigation':      { color: '#993C1D', bgLight: '#FAECE7' },
+  'Technical Excellence': { color: '#185FA5', bgLight: '#E6F1FB' },
+  'Embracing Ownership':  { color: '#BA7517', bgLight: '#FAEEDA' },
+  'Leading by Example':   { color: '#993556', bgLight: '#FBEAF0' }
+};
+
+// ─── Seniority benchmarks ──────────────────────────────────────────────────
+// Expected average score per category per level.
+// Order must match the category order in question_bank.json:
+// Software Delivery, Continuous Improvement, Risk Mitigation,
+// Technical Excellence, Embracing Ownership, Leading by Example
 const BENCHMARKS = {
   Junior:    [2.0, 1.5, 1.5, 2.0, 2.0, 1.5],
   Regular:   [2.5, 2.5, 2.0, 2.5, 2.5, 2.0],
@@ -291,355 +278,570 @@ const BENCHMARKS = {
   Principal: [4.0, 4.0, 4.0, 4.0, 4.0, 4.0]
 };
 
+// ─── Tip colour themes (one per answer level 0–3) ──────────────────────────
 const TIP_THEMES = [
-  { bg:'#FFF8E7', headerBg:'#FFF0CC', text:'#5a3e00', headerText:'#7a5200', icon:'→', iconBg:'#FFD966', iconColor:'#5a3e00', label:'How to reach Proficient' },
-  { bg:'#EAF7F0', headerBg:'#D0EDDD', text:'#0d4a2a', headerText:'#0d5c33', icon:'→', iconBg:'#5DCAA5', iconColor:'#fff',    label:'How to reach Advocating' },
-  { bg:'#EEF4FF', headerBg:'#DCE8FF', text:'#1a2f6b', headerText:'#1a3580', icon:'→', iconBg:'#4A78E0', iconColor:'#fff',    label:'How to reach Mastering' },
-  { bg:'#F0FDF4', headerBg:'#DCFCE7', text:'#14532d', headerText:'#166534', icon:'★', iconBg:'#22C55E', iconColor:'#fff',    label:"You're already at the top level" }
+  {
+    bg: '#FFF8E7', headerBg: '#FFF0CC',
+    text: '#5a3e00', headerText: '#7a5200',
+    icon: '→', iconBg: '#FFD966', iconColor: '#5a3e00',
+    label: 'How to reach Proficient'
+  },
+  {
+    bg: '#EAF7F0', headerBg: '#D0EDDD',
+    text: '#0d4a2a', headerText: '#0d5c33',
+    icon: '→', iconBg: '#5DCAA5', iconColor: '#fff',
+    label: 'How to reach Advocating'
+  },
+  {
+    bg: '#EEF4FF', headerBg: '#DCE8FF',
+    text: '#1a2f6b', headerText: '#1a3580',
+    icon: '→', iconBg: '#4A78E0', iconColor: '#fff',
+    label: 'How to reach Mastering'
+  },
+  {
+    bg: '#F0FDF4', headerBg: '#DCFCE7',
+    text: '#14532d', headerText: '#166534',
+    icon: '★', iconBg: '#22C55E', iconColor: '#fff',
+    label: 'You\'re already at the top level'
+  }
 ];
 
+// ─── Answer badge colours (one per level 0–3) ──────────────────────────────
 const LEVEL_BADGE = [
-  { label:'Developing', bg:'#FFF0CC', color:'#7a5200' },
-  { label:'Proficient',  bg:'#D0EDDD', color:'#0d5c33' },
-  { label:'Advocating',  bg:'#DCE8FF', color:'#1a3580' },
-  { label:'Mastering',   bg:'#DCFCE7', color:'#166534' }
+  { label: 'Developing', bg: '#FFF0CC', color: '#7a5200' },
+  { label: 'Proficient', bg: '#D0EDDD', color: '#0d5c33' },
+  { label: 'Advocating', bg: '#DCE8FF', color: '#1a3580' },
+  { label: 'Mastering',  bg: '#DCFCE7', color: '#166534' }
 ];
 
-const levelNames = ["Developing","Proficient","Advocating","Mastering"];
-const levelTags  = ["1 — Developing","2 — Proficient","3 — Advocating","4 — Mastering"];
+const levelNames = ['Developing', 'Proficient', 'Advocating', 'Mastering'];
+const levelTags  = ['1 — Developing', '2 — Proficient', '3 — Advocating', '4 — Mastering'];
 
-let categories=[], allQuestions=[], currentQ=0, answers=[], radarChart=null;
-let participantName='', participantManager='', participantLevel='', participantDate='';
+// ─── State ─────────────────────────────────────────────────────────────────
+let categories   = [];
+let allQuestions = [];
+let currentQ     = 0;
+let answers      = [];
+let radarChart   = null;
 
-// Boot
+let participantName    = '';
+let participantManager = '';
+let participantLevel   = '';
+let participantDate    = '';
+
+// ─── Boot: fetch question bank ──────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
-  participantDate = new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'});
+  // Auto-fill today's date
+  participantDate = new Date().toLocaleDateString('en-GB', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
   document.getElementById('field-date').value = participantDate;
+
   fetch(QUESTION_BANK_FILE)
-    .then(r => { if(!r.ok) throw new Error(); return r.json(); })
+    .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
     .then(data => {
       categories = data;
       document.getElementById('view-loading').style.display = 'none';
-      buildIntro(); show('step-intro');
+      buildIntro();
+      show('step-intro');
     })
-    .catch(() => {
+    .catch(err => {
+      console.error('Failed to load question bank:', err);
       document.getElementById('view-loading').style.display = 'none';
       document.getElementById('view-error').style.display   = 'block';
     });
 });
 
+// ─── Intro ──────────────────────────────────────────────────────────────────
 function buildIntro() {
+  // Build category pills
   const row = document.getElementById('cats-pills');
   categories.forEach(cat => {
-    const p = document.createElement('span');
-    p.className='cat-pill'; p.textContent=cat.name;
-    p.style.color=cat.color; p.style.borderColor=cat.color; p.style.background=cat.bgLight;
-    row.appendChild(p);
+    const styles = CATEGORY_STYLES[cat.name] || {};
+    const pill = document.createElement('span');
+    pill.className         = 'cat-pill';
+    pill.textContent       = cat.name;
+    pill.style.color       = styles.color;
+    pill.style.borderColor = styles.color;
+    pill.style.background  = styles.bgLight;
+    row.appendChild(pill);
   });
-  const bank = categories[0]?.bank?.length ?? 0;
+
+  // Bank-size note
+  const bankSize = categories[0]?.bank?.length ?? 0;
   document.getElementById('intro-note').textContent =
-    `${QUESTIONS_PER_CAT} questions are randomly drawn from a bank of ${bank} per category. After each answer you'll see a coaching tip on how to reach the next level.`;
+    `${QUESTIONS_PER_CAT} questions are randomly drawn from a bank of ${bankSize} per ` +
+    `category. After each answer you'll see a coaching tip on how to reach the next level.`;
 }
 
+// ─── Form validation & start ────────────────────────────────────────────────
 function handleStart() {
-  const ne=document.getElementById('field-name'), le=document.getElementById('field-level');
-  let ok=true;
+  const nameEl  = document.getElementById('field-name');
+  const levelEl = document.getElementById('field-level');
+  let valid = true;
+
   document.getElementById('err-name').classList.remove('visible');
   document.getElementById('err-level').classList.remove('visible');
-  if(!ne.value.trim()){document.getElementById('err-name').classList.add('visible');ne.focus();ok=false;}
-  if(!le.value){document.getElementById('err-level').classList.add('visible');if(ok)le.focus();ok=false;}
-  if(!ok) return;
-  participantName=ne.value.trim();
-  participantManager=document.getElementById('field-manager').value.trim();
-  participantLevel=le.value;
+
+  if (!nameEl.value.trim()) {
+    document.getElementById('err-name').classList.add('visible');
+    nameEl.focus();
+    valid = false;
+  }
+  if (!levelEl.value) {
+    document.getElementById('err-level').classList.add('visible');
+    if (valid) levelEl.focus();
+    valid = false;
+  }
+  if (!valid) return;
+
+  participantName    = nameEl.value.trim();
+  participantManager = document.getElementById('field-manager').value.trim();
+  participantLevel   = levelEl.value;
   startAssessment();
 }
 
-function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+// ─── Helpers: shuffle & show step ───────────────────────────────────────────
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
-function buildQuestions(){
-  allQuestions=[];
-  categories.forEach((cat,ci)=>{
-    shuffle(cat.bank).slice(0,QUESTIONS_PER_CAT).forEach(q=>{
-      allQuestions.push({catIndex:ci,catName:cat.name,catColor:cat.color,catBg:cat.bgLight,...q});
+function show(id) {
+  document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// ─── Assessment ─────────────────────────────────────────────────────────────
+function buildQuestions() {
+  allQuestions = [];
+  categories.forEach((cat, ci) => {
+    const styles = CATEGORY_STYLES[cat.name] || {};
+    shuffle(cat.bank).slice(0, QUESTIONS_PER_CAT).forEach(q => {
+      allQuestions.push({
+        catIndex: ci,
+        catName:  cat.name,
+        catColor: styles.color,
+        catBg:    styles.bgLight,
+        ...q
+      });
     });
   });
 }
 
-function startAssessment(){buildQuestions();currentQ=0;answers=new Array(allQuestions.length).fill(null);show('step-questions');renderQuestion();}
+function startAssessment() {
+  buildQuestions();
+  currentQ = 0;
+  answers  = new Array(allQuestions.length).fill(null);
+  show('step-questions');
+  renderQuestion();
+}
 
-function renderQuestion(){
-  const q=allQuestions[currentQ],total=allQuestions.length,pct=Math.round((currentQ/total)*100);
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-label').textContent=pct+'%';
-  document.getElementById('q-category').textContent=q.catName;
-  document.getElementById('q-category').style.color=q.catColor;
-  document.getElementById('q-text').textContent=q.text;
-  document.getElementById('nav-counter').textContent=(currentQ+1)+' / '+total;
-  document.getElementById('btn-back').disabled=currentQ===0;
-  const opts=document.getElementById('q-options');
-  opts.innerHTML='';
-  q.options.forEach((opt,i)=>{
-    const btn=document.createElement('button');
-    btn.className='option'+(answers[currentQ]===i?' selected':'');
-    btn.innerHTML=`<div class="option-num">${i+1}</div><div class="option-body"><div class="option-level">${levelTags[i]}</div><div class="option-desc">${opt}</div></div>`;
-    if(answers[currentQ]===i){btn.style.borderColor=q.catColor;btn.style.background=q.catBg;}
-    btn.onclick=()=>selectOption(i,q);
+function renderQuestion() {
+  const q     = allQuestions[currentQ];
+  const total = allQuestions.length;
+  const pct   = Math.round((currentQ / total) * 100);
+
+  document.getElementById('progress-fill').style.width  = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '%';
+  document.getElementById('q-category').textContent     = q.catName;
+  document.getElementById('q-category').style.color     = q.catColor;
+  document.getElementById('q-text').textContent         = q.text;
+  document.getElementById('nav-counter').textContent    = `${currentQ + 1} / ${total}`;
+  document.getElementById('btn-back').disabled          = currentQ === 0;
+
+  // Render options
+  const opts = document.getElementById('q-options');
+  opts.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option' + (answers[currentQ] === i ? ' selected' : '');
+    btn.innerHTML = `
+      <div class="option-num">${i + 1}</div>
+      <div class="option-body">
+        <div class="option-level">${levelTags[i]}</div>
+        <div class="option-desc">${opt}</div>
+      </div>`;
+    if (answers[currentQ] === i) {
+      btn.style.borderColor = q.catColor;
+      btn.style.background  = q.catBg;
+    }
+    btn.onclick = () => selectOption(i, q);
     opts.appendChild(btn);
   });
-  answers[currentQ]!==null?showTip(answers[currentQ],q):hideTip();
-  const nb=document.getElementById('btn-next');
-  nb.disabled=answers[currentQ]===null;
-  nb.textContent='Next →';
+
+  // Restore tip if already answered
+  answers[currentQ] !== null ? showTip(answers[currentQ], q) : hideTip();
+
+  const nb    = document.getElementById('btn-next');
+  nb.disabled = answers[currentQ] === null;
+  nb.textContent = 'Next →';
 }
 
-function selectOption(i,q){
-  answers[currentQ]=i;
-  document.querySelectorAll('.option').forEach((el,idx)=>{
-    const s=idx===i;
-    el.classList.toggle('selected',s);
-    el.style.borderColor=s?q.catColor:'var(--border)';
-    el.style.background=s?q.catBg:'var(--surface)';
+function selectOption(i, q) {
+  answers[currentQ] = i;
+  document.querySelectorAll('.option').forEach((el, idx) => {
+    const sel          = idx === i;
+    el.classList.toggle('selected', sel);
+    el.style.borderColor = sel ? q.catColor    : 'var(--border)';
+    el.style.background  = sel ? q.catBg       : 'var(--surface)';
   });
-  showTip(i,q);
-  document.getElementById('btn-next').disabled=false;
+  showTip(i, q);
+  document.getElementById('btn-next').disabled = false;
 }
 
-function showTip(li,q){
-  const t=TIP_THEMES[li];
-  document.getElementById('tip-panel').style.border=`1px solid ${t.headerBg}`;
-  document.getElementById('tip-header').style.background=t.headerBg;
-  document.getElementById('tip-header').style.color=t.headerText;
-  document.getElementById('tip-icon').style.background=t.iconBg;
-  document.getElementById('tip-icon').style.color=t.iconColor;
-  document.getElementById('tip-icon').textContent=t.icon;
-  document.getElementById('tip-heading-text').textContent=t.label;
-  document.getElementById('tip-body').style.background=t.bg;
-  document.getElementById('tip-body').style.color=t.text;
-  document.getElementById('tip-body').textContent=q.tips?.[li]??'';
-  document.getElementById('tip-panel').classList.add('visible');
+function showTip(levelIndex, q) {
+  const theme  = TIP_THEMES[levelIndex];
+  const tip    = q.tips?.[levelIndex] ?? '';
+  const panel  = document.getElementById('tip-panel');
+
+  document.getElementById('tip-header').style.background     = theme.headerBg;
+  document.getElementById('tip-header').style.color          = theme.headerText;
+  document.getElementById('tip-icon').style.background       = theme.iconBg;
+  document.getElementById('tip-icon').style.color            = theme.iconColor;
+  document.getElementById('tip-icon').textContent            = theme.icon;
+  document.getElementById('tip-heading-text').textContent    = theme.label;
+  document.getElementById('tip-body').style.background       = theme.bg;
+  document.getElementById('tip-body').style.color            = theme.text;
+  document.getElementById('tip-body').textContent            = tip;
+  panel.style.border = `1px solid ${theme.headerBg}`;
+  panel.classList.add('visible');
 }
 
-function hideTip(){document.getElementById('tip-panel').classList.remove('visible');}
-function goNext(){if(answers[currentQ]===null)return;if(currentQ===allQuestions.length-1){show('step-reflection');}else{currentQ++;renderQuestion();}}
-function goBack(){if(currentQ>0){currentQ--;renderQuestion();}}
-function goBackToLastQuestion(){currentQ=allQuestions.length-1;show('step-questions');renderQuestion();}
+function hideTip() {
+  document.getElementById('tip-panel').classList.remove('visible');
+}
 
-function showResults(){
+function goNext() {
+  if (answers[currentQ] === null) return;
+  if (currentQ === allQuestions.length - 1) {
+    showResults();
+  } else {
+    currentQ++;
+    renderQuestion();
+  }
+}
+
+function goBack() {
+  if (currentQ > 0) { currentQ--; renderQuestion(); }
+}
+
+// ─── Label wrapping for radar chart ─────────────────────────────────────────
+// Chart.js accepts a string array as a label and renders each element on its
+// own line. We split names longer than 14 chars at the nearest mid-point space.
+function wrapLabel(name) {
+  if (name.length <= 14) return name;
+  const mid   = Math.ceil(name.length / 2);
+  const space = name.indexOf(' ', mid - 4);
+  return space === -1 ? name : [name.slice(0, space), name.slice(space + 1)];
+}
+
+// ─── Results ────────────────────────────────────────────────────────────────
+function showResults() {
   show('step-results');
+  document.getElementById('progress-fill').style.width  = '100%';
+  document.getElementById('progress-label').textContent = '100%';
 
-  // Header meta
-  document.getElementById('results-heading').textContent=`${participantName}'s Self-Assessment`;
-  const meta=document.getElementById('results-meta');
-  meta.innerHTML='';
-  [participantLevel, participantDate, participantManager?`Manager: ${participantManager}`:null]
-    .filter(Boolean).forEach((item,i)=>{
-      if(i>0){const d=document.createElement('span');d.innerHTML='<span class="dot"></span>';meta.appendChild(d);}
-      const s=document.createElement('span');s.textContent=item;meta.appendChild(s);
+  // Page heading & metadata
+  document.getElementById('results-heading').textContent = `${participantName}'s Self-Assessment`;
+  const meta = document.getElementById('results-meta');
+  meta.innerHTML = '';
+  [participantLevel, participantDate, participantManager ? `Manager: ${participantManager}` : null]
+    .filter(Boolean)
+    .forEach((item, i) => {
+      if (i > 0) {
+        const d = document.createElement('span');
+        d.innerHTML = '<span class="dot"></span>';
+        meta.appendChild(d);
+      }
+      const s = document.createElement('span');
+      s.textContent = item;
+      meta.appendChild(s);
     });
 
-  // Compute scores
-  const catScores=categories.map((cat,ci)=>{
-    const qs=allQuestions.map((q,i)=>({q,i})).filter(({q})=>q.catIndex===ci);
-    const sum=qs.reduce((acc,{i})=>acc+(answers[i]??0)+1,0);
-    return parseFloat((sum/qs.length).toFixed(2));
+  // Calculate category averages
+  const catScores = categories.map((cat, ci) => {
+    const qs  = allQuestions.map((q, i) => ({ q, i })).filter(({ q }) => q.catIndex === ci);
+    const sum = qs.reduce((acc, { i }) => acc + (answers[i] === null ? 0 : answers[i] + 1), 0);
+    return parseFloat((sum / qs.length).toFixed(2));
   });
-  const bench=BENCHMARKS[participantLevel]??[];
 
-  // Score cards
-  const grid=document.getElementById('scores-grid');
-  grid.innerHTML='';
-  categories.forEach((cat,i)=>{
-    const score=catScores[i], b=bench[i]??null;
-    const lIdx=Math.min(Math.max(Math.round(score)-1,0),3);
-    const diff=b!==null?score-b:null;
-    let ind='';
-    if(diff!==null){
-      if(diff>=0.3)        ind=`<span class="score-indicator above">▲ ${diff.toFixed(1)} above benchmark</span>`;
-      else if(diff>=-0.3)  ind=`<span class="score-indicator on">✓ On benchmark</span>`;
-      else                 ind=`<span class="score-indicator below">▼ ${Math.abs(diff).toFixed(1)} below benchmark</span>`;
-    }
-    const card=document.createElement('div');
-    card.className='score-card';card.style.borderLeft=`3px solid ${cat.color}`;
-    card.innerHTML=`
+  const benchmarks = BENCHMARKS[participantLevel] || BENCHMARKS.Regular;
+
+  // Score cards with benchmark indicators
+  const grid = document.getElementById('scores-grid');
+  grid.innerHTML = '';
+  const strengths = [];
+
+  categories.forEach((cat, i) => {
+    const styles = CATEGORY_STYLES[cat.name] || {};
+    const avg   = catScores[i];
+    const bench = benchmarks[i];
+    const diff  = avg - bench;
+    const lIdx  = Math.min(Math.max(Math.round(avg) - 1, 0), 3);
+
+    let statusClass, statusLabel;
+    if (diff >= 0.5)       { statusClass = 'status-above'; statusLabel = 'Above target'; }
+    else if (diff >= -0.4) { statusClass = 'status-on';    statusLabel = 'On target'; }
+    else                   { statusClass = 'status-below'; statusLabel = 'Below target'; }
+
+    if (diff >= 0.5) strengths.push({ name: cat.name, avg, bench, color: styles.color });
+
+    const card = document.createElement('div');
+    card.className        = 'score-card';
+    card.style.borderLeft = `3px solid ${styles.color}`;
+    card.innerHTML = `
       <div class="score-cat">${cat.name}</div>
-      <div class="score-row">
-        <span class="score-val" style="color:${cat.color}">${score.toFixed(1)}</span>
-        ${b!==null?`<span class="score-benchmark">benchmark: ${b.toFixed(1)}</span>`:''}
+      <div class="score-main">
+        <span class="score-val" style="color:${styles.color}">${avg.toFixed(1)}</span>
+        <span class="score-level-label">${levelNames[lIdx]}</span>
       </div>
-      <div class="score-level-label">${levelNames[lIdx]}</div>
-      ${ind}`;
+      <div class="score-benchmark-row">
+        <span class="score-benchmark-label">${participantLevel} target:</span>
+        <span class="score-benchmark-val" style="color:${styles.color}">${bench.toFixed(1)}</span>
+        <span class="score-status ${statusClass}">${statusLabel}</span>
+      </div>`;
     grid.appendChild(card);
   });
 
-  // Callout banner
-  const aboveCats=categories.filter((_,i)=>bench[i]!==null&&catScores[i]-bench[i]>=0.3).map(c=>c.name);
-  const belowCats=categories.filter((_,i)=>bench[i]!==null&&bench[i]-catScores[i]>=0.3).map(c=>c.name);
-  const wrap=document.getElementById('callout-wrap');
-  wrap.innerHTML='';
-  const banner=document.createElement('div');
-  if(aboveCats.length>0&&belowCats.length===0){
-    banner.className='callout-banner positive';
-    banner.innerHTML=`<strong>Strong performance across the board 🎉</strong>You're meeting or exceeding the ${participantLevel} benchmark in every category — particularly strong in ${aboveCats.join(', ')}. This is a great foundation for a next-level conversation with your manager.`;
-  } else if(aboveCats.length>0){
-    banner.className='callout-banner positive';
-    banner.innerHTML=`<strong>Ahead of benchmark in ${aboveCats.length} ${aboveCats.length===1?'category':'categories'} 🎉</strong>You're above the ${participantLevel} benchmark in ${aboveCats.join(', ')} — a real strength to build on. Use the development tips below to close the remaining gaps.`;
-  } else if(belowCats.length===0){
-    banner.className='callout-banner neutral';
-    banner.innerHTML=`<strong>On track for ${participantLevel}</strong>Your scores are aligned with the ${participantLevel} benchmark across all categories. Review the coaching tips below to identify where you can push further.`;
+  // Strengths callout
+  const sBox  = document.getElementById('strengths-box');
+  const sList = document.getElementById('strengths-list');
+  sList.innerHTML = '';
+  if (strengths.length > 0) {
+    strengths.forEach(s => {
+      const li = document.createElement('li');
+      li.innerHTML =
+        `<strong style="color:${s.color}">${s.name}</strong> — you scored ` +
+        `${s.avg.toFixed(1)} against a ${participantLevel} target of ${s.bench.toFixed(1)}. ` +
+        `This is a genuine strength.`;
+      sList.appendChild(li);
+    });
+    sBox.style.display = 'block';
   } else {
-    banner.className='callout-banner neutral';
-    banner.innerHTML=`<strong>Focus areas identified</strong>Your results highlight <strong>${belowCats.join(', ')}</strong> as areas to develop relative to the ${participantLevel} benchmark. The coaching tips in the breakdown below will help you build a concrete plan.`;
+    sBox.style.display = 'none';
   }
-  wrap.appendChild(banner);
-
-  // Reflection
-  const rt=document.getElementById('reflection-input').value.trim();
-  if(rt){document.getElementById('reflection-display').textContent=rt;document.getElementById('reflection-result').style.display='block';}
-  else {document.getElementById('reflection-result').style.display='none';}
 
   // Benchmark reference table
-  buildBenchmarkTable(bench, catScores);
+  buildBenchmarkTable(catScores, benchmarks);
 
-  // Radar chart — solid line = score, dashed = benchmark
-  if(radarChart)radarChart.destroy();
-  radarChart=new Chart(document.getElementById('radarChart').getContext('2d'),{
-    type:'radar',
-    data:{
-      labels:categories.map(c=>c.name),
-      datasets:[
+  // Reset reflection section to editable state
+  // (in case the engineer retakes the assessment)
+  document.getElementById('reflection-input').value = '';
+  document.getElementById('reflection-input-section').style.display = 'block';
+  document.getElementById('reflection-result').style.display        = 'none';
+  document.getElementById('results-nav').style.display              = 'none';
+  document.getElementById('breakdown-section').style.display        = 'none';
+
+  // Pre-build the breakdown so it's ready to reveal on submit
+  buildBreakdown();
+
+  // Radar chart
+  if (radarChart) radarChart.destroy();
+  radarChart = new Chart(document.getElementById('radarChart').getContext('2d'), {
+    type: 'radar',
+    data: {
+      labels: categories.map(c => wrapLabel(c.name)),
+      datasets: [
+        // ── Dataset 1: engineer's actual scores ──
         {
-          label:`${participantLevel} benchmark`,
-          data:bench,
-          backgroundColor:'transparent',
-          borderColor:'rgba(83,74,183,0.4)',
-          borderWidth:1.5,
-          borderDash:[5,4],
-          pointBackgroundColor:'rgba(83,74,183,0.4)',
-          pointRadius:3,
-          pointHoverRadius:4
+          label: 'Your score',
+          data: catScores,
+          backgroundColor: 'rgba(83,74,183,0.12)',
+          borderColor: '#534AB7',
+          borderWidth: 2,
+          pointBackgroundColor: categories.map(c => (CATEGORY_STYLES[c.name] || {}).color),
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          order: 1
         },
+        // ── Dataset 2: seniority benchmark ──
         {
-          label:'Your score',
-          data:catScores,
-          backgroundColor:'rgba(83,74,183,0.12)',
-          borderColor:'#534AB7',
-          borderWidth:2,
-          pointBackgroundColor:categories.map(c=>c.color),
-          pointBorderColor:'#fff',
-          pointBorderWidth:2,
-          pointRadius:6,
-          pointHoverRadius:8
+          label: `${participantLevel} benchmark`,
+          data: [...benchmarks],
+          backgroundColor: 'rgba(186,117,23,0.08)',
+          borderColor: 'rgba(186,117,23,0.9)',
+          borderWidth: 2,
+          borderDash: [6, 4],
+          pointBackgroundColor: '#BA7517',
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          order: 2,
+          fill: true
         }
       ]
     },
-    options:{
-      responsive:true,maintainAspectRatio:true,
-      scales:{r:{
-        min:0,max:4,
-        ticks:{stepSize:1,font:{size:10,family:'DM Mono'},color:'#9999bb',backdropColor:'transparent',callback:v=>['','1','2','3','4'][v]||''},
-        grid:{color:'rgba(83,74,183,0.1)'},
-        angleLines:{color:'rgba(83,74,183,0.1)'},
-        pointLabels:{font:{size:12,weight:'500',family:'DM Sans'},color:'#1a1a2e'}
-      }},
-      plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11,family:'DM Sans'},color:'#64648a',boxWidth:12,padding:16}}}
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      layout: {
+        padding: { top: 20, bottom: 20, left: 20, right: 20 }
+      },
+      scales: {
+        r: {
+          min: 0, max: 4,
+          ticks: {
+            stepSize: 1,
+            font: { size: 10, family: 'DM Mono' },
+            color: '#9999bb',
+            backdropColor: 'transparent',
+            callback: v => ['', '1', '2', '3', '4'][v] || ''
+          },
+          grid:       { color: 'rgba(83,74,183,0.1)' },
+          angleLines: { color: 'rgba(83,74,183,0.1)' },
+          pointLabels: {
+            font:    { size: 11, weight: '500', family: 'DM Sans' },
+            color:   '#1a1a2e',
+            padding: 12
+          }
+        }
+      },
+      plugins: { legend: { display: false } },
+      elements: {
+        line: {
+          borderCapStyle: 'round'
+        }
+      }
     }
   });
 
-  buildBreakdown();
+  // Custom legend — built in HTML so we control the styling
+  const legendEl = document.getElementById('chart-legend');
+  if (legendEl) {
+    legendEl.innerHTML = `
+      <span class="chart-legend-item">
+        <span class="chart-legend-swatch chart-legend-score"></span>
+        Your score
+      </span>
+      <span class="chart-legend-item">
+        <span class="chart-legend-swatch chart-legend-bench"></span>
+        ${participantLevel} benchmark
+      </span>`;
+  }
 }
 
-function buildBenchmarkTable(bench, catScores) {
-  const section=document.getElementById('benchmark-section');
-  section.innerHTML='<h3>Seniority benchmark reference</h3>';
-  const levels=['Junior','Regular','Senior','Principal'];
-  const table=document.createElement('table');
-  table.className='benchmark-table';
+// ─── Benchmark table ─────────────────────────────────────────────────────────
+function buildBenchmarkTable(catScores, benchmarks) {
+  const table  = document.getElementById('benchmark-table');
+  const levels = ['Junior', 'Regular', 'Senior', 'Principal'];
 
-  // Head
-  const thead=document.createElement('thead');
-  const hr=document.createElement('tr');
-  ['Category','Junior','Regular','Senior','Principal'].forEach(h=>{
-    const th=document.createElement('th');th.textContent=h;hr.appendChild(th);
+  let html = '<thead><tr><th>Category</th>';
+  levels.forEach(l => {
+    const active = l === participantLevel ? ' style="color:var(--purple-600)"' : '';
+    html += `<th${active}>${l}</th>`;
   });
-  thead.appendChild(hr);table.appendChild(thead);
+  html += '</tr></thead><tbody>';
 
-  // Body
-  const tbody=document.createElement('tbody');
-  categories.forEach((cat,i)=>{
-    const tr=document.createElement('tr');
-    const td0=document.createElement('td');
-    td0.textContent=cat.name;
-    td0.style.borderLeft=`3px solid ${cat.color}`;
-    tr.appendChild(td0);
-
-    levels.forEach(lvl=>{
-      const td=document.createElement('td');
-      const val=BENCHMARKS[lvl]?.[i]??'-';
-      const isMe=lvl===participantLevel;
-      const cell=document.createElement('span');
-      cell.className='bench-cell'+(isMe?' active':'');
-      cell.textContent=typeof val==='number'?val.toFixed(1):val;
-      if(isMe){
-        cell.style.background=cat.bgLight;
-        cell.style.color=cat.color;
-        td.style.background=cat.bgLight+'55';
-      }
-      td.appendChild(cell);
-      tr.appendChild(td);
+  categories.forEach((cat, ci) => {
+    const styles = CATEGORY_STYLES[cat.name] || {};
+    html += `<tr>
+      <td class="cat-cell" style="border-left:3px solid ${styles.color}; padding-left:10px">
+        ${cat.name}
+      </td>`;
+    levels.forEach(l => {
+      const b         = BENCHMARKS[l][ci];
+      const highlight = l === participantLevel ? ' bench-highlight' : '';
+      const bold      = l === participantLevel ? ' style="font-weight:600"' : '';
+      html += `<td><span class="bench-cell${highlight}"${bold}>${b.toFixed(1)}</span></td>`;
     });
-    tbody.appendChild(tr);
+    html += '</tr>';
   });
-  table.appendChild(tbody);
-  section.appendChild(table);
 
-  // Caption
-  const cap=document.createElement('p');
-  cap.style.cssText='font-size:12px;color:var(--text-muted);margin-top:8px;';
-  cap.textContent=`Highlighted cells show the expected score for a ${participantLevel} engineer. Your score is shown on each card above.`;
-  section.appendChild(cap);
+  html += '</tbody>';
+  table.innerHTML = html;
 }
 
-function buildBreakdown(){
-  const container=document.getElementById('breakdown-container');
-  container.innerHTML='';
-  categories.forEach((cat,ci)=>{
-    const catQs=allQuestions.map((q,i)=>({q,i})).filter(({q})=>q.catIndex===ci);
-    if(!catQs.length)return;
-    const section=document.createElement('div');
-    section.className='breakdown-section';
-    const h=document.createElement('h3');
-    h.textContent=cat.name;h.style.color=cat.color;h.style.borderColor=cat.color+'44';
-    section.appendChild(h);
-    catQs.forEach(({q,i})=>{
-      const ai=answers[i];if(ai===null)return;
-      const badge=LEVEL_BADGE[ai],theme=TIP_THEMES[ai],tip=q.tips?.[ai]??'';
-      const item=document.createElement('div');
-      item.className='breakdown-item';
-      item.innerHTML=`
+// ─── Answer breakdown ────────────────────────────────────────────────────────
+function buildBreakdown() {
+  const container = document.getElementById('breakdown-container');
+  container.innerHTML = '';
+
+  categories.forEach((cat, ci) => {
+    const styles = CATEGORY_STYLES[cat.name] || {};
+    const catQs = allQuestions
+      .map((q, i) => ({ q, i }))
+      .filter(({ q }) => q.catIndex === ci);
+
+    if (!catQs.length) return;
+
+    const section  = document.createElement('div');
+    section.className = 'breakdown-section';
+
+    const heading = document.createElement('h3');
+    heading.textContent       = cat.name;
+    heading.style.color       = styles.color;
+    heading.style.borderColor = styles.color + '44';
+    section.appendChild(heading);
+
+    catQs.forEach(({ q, i }) => {
+      const answerIdx = answers[i];
+      if (answerIdx === null) return;
+
+      const badge = LEVEL_BADGE[answerIdx];
+      const tip   = q.tips?.[answerIdx] ?? '';
+      const theme = TIP_THEMES[answerIdx];
+
+      const item = document.createElement('div');
+      item.className = 'breakdown-item';
+      item.innerHTML = `
         <div class="breakdown-q">${q.text}</div>
         <div class="breakdown-answer">
-          <span class="breakdown-badge" style="background:${badge.bg};color:${badge.color}">${badge.label}</span>
-          <span class="breakdown-answer-text">${q.options[ai]}</span>
+          <span class="breakdown-badge" style="background:${badge.bg}; color:${badge.color}">
+            ${badge.label}
+          </span>
+          <span class="breakdown-answer-text">${q.options[answerIdx]}</span>
         </div>
-        ${tip?`<div class="breakdown-tip"><div class="breakdown-tip-label" style="color:${theme.headerText}">${theme.label}</div>${tip}</div>`:''}`;
+        ${tip ? `
+        <div class="breakdown-tip">
+          <div class="breakdown-tip-label" style="color:${theme.headerText}">${theme.label}</div>
+          ${tip}
+        </div>` : ''}`;
       section.appendChild(item);
     });
+
     container.appendChild(section);
   });
 }
 
-function show(id){document.querySelectorAll('.step').forEach(el=>el.classList.remove('active'));document.getElementById(id).classList.add('active');}
+// ─── Submit reflection ───────────────────────────────────────────────────────
+function submitReflection() {
+  const text = document.getElementById('reflection-input').value.trim();
 
-function restart(){
-  if(radarChart){radarChart.destroy();radarChart=null;}
-  document.getElementById('reflection-input').value='';
-  document.getElementById('field-name').value='';
-  document.getElementById('field-manager').value='';
-  document.getElementById('field-level').value='';
-  participantName='';participantManager='';participantLevel='';
+  // Hide the input section
+  document.getElementById('reflection-input-section').style.display = 'none';
+
+  // Show the locked reflection display (even if empty — show a placeholder)
+  const display = document.getElementById('reflection-display');
+  display.textContent = text || 'No focus area provided.';
+  document.getElementById('reflection-result').style.display = 'block';
+
+  // Reveal the breakdown and action buttons
+  document.getElementById('breakdown-section').style.display = 'block';
+  document.getElementById('results-nav').style.display       = 'flex';
+
+  // Scroll smoothly to the breakdown
+  document.getElementById('breakdown-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ─── Restart ─────────────────────────────────────────────────────────────────
+function restart() {
+  if (radarChart) { radarChart.destroy(); radarChart = null; }
+  document.getElementById('reflection-input').value = '';
+  document.getElementById('field-name').value        = '';
+  document.getElementById('field-manager').value     = '';
+  document.getElementById('field-level').value       = '';
+  participantName = ''; participantManager = ''; participantLevel = '';
   show('step-intro');
 }
 </script>
+
 </body>
 </html>

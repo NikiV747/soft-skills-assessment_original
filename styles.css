@@ -1,0 +1,1080 @@
+/* ============================================================
+   Soft Skills Self-Assessment — Stylesheet
+   ============================================================
+   Sections:
+   01  Google Fonts import
+   02  CSS reset & custom properties
+   03  Base & layout
+   04  App header
+   05  Progress bar
+   06  Step transitions
+   07  Intro page
+   08  Participant details form
+   09  Question page
+   10  Tip panel
+   11  Reflection step
+   12  Navigation buttons
+   13  Results header
+   14  Radar chart container
+   15  Score cards
+   16  Strengths callout
+   17  Benchmark reference table
+   18  Reflection display
+   19  Answer breakdown
+   20  Results nav
+   21  Loading & error states
+   22  Print styles
+   23  Responsive (mobile)
+   ============================================================ */
+
+
+/* ── 01  Google Fonts ──────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+
+/* ── 02  Reset & custom properties ────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Brand */
+  --purple-50:  #EEEDFE;
+  --purple-600: #534AB7;
+  --purple-800: #3C3489;
+
+  /* Text */
+  --text-primary:   #1a1a2e;
+  --text-secondary: #64648a;
+  --text-muted:     #9999bb;
+
+  /* Surfaces */
+  --bg:      #f5f4fc;
+  --surface: #ffffff;
+
+  /* Borders */
+  --border:       rgba(83, 74, 183, 0.12);
+  --border-hover: rgba(83, 74, 183, 0.35);
+
+  /* Corners */
+  --radius:    14px;
+  --radius-sm:  8px;
+
+  /* Semantic colours */
+  --green:    #0F6E56;
+  --green-bg: #E1F5EE;
+  --amber:    #BA7517;
+  --amber-bg: #FFF3DC;
+  --red:      #993C1D;
+  --red-bg:   #FAECE7;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* ── 03  Base & layout ─────────────────────────────────────── */
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.shell {
+  width: 100%;
+  max-width: 680px;
+}
+
+
+/* ── 04  App header ────────────────────────────────────────── */
+.app-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.app-header .eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--purple-600);
+  margin-bottom: 6px;
+}
+
+.app-header h1 {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+
+/* ── 05  Progress bar ──────────────────────────────────────── */
+.progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.progress-track {
+  flex: 1;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--purple-600);
+  border-radius: 2px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+
+/* ── 06  Step transitions ──────────────────────────────────── */
+.step {
+  display: none;
+}
+
+.step.active {
+  display: block;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ── 07  Intro page ────────────────────────────────────────── */
+.intro-body {
+  margin-bottom: 1.5rem;
+}
+
+.intro-body > p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.level-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+
+.level-card .num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--purple-600);
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+
+.level-card .name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.level-card .desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.cats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.cat-pill {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1px solid;
+  opacity: 0.85;
+}
+
+.intro-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+
+/* ── 08  Participant details form ──────────────────────────── */
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.field input,
+.field select {
+  padding: 9px 12px;
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--purple-600);
+  background: var(--surface);
+}
+
+.field input::placeholder {
+  color: var(--text-muted);
+}
+
+.required-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.field-error {
+  font-size: 12px;
+  color: #c0392b;
+  margin-top: 3px;
+  display: none;
+}
+
+.field-error.visible {
+  display: block;
+}
+
+
+/* ── 09  Question page ─────────────────────────────────────── */
+.q-category {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.q-text {
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--text-primary);
+  margin-bottom: 1.75rem;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1.25rem;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+  text-align: left;
+  width: 100%;
+}
+
+.option:hover {
+  border-color: var(--border-hover);
+  background: var(--purple-50);
+  transform: translateX(2px);
+}
+
+.option-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--purple-50);
+  color: var(--purple-600);
+  flex-shrink: 0;
+  font-family: 'DM Mono', monospace;
+  transition: background 0.15s, color 0.15s;
+}
+
+.option.selected .option-num {
+  background: var(--purple-600);
+  color: #fff;
+}
+
+.option-body {
+  flex: 1;
+}
+
+.option-level {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--purple-600);
+  letter-spacing: 0.05em;
+  margin-bottom: 3px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+}
+
+.option-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.option.selected .option-desc {
+  color: var(--purple-800);
+}
+
+
+/* ── 10  Tip panel ─────────────────────────────────────────── */
+.tip-panel {
+  display: none;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  animation: fadeIn 0.3s ease;
+}
+
+.tip-panel.visible {
+  display: block;
+}
+
+.tip-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tip-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.tip-body {
+  padding: 14px 18px 16px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+
+/* ── 11  Reflection step ───────────────────────────────────── */
+.reflection-wrap {
+  margin-bottom: 1.5rem;
+}
+
+.reflection-wrap label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.reflection-wrap p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.reflection-wrap textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px 14px;
+  border: 1px solid var(--border-hover);
+  border-radius: var(--radius-sm);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--surface);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+  line-height: 1.6;
+}
+
+.reflection-wrap textarea:focus {
+  border-color: var(--purple-600);
+}
+
+.reflection-wrap textarea::placeholder {
+  color: var(--text-muted);
+}
+
+
+/* ── 12  Navigation buttons ────────────────────────────────── */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-hover);
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-primary);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  background: var(--purple-50);
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+.btn-primary {
+  background: var(--purple-600);
+  color: #fff;
+  border-color: var(--purple-600);
+}
+
+.btn-primary:hover {
+  background: var(--purple-800);
+  border-color: var(--purple-800);
+}
+
+.nav-spacer {
+  flex: 1;
+}
+
+.nav-counter {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+
+/* ── 13  Results header ────────────────────────────────────── */
+.results-top {
+  margin-bottom: 1.5rem;
+}
+
+.results-top h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.results-top .meta {
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-top: 8px;
+}
+
+.results-top .meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.results-top .meta .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--purple-600);
+  display: inline-block;
+}
+
+
+/* ── 14  Radar chart container ─────────────────────────────── */
+.chart-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chart-inner {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 480px;
+}
+
+/* Custom legend sitting below the chart */
+.chart-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.chart-legend-swatch {
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* Solid line for the engineer's score */
+.chart-legend-score {
+  background: #534AB7;
+}
+
+/* Dashed line for the benchmark — rendered as two segments */
+.chart-legend-bench {
+  background: linear-gradient(
+    to right,
+    rgba(186,117,23,0.7) 0%,
+    rgba(186,117,23,0.7) 45%,
+    transparent 45%,
+    transparent 55%,
+    rgba(186,117,23,0.7) 55%,
+    rgba(186,117,23,0.7) 100%
+  );
+}
+
+
+/* ── 15  Score cards ───────────────────────────────────────── */
+.scores-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.score-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.score-cat {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.score-main {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.score-val {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.score-level-label {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.score-benchmark-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.score-benchmark-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.score-benchmark-val {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+}
+
+.score-status {
+  font-size: 10px;
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+  padding: 2px 7px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.status-above { background: var(--green-bg); color: var(--green); }
+.status-on    { background: var(--purple-50); color: var(--purple-600); }
+.status-below { background: var(--amber-bg);  color: var(--amber); }
+
+
+/* ── 16  Strengths callout ─────────────────────────────────── */
+.strengths-box {
+  background: var(--green-bg);
+  border: 1px solid #9FE1CB;
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.strengths-box .label {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--green);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.strengths-box .label::before {
+  content: '★';
+  font-size: 12px;
+}
+
+.strengths-box ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.strengths-box ul li {
+  font-size: 14px;
+  color: #0d4a2a;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.strengths-box ul li::before {
+  content: '✓';
+  font-weight: 600;
+  color: var(--green);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+
+/* ── 17  Benchmark reference table ────────────────────────── */
+.benchmark-section {
+  margin-bottom: 1.5rem;
+}
+
+.benchmark-section .section-label {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.benchmark-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.benchmark-table th {
+  background: var(--bg);
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.benchmark-table th:not(:first-child) {
+  text-align: center;
+}
+
+.benchmark-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+.benchmark-table tr:last-child td {
+  border-bottom: none;
+}
+
+.benchmark-table td:not(:first-child) {
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.benchmark-table td.cat-cell {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.bench-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 22px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.bench-highlight {
+  background: var(--purple-50);
+  color: var(--purple-600);
+}
+
+
+/* ── 18  Reflection display on results page ────────────────── */
+
+/* Editable input section on results page */
+#reflection-input-section {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+#reflection-input-section .nav {
+  margin-top: 1rem;
+}
+.reflection-result {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--purple-600);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.reflection-result .label {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple-600);
+  margin-bottom: 8px;
+}
+
+.reflection-result .text {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.65;
+}
+
+
+/* ── 19  Answer breakdown ──────────────────────────────────── */
+.breakdown-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.breakdown-section {
+  margin-bottom: 2rem;
+}
+
+.breakdown-section h3 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: 'DM Mono', monospace;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid;
+}
+
+.breakdown-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+
+.breakdown-q {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.breakdown-answer {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.breakdown-badge {
+  font-size: 10px;
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+  padding: 3px 8px;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.breakdown-answer-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.breakdown-tip {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+.breakdown-tip-label {
+  font-size: 10px;
+  font-weight: 600;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 3px;
+}
+
+
+/* ── 20  Results nav ───────────────────────────────────────── */
+.results-nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+
+/* ── 21  Loading & error states ────────────────────────────── */
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  gap: 16px;
+}
+
+.loader-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--border);
+  border-top-color: var(--purple-600);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loader-text {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.error-box {
+  background: #fff0f0;
+  border: 1px solid #f0b8b8;
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  font-size: 14px;
+  color: #882020;
+  line-height: 1.6;
+}
+
+.error-box strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+
+/* ── 22  Print styles ──────────────────────────────────────── */
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .shell {
+    max-width: 100%;
+  }
+
+  .app-header {
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Hide interactive elements */
+  .results-nav,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Prevent awkward page breaks */
+  .chart-container    { border: 1px solid #ddd; break-inside: avoid; }
+  .scores-grid        { break-inside: avoid; }
+  .strengths-box      { break-inside: avoid; }
+  .benchmark-section  { break-inside: avoid; }
+  .breakdown-section  { break-inside: avoid; }
+  .breakdown-item     { break-inside: avoid; border: 1px solid #ddd; }
+  .reflection-result  { break-inside: avoid; }
+
+  @page {
+    margin: 1.5cm;
+  }
+}
+
+
+/* ── 23  Responsive — mobile ───────────────────────────────── */
+@media (max-width: 500px) {
+  .levels-grid,
+  .scores-grid,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .q-text {
+    font-size: 16px;
+  }
+}

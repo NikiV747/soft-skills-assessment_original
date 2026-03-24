@@ -1,8 +1,6 @@
 [
   {
     "name": "Software Delivery",
-    "color": "#534AB7",
-    "bgLight": "#EEEDFE",
     "bank": [
       {
         "text": "I participate in code reviews and use them as a learning and quality opportunity.",
@@ -248,8 +246,6 @@
   },
   {
     "name": "Continuous Improvement",
-    "color": "#0F6E56",
-    "bgLight": "#E1F5EE",
     "bank": [
       {
         "text": "I actively keep up with new tools, technologies and practices relevant to my work.",
@@ -495,8 +491,6 @@
   },
   {
     "name": "Risk Mitigation",
-    "color": "#993C1D",
-    "bgLight": "#FAECE7",
     "bank": [
       {
         "text": "I proactively identify potential issues and think through their causes and effects.",
@@ -742,8 +736,6 @@
   },
   {
     "name": "Technical Excellence",
-    "color": "#185FA5",
-    "bgLight": "#E6F1FB",
     "bank": [
       {
         "text": "I have deep knowledge of the technologies I work with day-to-day.",
@@ -989,8 +981,6 @@
   },
   {
     "name": "Embracing Ownership",
-    "color": "#BA7517",
-    "bgLight": "#FAEEDA",
     "bank": [
       {
         "text": "I take full responsibility for the tasks I own — including quality, timing and communication.",
@@ -1236,8 +1226,6 @@
   },
   {
     "name": "Leading by Example",
-    "color": "#993556",
-    "bgLight": "#FBEAF0",
     "bank": [
       {
         "text": "I communicate complex ideas clearly and adapt my style to my audience.",
