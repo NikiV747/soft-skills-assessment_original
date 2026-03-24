@@ -858,15 +858,11 @@ body {
 
 /* ── 18  Reflection display on results page ────────────────── */
 
-/* Editable input section on results page */
-#reflection-input-section {
+/* Reflection textarea when embedded in the results page */
+.reflection-on-results {
   border-top: 1px solid var(--border);
   padding-top: 1.5rem;
   margin-bottom: 1.5rem;
-}
-
-#reflection-input-section .nav {
-  margin-top: 1rem;
 }
 .reflection-result {
   background: var(--surface);
@@ -1049,6 +1045,23 @@ body {
   .results-nav,
   .no-print {
     display: none !important;
+  }
+
+  /* Render the reflection textarea as plain readable text when printing */
+  .reflection-on-results label {
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--purple-600);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .reflection-on-results p { display: none; }
+  .reflection-on-results textarea {
+    border: 1px solid #ddd;
+    resize: none;
+    min-height: 80px;
   }
 
   /* Prevent awkward page breaks */

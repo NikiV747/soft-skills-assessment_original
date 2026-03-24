@@ -162,7 +162,7 @@
 
 
   <!-- ══════════════════════════════════════════
-       Step 3 — Results (includes inline reflection)
+       Step 3 — Results
   ══════════════════════════════════════════ -->
   <div class="step" id="step-results">
 
@@ -195,46 +195,29 @@
       <table class="benchmark-table" id="benchmark-table"></table>
     </div>
 
-    <!-- ── Inline reflection — editable until submitted ── -->
-    <div id="reflection-input-section">
-      <div class="reflection-wrap">
-        <label for="reflection-input">What is your main focus area for the next quarter?</label>
-        <p>
-          Now that you've seen your scores, take a moment to reflect. What one
-          area do you most want to develop? What does progress look like for
-          you personally?
-        </p>
-        <textarea
-          id="reflection-input"
-          placeholder="Write your thoughts here — this will appear on your printed report and serve as a starting point for your next 1:1 conversation…"
-        ></textarea>
-      </div>
-      <div class="nav">
-        <button class="btn no-print" onclick="restart()">← Retake</button>
-        <div class="nav-spacer"></div>
-        <button class="btn btn-primary no-print" onclick="submitReflection()">
-          Submit &amp; see full breakdown →
-        </button>
-      </div>
+    <!-- Reflection textarea — always visible, printed as-is -->
+    <div class="reflection-wrap reflection-on-results">
+      <label for="reflection-input">What is your main focus area for the next quarter?</label>
+      <p>
+        Now that you've seen your scores, take a moment to reflect. What one
+        area do you most want to develop? What does progress look like for
+        you personally?
+      </p>
+      <textarea
+        id="reflection-input"
+        placeholder="Write your thoughts here — this will appear on your printed report and serve as a starting point for your next 1:1 conversation…"
+      ></textarea>
     </div>
 
-    <!-- ── Locked reflection display (shown after submit) ── -->
-    <div class="reflection-result" id="reflection-result" style="display:none;">
-      <div class="label">Focus area for next quarter</div>
-      <div class="text" id="reflection-display"></div>
-    </div>
-
-    <!-- Print / retake — only shown after reflection submitted -->
-    <div class="results-nav no-print" id="results-nav" style="display:none;">
+    <!-- Nav buttons -->
+    <div class="results-nav no-print">
       <button class="btn" onclick="restart()">← Retake</button>
       <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
     </div>
 
-    <!-- Full answer breakdown — only shown after reflection submitted -->
-    <div id="breakdown-section" style="display:none;">
-      <div class="breakdown-title">Full answer breakdown</div>
-      <div id="breakdown-container"></div>
-    </div>
+    <!-- Full answer breakdown — always visible -->
+    <div class="breakdown-title">Full answer breakdown</div>
+    <div id="breakdown-container"></div>
 
   </div><!-- /step-results -->
 
@@ -629,15 +612,10 @@ function showResults() {
   // Benchmark reference table
   buildBenchmarkTable(catScores, benchmarks);
 
-  // Reset reflection section to editable state
-  // (in case the engineer retakes the assessment)
+  // Reset reflection textarea for retakes
   document.getElementById('reflection-input').value = '';
-  document.getElementById('reflection-input-section').style.display = 'block';
-  document.getElementById('reflection-result').style.display        = 'none';
-  document.getElementById('results-nav').style.display              = 'none';
-  document.getElementById('breakdown-section').style.display        = 'none';
 
-  // Pre-build the breakdown so it's ready to reveal on submit
+  // Build answer breakdown
   buildBreakdown();
 
   // Radar chart
@@ -809,26 +787,6 @@ function buildBreakdown() {
 
     container.appendChild(section);
   });
-}
-
-// ─── Submit reflection ───────────────────────────────────────────────────────
-function submitReflection() {
-  const text = document.getElementById('reflection-input').value.trim();
-
-  // Hide the input section
-  document.getElementById('reflection-input-section').style.display = 'none';
-
-  // Show the locked reflection display (even if empty — show a placeholder)
-  const display = document.getElementById('reflection-display');
-  display.textContent = text || 'No focus area provided.';
-  document.getElementById('reflection-result').style.display = 'block';
-
-  // Reveal the breakdown and action buttons
-  document.getElementById('breakdown-section').style.display = 'block';
-  document.getElementById('results-nav').style.display       = 'flex';
-
-  // Scroll smoothly to the breakdown
-  document.getElementById('breakdown-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // ─── Restart ─────────────────────────────────────────────────────────────────
