@@ -48,18 +48,18 @@
         ]
       },
       {
-        "text": "I understand the data and business context behind what I'm building.",
+        "text": "I understand the business and technical context behind what I'm building.",
         "options": [
           "I build what's specified without always understanding the broader context.",
-          "I make sure I understand the data and business goal before starting work.",
-          "I help my squad connect technical work to business outcomes and data quality.",
-          "I shape how the team understands and works with our data domain at a strategic level."
+          "I make sure I understand the business goal and technical constraints before starting work.",
+          "I help my squad connect technical work to business outcomes and ensure quality throughout.",
+          "I shape how the team understands and works with our domain knowledge at a strategic level."
         ],
         "tips": [
-          "For your next ticket, spend 15 minutes asking: what decision does this enable? What happens if the data is wrong? Talk to the product manager or analyst who raised it.",
-          "Make it a habit to ask 'what business question does this answer?' in refinement sessions. Bring that context into your implementation decisions.",
-          "Run a session with your squad linking your current roadmap items to business metrics. Help engineers see the chain from their code to a business outcome.",
-          "You're already operating at a strategic level. Focus on documenting the domain knowledge you hold so it's not locked in your head — build a shared data dictionary or domain model."
+          "For your next ticket, spend 15 minutes asking: what decision does this enable? What happens if this is wrong? Talk to the product manager or whoever raised it before you start.",
+          "Make it a habit to ask 'what business goal does this serve?' in refinement sessions. Bring that context into your implementation decisions — it changes the trade-offs you make.",
+          "Run a session with your squad linking your current roadmap items to business outcomes. Help engineers see the chain from their code to a measurable result.",
+          "You're already operating at a strategic level. Focus on documenting the domain knowledge you hold so it's not locked in your head — build a shared glossary or domain reference your team can rely on."
         ]
       },
       {
@@ -78,18 +78,18 @@
         ]
       },
       {
-        "text": "I develop data pipelines and processes with autonomy and care for long-term maintainability.",
+        "text": "I develop features and systems with autonomy and care for long-term maintainability.",
         "options": [
-          "I need guidance to build pipelines and tend to focus on getting it working.",
-          "I build pipelines autonomously, with attention to robustness and future maintenance.",
-          "I review and guide my squad's pipeline designs for long-term health.",
-          "I define data engineering patterns and best practices adopted across the platform."
+          "I need guidance to build independently and tend to focus on getting things working rather than maintainability.",
+          "I build features and systems autonomously, with attention to robustness, clarity and future maintenance.",
+          "I review and guide my squad's designs and implementations with long-term health in mind.",
+          "I define engineering patterns and best practices that are adopted across the platform."
         ],
         "tips": [
-          "Pick one pipeline you've built recently and add proper error handling, logging and a README. Then ask a colleague to review it — treat it as a learning exercise.",
-          "Before starting your next pipeline, write down how it could fail and how you'd know. Build monitoring in from the start, not as an afterthought.",
-          "Introduce a pipeline design checklist for your squad: logging, failure handling, recovery, documentation. Run a review on an existing pipeline together as a learning exercise.",
-          "You're defining how the platform is built. Focus on making your patterns accessible — good documentation, worked examples and pairing sessions will help others follow your lead."
+          "Pick one piece of work you've recently completed and spend 30 minutes improving it: add error handling, a README, or clearer naming. Then ask a colleague to review it as a learning exercise.",
+          "Before starting your next significant task, write down how it could fail and how you'd know. Build observability and error handling in from the start, not as an afterthought.",
+          "Introduce a delivery checklist for your squad — error handling, tests, logging, documentation. Run a review of an existing component together as a shared learning exercise.",
+          "You're defining how the team builds. Focus on making your patterns accessible — good documentation, worked examples and pairing sessions help others follow your lead and raise the collective bar."
         ]
       },
       {
@@ -117,7 +117,7 @@
         ],
         "tips": [
           "Before starting any task, write down the three biggest assumptions you're making. Check at least one with the ticket author before you start coding.",
-          "Create a personal checklist of questions you ask before starting work: acceptance criteria, edge cases, data quality expectations, definition of done. Share it with your squad.",
+          "Create a personal checklist of questions you ask before starting work: acceptance criteria, edge cases, output quality expectations, definition of done. Share it with your squad.",
           "Introduce a 'definition of ready' for your squad — tickets shouldn't be picked up until key questions are answered. Facilitate the team in building that checklist together.",
           "Work with product and engineering leadership to create alignment standards for how requirements are written and reviewed before reaching engineering. Your experience is valuable input here."
         ]
@@ -256,7 +256,7 @@
           "I shape our technical roadmap based on emerging trends and coach others to stay ahead."
         ],
         "tips": [
-          "Subscribe to one engineering newsletter this week (e.g. Data Engineering Weekly, The Pragmatic Engineer). Block 30 minutes on Fridays to read it. Small, consistent exposure beats reactive catch-up.",
+          "Subscribe to one engineering newsletter this week (e.g. The Pragmatic Engineer, Software Lead Weekly). Block 30 minutes on Fridays to read it. Small, consistent exposure beats reactive catch-up.",
           "After learning something useful, write a 3-bullet summary and share it in your team channel. Teaching accelerates your own learning and builds your reputation as someone who grows.",
           "Organise a monthly 'what's new' session in your squad — 15 minutes where each person shares one thing they've learned. Rotate the host. Make learning a team habit.",
           "You're already influencing the technical direction. Document the signals you use to evaluate new tools and share your evaluation framework — it will help the org make better decisions faster."
@@ -338,18 +338,18 @@
         ]
       },
       {
-        "text": "I propose improvements to data quality, tools and review processes.",
+        "text": "I propose improvements to output quality, tools and review processes.",
         "options": [
-          "I flag data quality issues when I find them but don't proactively look for them.",
-          "I regularly identify and raise data quality issues and propose fixes.",
-          "I lead data quality initiatives and help my squad build quality into their processes.",
-          "I own data quality as a strategic concern and drive platform-wide improvements."
+          "I notice quality or process issues when I encounter them but don't proactively look for them.",
+          "I regularly identify quality and process issues, raise them constructively and propose fixes.",
+          "I lead quality improvement initiatives and help my squad build quality into their everyday processes.",
+          "I own output quality as a strategic concern and drive improvements that raise the bar across the platform."
         ],
         "tips": [
-          "Schedule a 30-minute data quality audit on your area of ownership. Look for undocumented assumptions, missing validations or known issues that haven't been fixed. Log what you find.",
-          "Turn your data quality findings into a short proposal: the issue, its business impact, and a suggested fix. Bringing solutions — not just problems — gets traction faster.",
-          "Run a data quality review with your squad — pick the three highest-risk datasets and review them together. Make data quality a standing agenda item in your squad health reviews.",
-          "You're already owning data quality strategically. Focus on making quality measurable — dashboards, SLAs, anomaly alerts. What gets measured gets improved."
+          "Schedule a 30-minute quality audit on your area of ownership. Look for undocumented assumptions, missing validations or known issues that haven't been addressed. Log what you find and share it.",
+          "Turn your quality findings into a short proposal: the issue, its impact on the team or users, and a suggested fix. Bringing solutions — not just problems — gets traction faster.",
+          "Run a quality review with your squad — pick the three highest-risk areas of your system and review them together. Make output quality a standing agenda item in your squad health reviews.",
+          "You're already owning quality strategically. Focus on making it measurable — dashboards, SLAs, automated checks. What gets measured gets improved, and what's automated stays improved."
         ]
       },
       {
@@ -783,18 +783,18 @@
         ]
       },
       {
-        "text": "I understand data warehousing concepts and apply them effectively in my work.",
+        "text": "I understand the architectural patterns relevant to my domain and apply them effectively in my work.",
         "options": [
-          "I have a basic understanding but need guidance applying warehousing concepts.",
-          "I apply data warehousing principles reliably in my day-to-day work.",
-          "I guide my squad on data modelling and warehousing best practices.",
-          "I define our data modelling strategy and ensure consistency across the platform."
+          "I have a basic understanding of the patterns used in my area but need guidance applying them consistently.",
+          "I apply the architectural patterns relevant to my domain reliably and can explain the trade-offs involved.",
+          "I guide my squad on architectural patterns and best practices, and review designs with confidence.",
+          "I define our architectural approach for the platform, ensure consistency across teams and evolve it as we grow."
         ],
         "tips": [
-          "Spend two hours this week reading about the Kimball vs Inmon approach to data warehousing — understand the trade-offs and where your current architecture fits. Context makes daily decisions much clearer.",
-          "Review one data model you've built recently and assess it against dimensional modelling best practices. Could grain be clearer? Are there missing dimensions? Treat it as a learning exercise.",
-          "Run a data modelling review with your squad — pick an existing model, walk through it together and identify improvements. Build the shared vocabulary and judgment your team needs.",
-          "You're already defining data modelling strategy. Focus on consistency and documentation — a shared data model catalogue, naming conventions and design decision records make the strategy durable."
+          "Pick one architectural pattern you use regularly (e.g. event-driven, layered, CQRS, microservices) and spend two hours reading about its trade-offs. Understanding the 'why' makes your daily decisions much sharper.",
+          "Review one design decision you made recently and assess it against the pattern you were applying. Were the trade-offs consciously made? Could the approach be cleaner? Treat it as a structured learning exercise.",
+          "Run an architectural review with your squad — pick an existing system or component, walk through it together and identify improvements. Build the shared vocabulary and judgment your team needs.",
+          "You're already defining architectural strategy. Focus on consistency and documentation — decision records, pattern catalogues and naming conventions make the strategy durable and transferable as the team grows."
         ]
       },
       {
@@ -843,18 +843,18 @@
         ]
       },
       {
-        "text": "I provide data modelling and solution design that solves the right problem effectively.",
+        "text": "I provide solution design that solves the right problem effectively and is built to last.",
         "options": [
-          "I implement solutions as directed without always contributing to the design.",
-          "I design solutions independently that are fit for purpose and well-structured.",
-          "I review and guide data modelling decisions in my squad for quality and scalability.",
-          "I own the data modelling approach for the platform and set standards across teams."
+          "I implement solutions as directed without always contributing to or questioning the design.",
+          "I design solutions independently that are fit for purpose, well-structured and maintainable.",
+          "I review and guide design decisions in my squad for quality, scalability and long-term fit.",
+          "I own the solution design approach for the platform, set standards and ensure consistency across teams."
         ],
         "tips": [
-          "Before your next implementation, write a one-paragraph design note: what's the problem, what's your approach, and what's one alternative you considered. Even brief design thinking improves solution quality.",
-          "Ask to be included in design discussions for the work you'll implement. If design happens without you, ask for the rationale — understanding the 'why' makes the 'how' significantly better.",
-          "Run design reviews for significant work in your squad. Use a simple checklist: does this solve the right problem? Does it scale? Is it maintainable? What does failure look like?",
-          "You're already owning solution design at platform level. Focus on enabling others — design review templates, worked examples and pairing sessions help your approach become the team's approach."
+          "Before your next implementation, write a one-paragraph design note: what's the problem, what's your approach, and what's one alternative you considered. Even brief upfront thinking improves the outcome significantly.",
+          "Ask to be included in design discussions for work you'll implement. If design happens without you, ask for the rationale — understanding the 'why' behind a design makes the 'how' significantly better.",
+          "Run design reviews for significant work in your squad. Use a simple checklist: does this solve the right problem? Does it scale? Is it maintainable? What does failure look like? Make it a habit.",
+          "You're already owning solution design at platform level. Focus on enabling others — design review templates, worked examples and pairing sessions help your approach become the whole team's approach."
         ]
       },
       {
