@@ -18,7 +18,7 @@
   </header>
 
   <!-- ══════════════════════════════════════════
-       Loading state — shown while JSON fetches
+       Loading state
   ══════════════════════════════════════════ -->
   <div id="view-loading" class="loader">
     <div class="loader-spinner"></div>
@@ -26,7 +26,7 @@
   </div>
 
   <!-- ══════════════════════════════════════════
-       Error state — shown if JSON fails to load
+       Error state
   ══════════════════════════════════════════ -->
   <div id="view-error" style="display:none;">
     <div class="error-box">
@@ -38,7 +38,7 @@
   </div>
 
   <!-- ══════════════════════════════════════════
-       Step 1 — Intro & participant details form
+       Step 1 — Intro & participant details
   ══════════════════════════════════════════ -->
   <div class="step" id="step-intro">
 
@@ -50,7 +50,6 @@
         personalised coaching tip for reaching the next level.
       </p>
 
-      <!-- Level definitions -->
       <div class="levels-grid">
         <div class="level-card">
           <div class="num">Level 1</div>
@@ -74,18 +73,13 @@
         </div>
       </div>
 
-      <!-- Category pills — populated by JS -->
       <p style="margin-bottom:0.5rem; font-size:14px;">The six categories covered:</p>
       <div class="cats-row" id="cats-pills"></div>
-
-      <!-- Random draw note — populated by JS -->
       <p class="intro-note" id="intro-note"></p>
     </div>
 
-    <!-- Participant details form -->
     <div class="form-card">
       <h3>Your details</h3>
-
       <div class="form-row">
         <div class="field">
           <label for="field-name">Your name <span style="color:#c0392b">*</span></label>
@@ -97,7 +91,6 @@
           <input type="text" id="field-manager" placeholder="e.g. Jordan Lee">
         </div>
       </div>
-
       <div class="form-row">
         <div class="field">
           <label for="field-level">Current seniority level <span style="color:#c0392b">*</span></label>
@@ -128,6 +121,7 @@
   ══════════════════════════════════════════ -->
   <div class="step" id="step-questions">
 
+    <!-- Progress bar -->
     <div class="progress-wrap">
       <div class="progress-track">
         <div class="progress-fill" id="progress-fill"></div>
@@ -135,15 +129,18 @@
       <span class="progress-label" id="progress-label"></span>
     </div>
 
-    <!-- Category label & question text — populated by JS -->
+    <!-- #8 — Category dot indicators -->
+    <div class="cat-dots" id="cat-dots" aria-label="Progress through categories"></div>
+
+    <!-- Question -->
     <div class="q-category" id="q-category"></div>
-    <div class="q-text"     id="q-text"></div>
+    <div class="q-text" id="q-text"></div>
 
-    <!-- Answer options — populated by JS -->
-    <div class="options" id="q-options"></div>
+    <!-- Answer options -->
+    <div class="options" id="q-options" role="radiogroup" aria-labelledby="q-text"></div>
 
-    <!-- Coaching tip — shown after selecting an answer -->
-    <div class="tip-panel" id="tip-panel">
+    <!-- Coaching tip -->
+    <div class="tip-panel" id="tip-panel" role="status" aria-live="polite">
       <div class="tip-header" id="tip-header">
         <div class="tip-icon" id="tip-icon"></div>
         <span id="tip-heading-text"></span>
@@ -155,6 +152,7 @@
       <button class="btn no-print" id="btn-back" onclick="goBack()">← Back</button>
       <div class="nav-spacer"></div>
       <span class="nav-counter" id="nav-counter"></span>
+      <!-- #4 — label changes on last question -->
       <button class="btn btn-primary no-print" id="btn-next" onclick="goNext()" disabled>Next →</button>
     </div>
 
@@ -166,13 +164,12 @@
   ══════════════════════════════════════════ -->
   <div class="step" id="step-results">
 
-    <!-- Heading & participant metadata -->
     <div class="results-top">
       <h2 id="results-heading">Results</h2>
       <div class="meta" id="results-meta"></div>
     </div>
 
-    <!-- Spider / radar chart -->
+    <!-- Radar chart -->
     <div class="chart-container">
       <div class="chart-inner">
         <canvas id="radarChart"></canvas>
@@ -180,22 +177,44 @@
       <div id="chart-legend" class="chart-legend"></div>
     </div>
 
-    <!-- Score cards with benchmark indicators — populated by JS -->
+    <!-- Score cards -->
     <div class="scores-grid" id="scores-grid"></div>
 
-    <!-- Strengths callout — shown when engineer exceeds benchmark -->
+    <!-- #1 — Development focus callout (up to 2 categories) -->
+    <div class="focus-box" id="focus-box" style="display:none;">
+      <div class="focus-label">Suggested development focus</div>
+      <ul id="focus-list"></ul>
+    </div>
+
+    <!-- Strengths callout -->
     <div class="strengths-box" id="strengths-box" style="display:none;">
       <div class="label">Exceeding expectations</div>
       <ul id="strengths-list"></ul>
     </div>
 
-    <!-- Seniority benchmark reference table — populated by JS -->
-    <div class="benchmark-section">
-      <div class="section-label">Seniority benchmark reference</div>
-      <table class="benchmark-table" id="benchmark-table"></table>
+    <!-- #7 — Benchmark table — collapsible, always expanded on print -->
+    <div class="benchmark-section" id="benchmark-section">
+      <button
+        class="benchmark-toggle no-print"
+        id="benchmark-toggle"
+        onclick="toggleBenchmark()"
+        aria-expanded="false"
+        aria-controls="benchmark-table-wrap"
+      >
+        <span>Seniority benchmark reference</span>
+        <span class="benchmark-toggle-icon" id="benchmark-toggle-icon">＋</span>
+      </button>
+      <div class="benchmark-table-wrap" id="benchmark-table-wrap" hidden>
+        <table class="benchmark-table" id="benchmark-table"></table>
+      </div>
+      <!-- Always visible on print -->
+      <div class="benchmark-print-label">Seniority benchmark reference</div>
+      <div class="benchmark-table-print">
+        <table class="benchmark-table" id="benchmark-table-print"></table>
+      </div>
     </div>
 
-    <!-- Reflection textarea — always visible, printed as-is -->
+    <!-- Reflection textarea -->
     <div class="reflection-wrap reflection-on-results">
       <label for="reflection-input">What is your main focus area for the next quarter?</label>
       <p>
@@ -209,13 +228,13 @@
       ></textarea>
     </div>
 
-    <!-- Nav buttons -->
+    <!-- Nav -->
     <div class="results-nav no-print">
       <button class="btn" onclick="restart()">← Retake</button>
       <button class="btn btn-primary" onclick="window.print()">Print / Save PDF</button>
     </div>
 
-    <!-- Full answer breakdown — always visible -->
+    <!-- #3 — Breakdown with per-category score heading -->
     <div class="breakdown-title">Full answer breakdown</div>
     <div id="breakdown-container"></div>
 
@@ -223,37 +242,26 @@
 
 </div><!-- /shell -->
 
-<!-- ══════════════════════════════════════════
-     External libraries
-══════════════════════════════════════════ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-
-<!-- ══════════════════════════════════════════
-     Application script
-══════════════════════════════════════════ -->
 <script>
 // ─── Config ────────────────────────────────────────────────────────────────
 const QUESTIONS_PER_CAT  = 3;
 const QUESTION_BANK_FILE = 'question_bank.json';
+const MAX_FOCUS_AREAS    = 2;   // #1 — max categories called out as development focus
 
 // ─── Category styles ───────────────────────────────────────────────────────
-// Presentational data keyed by category name.
-// Kept here (not in question_bank.json) because colours are a UI concern,
-// not a content concern.
 const CATEGORY_STYLES = {
-  'Software Delivery':    { color: '#534AB7', bgLight: '#EEEDFE' },
+  'Software Delivery':      { color: '#534AB7', bgLight: '#EEEDFE' },
   'Continuous Improvement': { color: '#0F6E56', bgLight: '#E1F5EE' },
-  'Risk Mitigation':      { color: '#993C1D', bgLight: '#FAECE7' },
-  'Technical Excellence': { color: '#185FA5', bgLight: '#E6F1FB' },
-  'Embracing Ownership':  { color: '#BA7517', bgLight: '#FAEEDA' },
-  'Leading by Example':   { color: '#993556', bgLight: '#FBEAF0' }
+  'Risk Mitigation':        { color: '#993C1D', bgLight: '#FAECE7' },
+  'Technical Excellence':   { color: '#185FA5', bgLight: '#E6F1FB' },
+  'Embracing Ownership':    { color: '#BA7517', bgLight: '#FAEEDA' },
+  'Leading by Example':     { color: '#993556', bgLight: '#FBEAF0' }
 };
 
 // ─── Seniority benchmarks ──────────────────────────────────────────────────
-// Expected average score per category per level.
-// Order must match the category order in question_bank.json:
-// Software Delivery, Continuous Improvement, Risk Mitigation,
-// Technical Excellence, Embracing Ownership, Leading by Example
+// Order: Software Delivery, Continuous Improvement, Risk Mitigation,
+//        Technical Excellence, Embracing Ownership, Leading by Example
 const BENCHMARKS = {
   Junior:    [2.0, 1.5, 1.5, 2.0, 2.0, 1.5],
   Regular:   [2.5, 2.5, 2.0, 2.5, 2.5, 2.0],
@@ -261,60 +269,38 @@ const BENCHMARKS = {
   Principal: [4.0, 4.0, 4.0, 4.0, 4.0, 4.0]
 };
 
-// ─── Tip colour themes (one per answer level 0–3) ──────────────────────────
+// ─── Tip themes ────────────────────────────────────────────────────────────
 const TIP_THEMES = [
-  {
-    bg: '#FFF8E7', headerBg: '#FFF0CC',
-    text: '#5a3e00', headerText: '#7a5200',
-    icon: '→', iconBg: '#FFD966', iconColor: '#5a3e00',
-    label: 'How to reach Proficient'
-  },
-  {
-    bg: '#EAF7F0', headerBg: '#D0EDDD',
-    text: '#0d4a2a', headerText: '#0d5c33',
-    icon: '→', iconBg: '#5DCAA5', iconColor: '#fff',
-    label: 'How to reach Advocating'
-  },
-  {
-    bg: '#EEF4FF', headerBg: '#DCE8FF',
-    text: '#1a2f6b', headerText: '#1a3580',
-    icon: '→', iconBg: '#4A78E0', iconColor: '#fff',
-    label: 'How to reach Mastering'
-  },
-  {
-    bg: '#F0FDF4', headerBg: '#DCFCE7',
-    text: '#14532d', headerText: '#166534',
-    icon: '★', iconBg: '#22C55E', iconColor: '#fff',
-    label: 'You\'re already at the top level'
-  }
+  { bg: '#FFF8E7', headerBg: '#FFF0CC', text: '#5a3e00', headerText: '#7a5200', icon: '→', iconBg: '#FFD966', iconColor: '#5a3e00', label: 'How to reach Proficient' },
+  { bg: '#EAF7F0', headerBg: '#D0EDDD', text: '#0d4a2a', headerText: '#0d5c33', icon: '→', iconBg: '#5DCAA5', iconColor: '#fff',    label: 'How to reach Advocating' },
+  { bg: '#EEF4FF', headerBg: '#DCE8FF', text: '#1a2f6b', headerText: '#1a3580', icon: '→', iconBg: '#4A78E0', iconColor: '#fff',    label: 'How to reach Mastering' },
+  { bg: '#F0FDF4', headerBg: '#DCFCE7', text: '#14532d', headerText: '#166534', icon: '★', iconBg: '#22C55E', iconColor: '#fff',    label: 'You\'re already at the top level' }
 ];
 
-// ─── Answer badge colours (one per level 0–3) ──────────────────────────────
+// ─── Level labels ──────────────────────────────────────────────────────────
 const LEVEL_BADGE = [
   { label: 'Developing', bg: '#FFF0CC', color: '#7a5200' },
   { label: 'Proficient', bg: '#D0EDDD', color: '#0d5c33' },
   { label: 'Advocating', bg: '#DCE8FF', color: '#1a3580' },
-  { label: 'Mastering',  bg: '#DCFCE7', color: '#166534' }
+  { label: 'Mastering',  bg: '#DCFCE7', color: '#166634' }
 ];
 
 const levelNames = ['Developing', 'Proficient', 'Advocating', 'Mastering'];
 const levelTags  = ['1 — Developing', '2 — Proficient', '3 — Advocating', '4 — Mastering'];
 
 // ─── State ─────────────────────────────────────────────────────────────────
-let categories   = [];
-let allQuestions = [];
-let currentQ     = 0;
-let answers      = [];
-let radarChart   = null;
-
-let participantName    = '';
+let categories        = [];
+let allQuestions      = [];   // questions served in random cross-category order (#2/#6)
+let currentQ          = 0;
+let answers           = [];
+let radarChart        = null;
+let participantName   = '';
 let participantManager = '';
-let participantLevel   = '';
-let participantDate    = '';
+let participantLevel  = '';
+let participantDate   = '';
 
-// ─── Boot: fetch question bank ──────────────────────────────────────────────
+// ─── Boot ───────────────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
-  // Auto-fill today's date
   participantDate = new Date().toLocaleDateString('en-GB', {
     day: 'numeric', month: 'long', year: 'numeric'
   });
@@ -337,27 +323,24 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // ─── Intro ──────────────────────────────────────────────────────────────────
 function buildIntro() {
-  // Build category pills
   const row = document.getElementById('cats-pills');
   categories.forEach(cat => {
-    const styles = CATEGORY_STYLES[cat.name] || {};
+    const s   = CATEGORY_STYLES[cat.name] || {};
     const pill = document.createElement('span');
-    pill.className         = 'cat-pill';
-    pill.textContent       = cat.name;
-    pill.style.color       = styles.color;
-    pill.style.borderColor = styles.color;
-    pill.style.background  = styles.bgLight;
+    pill.className = 'cat-pill';
+    pill.textContent = cat.name;
+    pill.style.color = s.color;
+    pill.style.borderColor = s.color;
+    pill.style.background  = s.bgLight;
     row.appendChild(pill);
   });
-
-  // Bank-size note
   const bankSize = categories[0]?.bank?.length ?? 0;
   document.getElementById('intro-note').textContent =
     `${QUESTIONS_PER_CAT} questions are randomly drawn from a bank of ${bankSize} per ` +
     `category. After each answer you'll see a coaching tip on how to reach the next level.`;
 }
 
-// ─── Form validation & start ────────────────────────────────────────────────
+// ─── Form validation ────────────────────────────────────────────────────────
 function handleStart() {
   const nameEl  = document.getElementById('field-name');
   const levelEl = document.getElementById('field-level');
@@ -384,7 +367,7 @@ function handleStart() {
   startAssessment();
 }
 
-// ─── Helpers: shuffle & show step ───────────────────────────────────────────
+// ─── Shuffle ────────────────────────────────────────────────────────────────
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -394,57 +377,115 @@ function shuffle(arr) {
   return a;
 }
 
-function show(id) {
-  document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-// ─── Assessment ─────────────────────────────────────────────────────────────
+// ─── Build question list ─────────────────────────────────────────────────────
+// #6 — selected questions within each category are also shuffled
+// #2 — questions are interleaved across categories so they don't appear in blocks
 function buildQuestions() {
-  allQuestions = [];
-  categories.forEach((cat, ci) => {
-    const styles = CATEGORY_STYLES[cat.name] || {};
-    shuffle(cat.bank).slice(0, QUESTIONS_PER_CAT).forEach(q => {
-      allQuestions.push({
-        catIndex: ci,
-        catName:  cat.name,
-        catColor: styles.color,
-        catBg:    styles.bgLight,
-        ...q
-      });
-    });
+  // Pick and shuffle within each category
+  const perCat = categories.map((cat, ci) => {
+    const s = CATEGORY_STYLES[cat.name] || {};
+    return shuffle(cat.bank).slice(0, QUESTIONS_PER_CAT).map(q => ({
+      catIndex: ci,
+      catName:  cat.name,
+      catColor: s.color,
+      catBg:    s.bgLight,
+      ...q
+    }));
   });
+
+  // Interleave: take one from each category in turn, then repeat
+  // Result: Q1=cat0, Q2=cat1, Q3=cat2, Q4=cat3, Q5=cat4, Q6=cat5,
+  //         Q7=cat0, Q8=cat1, ... etc.
+  allQuestions = [];
+  for (let round = 0; round < QUESTIONS_PER_CAT; round++) {
+    for (let ci = 0; ci < categories.length; ci++) {
+      allQuestions.push(perCat[ci][round]);
+    }
+  }
 }
 
+// ─── Start assessment ────────────────────────────────────────────────────────
 function startAssessment() {
   buildQuestions();
   currentQ = 0;
   answers  = new Array(allQuestions.length).fill(null);
+  buildCatDots();
   show('step-questions');
   renderQuestion();
 }
 
+// ─── #8 — Category dot indicators ───────────────────────────────────────────
+function buildCatDots() {
+  const wrap = document.getElementById('cat-dots');
+  wrap.innerHTML = '';
+  categories.forEach((cat, ci) => {
+    const s   = CATEGORY_STYLES[cat.name] || {};
+    const dot = document.createElement('span');
+    dot.className       = 'cat-dot';
+    dot.id              = `cat-dot-${ci}`;
+    dot.title           = cat.name;
+    dot.style.setProperty('--dot-color', s.color);
+    dot.style.setProperty('--dot-bg',    s.bgLight);
+    wrap.appendChild(dot);
+  });
+  updateCatDots();
+}
+
+function updateCatDots() {
+  categories.forEach((cat, ci) => {
+    const dot = document.getElementById(`cat-dot-${ci}`);
+    if (!dot) return;
+
+    // Questions belonging to this category
+    const catQIdxs = allQuestions
+      .map((q, i) => ({ q, i }))
+      .filter(({ q }) => q.catIndex === ci)
+      .map(({ i }) => i);
+
+    const answered = catQIdxs.filter(i => answers[i] !== null).length;
+    const total    = catQIdxs.length;
+    const isCurrent = allQuestions[currentQ]?.catIndex === ci;
+
+    dot.classList.toggle('cat-dot--done',    answered === total);
+    dot.classList.toggle('cat-dot--active',  isCurrent);
+    dot.classList.toggle('cat-dot--partial', answered > 0 && answered < total);
+  });
+}
+
+// ─── Render question ─────────────────────────────────────────────────────────
 function renderQuestion() {
   const q     = allQuestions[currentQ];
   const total = allQuestions.length;
   const pct   = Math.round((currentQ / total) * 100);
 
+  // Progress
   document.getElementById('progress-fill').style.width  = pct + '%';
   document.getElementById('progress-label').textContent = pct + '%';
-  document.getElementById('q-category').textContent     = q.catName;
-  document.getElementById('q-category').style.color     = q.catColor;
-  document.getElementById('q-text').textContent         = q.text;
-  document.getElementById('nav-counter').textContent    = `${currentQ + 1} / ${total}`;
-  document.getElementById('btn-back').disabled          = currentQ === 0;
 
-  // Render options
+  // Category & question
+  document.getElementById('q-category').textContent  = q.catName;
+  document.getElementById('q-category').style.color  = q.catColor;
+  document.getElementById('q-text').textContent      = q.text;
+  document.getElementById('q-text').id               = 'q-text'; // keep id stable
+  document.getElementById('nav-counter').textContent = `${currentQ + 1} / ${total}`;
+  document.getElementById('btn-back').disabled       = currentQ === 0;
+
+  // #4 — Last question label
+  const nb = document.getElementById('btn-next');
+  nb.disabled    = answers[currentQ] === null;
+  nb.textContent = currentQ === total - 1 ? 'See my results →' : 'Next →';
+
+  // Options — #5 keyboard nav handled via keydown on each button
   const opts = document.getElementById('q-options');
   opts.innerHTML = '';
   q.options.forEach((opt, i) => {
     const btn = document.createElement('button');
-    btn.className = 'option' + (answers[currentQ] === i ? ' selected' : '');
+    btn.className   = 'option' + (answers[currentQ] === i ? ' selected' : '');
+    btn.setAttribute('role', 'radio');
+    btn.setAttribute('aria-checked', answers[currentQ] === i ? 'true' : 'false');
+    btn.setAttribute('aria-label', `${levelTags[i]}: ${opt}`);
     btn.innerHTML = `
-      <div class="option-num">${i + 1}</div>
+      <div class="option-num" aria-hidden="true">${i + 1}</div>
       <div class="option-body">
         <div class="option-level">${levelTags[i]}</div>
         <div class="option-desc">${opt}</div>
@@ -453,44 +494,64 @@ function renderQuestion() {
       btn.style.borderColor = q.catColor;
       btn.style.background  = q.catBg;
     }
-    btn.onclick = () => selectOption(i, q);
+    btn.onclick   = () => selectOption(i, q);
+    // #5 — keyboard: Enter/Space select, ArrowDown/ArrowUp navigate options
+    btn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectOption(i, q);
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const next = opts.querySelectorAll('.option')[i + 1];
+        if (next) next.focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prev = opts.querySelectorAll('.option')[i - 1];
+        if (prev) prev.focus();
+      }
+    });
     opts.appendChild(btn);
   });
 
-  // Restore tip if already answered
+  // Restore tip or hide
   answers[currentQ] !== null ? showTip(answers[currentQ], q) : hideTip();
 
-  const nb    = document.getElementById('btn-next');
-  nb.disabled = answers[currentQ] === null;
-  nb.textContent = 'Next →';
+  // Update category dots
+  updateCatDots();
 }
 
 function selectOption(i, q) {
   answers[currentQ] = i;
   document.querySelectorAll('.option').forEach((el, idx) => {
-    const sel          = idx === i;
+    const sel = idx === i;
     el.classList.toggle('selected', sel);
+    el.setAttribute('aria-checked', sel ? 'true' : 'false');
     el.style.borderColor = sel ? q.catColor    : 'var(--border)';
     el.style.background  = sel ? q.catBg       : 'var(--surface)';
   });
   showTip(i, q);
-  document.getElementById('btn-next').disabled = false;
+  const nb = document.getElementById('btn-next');
+  nb.disabled    = false;
+  nb.textContent = currentQ === allQuestions.length - 1 ? 'See my results →' : 'Next →';
+  // Focus next button after selection for clean keyboard flow
+  nb.focus();
+  updateCatDots();
 }
 
 function showTip(levelIndex, q) {
-  const theme  = TIP_THEMES[levelIndex];
-  const tip    = q.tips?.[levelIndex] ?? '';
-  const panel  = document.getElementById('tip-panel');
+  const theme = TIP_THEMES[levelIndex];
+  const tip   = q.tips?.[levelIndex] ?? '';
+  const panel = document.getElementById('tip-panel');
 
-  document.getElementById('tip-header').style.background     = theme.headerBg;
-  document.getElementById('tip-header').style.color          = theme.headerText;
-  document.getElementById('tip-icon').style.background       = theme.iconBg;
-  document.getElementById('tip-icon').style.color            = theme.iconColor;
-  document.getElementById('tip-icon').textContent            = theme.icon;
-  document.getElementById('tip-heading-text').textContent    = theme.label;
-  document.getElementById('tip-body').style.background       = theme.bg;
-  document.getElementById('tip-body').style.color            = theme.text;
-  document.getElementById('tip-body').textContent            = tip;
+  document.getElementById('tip-header').style.background  = theme.headerBg;
+  document.getElementById('tip-header').style.color       = theme.headerText;
+  document.getElementById('tip-icon').style.background    = theme.iconBg;
+  document.getElementById('tip-icon').style.color         = theme.iconColor;
+  document.getElementById('tip-icon').textContent         = theme.icon;
+  document.getElementById('tip-heading-text').textContent = theme.label;
+  document.getElementById('tip-body').style.background    = theme.bg;
+  document.getElementById('tip-body').style.color         = theme.text;
+  document.getElementById('tip-body').textContent         = tip;
   panel.style.border = `1px solid ${theme.headerBg}`;
   panel.classList.add('visible');
 }
@@ -506,16 +567,20 @@ function goNext() {
   } else {
     currentQ++;
     renderQuestion();
+    // #11 — scroll to top of question step on every advance
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
 function goBack() {
-  if (currentQ > 0) { currentQ--; renderQuestion(); }
+  if (currentQ > 0) {
+    currentQ--;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 }
 
 // ─── Label wrapping for radar chart ─────────────────────────────────────────
-// Chart.js accepts a string array as a label and renders each element on its
-// own line. We split names longer than 14 chars at the nearest mid-point space.
 function wrapLabel(name) {
   if (name.length <= 14) return name;
   const mid   = Math.ceil(name.length / 2);
@@ -525,28 +590,28 @@ function wrapLabel(name) {
 
 // ─── Results ────────────────────────────────────────────────────────────────
 function showResults() {
+  // #10 — update browser tab title with participant name
+  document.title = `${participantName}'s Results — Soft Skills Assessment`;
+
   show('step-results');
+  // #11 — scroll to top when results appear
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
   document.getElementById('progress-fill').style.width  = '100%';
   document.getElementById('progress-label').textContent = '100%';
 
-  // Page heading & metadata
+  // Header
   document.getElementById('results-heading').textContent = `${participantName}'s Self-Assessment`;
   const meta = document.getElementById('results-meta');
   meta.innerHTML = '';
   [participantLevel, participantDate, participantManager ? `Manager: ${participantManager}` : null]
     .filter(Boolean)
     .forEach((item, i) => {
-      if (i > 0) {
-        const d = document.createElement('span');
-        d.innerHTML = '<span class="dot"></span>';
-        meta.appendChild(d);
-      }
-      const s = document.createElement('span');
-      s.textContent = item;
-      meta.appendChild(s);
+      if (i > 0) { const d = document.createElement('span'); d.innerHTML = '<span class="dot"></span>'; meta.appendChild(d); }
+      const s = document.createElement('span'); s.textContent = item; meta.appendChild(s);
     });
 
-  // Calculate category averages
+  // Scores
   const catScores = categories.map((cat, ci) => {
     const qs  = allQuestions.map((q, i) => ({ q, i })).filter(({ q }) => q.catIndex === ci);
     const sum = qs.reduce((acc, { i }) => acc + (answers[i] === null ? 0 : answers[i] + 1), 0);
@@ -555,13 +620,14 @@ function showResults() {
 
   const benchmarks = BENCHMARKS[participantLevel] || BENCHMARKS.Regular;
 
-  // Score cards with benchmark indicators
+  // Score cards
   const grid = document.getElementById('scores-grid');
   grid.innerHTML = '';
-  const strengths = [];
+  const strengths  = [];
+  const focusAreas = [];
 
   categories.forEach((cat, i) => {
-    const styles = CATEGORY_STYLES[cat.name] || {};
+    const s     = CATEGORY_STYLES[cat.name] || {};
     const avg   = catScores[i];
     const bench = benchmarks[i];
     const diff  = avg - bench;
@@ -572,24 +638,45 @@ function showResults() {
     else if (diff >= -0.4) { statusClass = 'status-on';    statusLabel = 'On target'; }
     else                   { statusClass = 'status-below'; statusLabel = 'Below target'; }
 
-    if (diff >= 0.5) strengths.push({ name: cat.name, avg, bench, color: styles.color });
+    if (diff >= 0.5)  strengths.push({ name: cat.name, avg, bench, color: s.color });
+    if (diff < -0.4)  focusAreas.push({ name: cat.name, avg, bench, diff, color: s.color });
 
     const card = document.createElement('div');
     card.className        = 'score-card';
-    card.style.borderLeft = `3px solid ${styles.color}`;
+    card.style.borderLeft = `3px solid ${s.color}`;
     card.innerHTML = `
       <div class="score-cat">${cat.name}</div>
       <div class="score-main">
-        <span class="score-val" style="color:${styles.color}">${avg.toFixed(1)}</span>
+        <span class="score-val" style="color:${s.color}">${avg.toFixed(1)}</span>
         <span class="score-level-label">${levelNames[lIdx]}</span>
       </div>
       <div class="score-benchmark-row">
         <span class="score-benchmark-label">${participantLevel} target:</span>
-        <span class="score-benchmark-val" style="color:${styles.color}">${bench.toFixed(1)}</span>
+        <span class="score-benchmark-val" style="color:${s.color}">${bench.toFixed(1)}</span>
         <span class="score-status ${statusClass}">${statusLabel}</span>
       </div>`;
     grid.appendChild(card);
   });
+
+  // #1 — Development focus callout (up to 2, sorted by biggest gap first)
+  const fBox  = document.getElementById('focus-box');
+  const fList = document.getElementById('focus-list');
+  fList.innerHTML = '';
+  const topFocus = focusAreas.sort((a, b) => a.diff - b.diff).slice(0, MAX_FOCUS_AREAS);
+  if (topFocus.length > 0) {
+    topFocus.forEach(f => {
+      const gap = Math.abs(f.diff).toFixed(1);
+      const li  = document.createElement('li');
+      li.innerHTML =
+        `<strong style="color:${f.color}">${f.name}</strong> — your score of ` +
+        `${f.avg.toFixed(1)} is ${gap} below the ${participantLevel} target of ` +
+        `${f.bench.toFixed(1)}. This is your highest-impact development opportunity.`;
+      fList.appendChild(li);
+    });
+    fBox.style.display = 'block';
+  } else {
+    fBox.style.display = 'none';
+  }
 
   // Strengths callout
   const sBox  = document.getElementById('strengths-box');
@@ -609,14 +696,22 @@ function showResults() {
     sBox.style.display = 'none';
   }
 
-  // Benchmark reference table
-  buildBenchmarkTable(catScores, benchmarks);
+  // #7 — Benchmark table (interactive + print copy)
+  buildBenchmarkTable(catScores, benchmarks, 'benchmark-table');
+  buildBenchmarkTable(catScores, benchmarks, 'benchmark-table-print');
+  // Reset toggle to closed
+  const wrap   = document.getElementById('benchmark-table-wrap');
+  const toggle = document.getElementById('benchmark-toggle');
+  const icon   = document.getElementById('benchmark-toggle-icon');
+  wrap.hidden                           = true;
+  toggle.setAttribute('aria-expanded', 'false');
+  icon.textContent                      = '＋';
 
-  // Reset reflection textarea for retakes
+  // Reset reflection for retakes
   document.getElementById('reflection-input').value = '';
 
-  // Build answer breakdown
-  buildBreakdown();
+  // #3 — Breakdown with per-category score sub-heading
+  buildBreakdown(catScores);
 
   // Radar chart
   if (radarChart) radarChart.destroy();
@@ -625,7 +720,6 @@ function showResults() {
     data: {
       labels: categories.map(c => wrapLabel(c.name)),
       datasets: [
-        // ── Dataset 1: engineer's actual scores ──
         {
           label: 'Your score',
           data: catScores,
@@ -639,7 +733,6 @@ function showResults() {
           pointHoverRadius: 8,
           order: 1
         },
-        // ── Dataset 2: seniority benchmark ──
         {
           label: `${participantLevel} benchmark`,
           data: [...benchmarks],
@@ -660,9 +753,7 @@ function showResults() {
     options: {
       responsive: true,
       maintainAspectRatio: true,
-      layout: {
-        padding: { top: 20, bottom: 20, left: 20, right: 20 }
-      },
+      layout: { padding: { top: 20, bottom: 20, left: 20, right: 20 } },
       scales: {
         r: {
           min: 0, max: 4,
@@ -673,42 +764,43 @@ function showResults() {
             backdropColor: 'transparent',
             callback: v => ['', '1', '2', '3', '4'][v] || ''
           },
-          grid:       { color: 'rgba(83,74,183,0.1)' },
-          angleLines: { color: 'rgba(83,74,183,0.1)' },
-          pointLabels: {
-            font:    { size: 11, weight: '500', family: 'DM Sans' },
-            color:   '#1a1a2e',
-            padding: 12
-          }
+          grid:        { color: 'rgba(83,74,183,0.1)' },
+          angleLines:  { color: 'rgba(83,74,183,0.1)' },
+          pointLabels: { font: { size: 11, weight: '500', family: 'DM Sans' }, color: '#1a1a2e', padding: 12 }
         }
       },
       plugins: { legend: { display: false } },
-      elements: {
-        line: {
-          borderCapStyle: 'round'
-        }
-      }
+      elements: { line: { borderCapStyle: 'round' } }
     }
   });
 
-  // Custom legend — built in HTML so we control the styling
   const legendEl = document.getElementById('chart-legend');
   if (legendEl) {
     legendEl.innerHTML = `
       <span class="chart-legend-item">
-        <span class="chart-legend-swatch chart-legend-score"></span>
-        Your score
+        <span class="chart-legend-swatch chart-legend-score"></span>Your score
       </span>
       <span class="chart-legend-item">
-        <span class="chart-legend-swatch chart-legend-bench"></span>
-        ${participantLevel} benchmark
+        <span class="chart-legend-swatch chart-legend-bench"></span>${participantLevel} benchmark
       </span>`;
   }
 }
 
-// ─── Benchmark table ─────────────────────────────────────────────────────────
-function buildBenchmarkTable(catScores, benchmarks) {
-  const table  = document.getElementById('benchmark-table');
+// ─── #7 — Benchmark toggle ───────────────────────────────────────────────────
+function toggleBenchmark() {
+  const wrap   = document.getElementById('benchmark-table-wrap');
+  const toggle = document.getElementById('benchmark-toggle');
+  const icon   = document.getElementById('benchmark-toggle-icon');
+  const open   = wrap.hidden;
+  wrap.hidden  = !open;
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  icon.textContent = open ? '−' : '＋';
+}
+
+// ─── Benchmark table builder (shared for interactive + print copy) ────────────
+function buildBenchmarkTable(catScores, benchmarks, tableId) {
+  const table  = document.getElementById(tableId);
+  if (!table) return;
   const levels = ['Junior', 'Regular', 'Senior', 'Principal'];
 
   let html = '<thead><tr><th>Category</th>';
@@ -719,11 +811,8 @@ function buildBenchmarkTable(catScores, benchmarks) {
   html += '</tr></thead><tbody>';
 
   categories.forEach((cat, ci) => {
-    const styles = CATEGORY_STYLES[cat.name] || {};
-    html += `<tr>
-      <td class="cat-cell" style="border-left:3px solid ${styles.color}; padding-left:10px">
-        ${cat.name}
-      </td>`;
+    const s = CATEGORY_STYLES[cat.name] || {};
+    html += `<tr><td class="cat-cell" style="border-left:3px solid ${s.color}; padding-left:10px">${cat.name}</td>`;
     levels.forEach(l => {
       const b         = BENCHMARKS[l][ci];
       const highlight = l === participantLevel ? ' bench-highlight' : '';
@@ -737,32 +826,35 @@ function buildBenchmarkTable(catScores, benchmarks) {
   table.innerHTML = html;
 }
 
-// ─── Answer breakdown ────────────────────────────────────────────────────────
-function buildBreakdown() {
+// ─── #3 — Answer breakdown with per-category score heading ───────────────────
+function buildBreakdown(catScores) {
   const container = document.getElementById('breakdown-container');
   container.innerHTML = '';
 
   categories.forEach((cat, ci) => {
-    const styles = CATEGORY_STYLES[cat.name] || {};
-    const catQs = allQuestions
-      .map((q, i) => ({ q, i }))
-      .filter(({ q }) => q.catIndex === ci);
-
+    const s      = CATEGORY_STYLES[cat.name] || {};
+    const avg    = catScores[ci];
+    const lIdx   = Math.min(Math.max(Math.round(avg) - 1, 0), 3);
+    const catQs  = allQuestions.map((q, i) => ({ q, i })).filter(({ q }) => q.catIndex === ci);
     if (!catQs.length) return;
 
-    const section  = document.createElement('div');
+    const section = document.createElement('div');
     section.className = 'breakdown-section';
 
-    const heading = document.createElement('h3');
-    heading.textContent       = cat.name;
-    heading.style.color       = styles.color;
-    heading.style.borderColor = styles.color + '44';
+    // Section heading with per-category average score
+    const heading = document.createElement('div');
+    heading.className = 'breakdown-cat-header';
+    heading.innerHTML = `
+      <h3 style="color:${s.color}; border-color:${s.color}44">${cat.name}</h3>
+      <span class="breakdown-cat-score">
+        <span style="color:${s.color}; font-weight:600">${avg.toFixed(1)}</span>
+        <span class="breakdown-cat-level">${levelNames[lIdx]}</span>
+      </span>`;
     section.appendChild(heading);
 
     catQs.forEach(({ q, i }) => {
       const answerIdx = answers[i];
       if (answerIdx === null) return;
-
       const badge = LEVEL_BADGE[answerIdx];
       const tip   = q.tips?.[answerIdx] ?? '';
       const theme = TIP_THEMES[answerIdx];
@@ -772,9 +864,7 @@ function buildBreakdown() {
       item.innerHTML = `
         <div class="breakdown-q">${q.text}</div>
         <div class="breakdown-answer">
-          <span class="breakdown-badge" style="background:${badge.bg}; color:${badge.color}">
-            ${badge.label}
-          </span>
+          <span class="breakdown-badge" style="background:${badge.bg}; color:${badge.color}">${badge.label}</span>
           <span class="breakdown-answer-text">${q.options[answerIdx]}</span>
         </div>
         ${tip ? `
@@ -797,7 +887,11 @@ function restart() {
   document.getElementById('field-manager').value     = '';
   document.getElementById('field-level').value       = '';
   participantName = ''; participantManager = ''; participantLevel = '';
+  // #10 — reset tab title
+  document.title = 'Soft Skills Self-Assessment';
   show('step-intro');
+  // #11 — scroll to top on restart
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 

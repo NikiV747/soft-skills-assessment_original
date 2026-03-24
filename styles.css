@@ -149,6 +149,43 @@ body {
 }
 
 
+/* ── 05b  Category dot indicators (#8) ────────────────────── */
+.cat-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.cat-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--border-hover);
+  background: transparent;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  display: inline-block;
+}
+
+.cat-dot--active {
+  background: var(--dot-color, var(--purple-600));
+  border-color: var(--dot-color, var(--purple-600));
+  transform: scale(1.35);
+}
+
+.cat-dot--partial {
+  background: var(--dot-bg, var(--purple-50));
+  border-color: var(--dot-color, var(--purple-600));
+}
+
+.cat-dot--done {
+  background: var(--dot-color, var(--purple-600));
+  border-color: var(--dot-color, var(--purple-600));
+  opacity: 0.5;
+}
+
+
 /* ── 06  Step transitions ──────────────────────────────────── */
 .step {
   display: none;
@@ -724,6 +761,57 @@ body {
 
 
 /* ── 16  Strengths callout ─────────────────────────────────── */
+
+/* #1 — Development focus callout */
+.focus-box {
+  background: #FFF3DC;
+  border: 1px solid #F5C878;
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.focus-box .focus-label {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--amber);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.focus-box .focus-label::before {
+  content: '↑';
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.focus-box ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.focus-box ul li {
+  font-size: 14px;
+  color: #5a3e00;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.focus-box ul li::before {
+  content: '◦';
+  font-weight: 600;
+  color: var(--amber);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
 .strengths-box {
   background: var(--green-bg);
   border: 1px solid #9FE1CB;
@@ -774,18 +862,67 @@ body {
 }
 
 
-/* ── 17  Benchmark reference table ────────────────────────── */
+/* ── 17  Benchmark reference table (#7 collapsible) ───────── */
 .benchmark-section {
   margin-bottom: 1.5rem;
 }
 
-.benchmark-section .section-label {
+/* Interactive toggle button */
+.benchmark-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  transition: background 0.15s, border-color 0.15s;
+  margin-bottom: 0;
+}
+
+.benchmark-toggle:hover {
+  background: var(--purple-50);
+  border-color: var(--border-hover);
+  color: var(--purple-600);
+}
+
+.benchmark-toggle-icon {
+  font-size: 16px;
+  line-height: 1;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+/* Collapsible table wrapper */
+.benchmark-table-wrap {
+  margin-top: 8px;
+}
+
+.benchmark-table-wrap[hidden] {
+  display: none;
+}
+
+/* Print-only copy — hidden on screen */
+.benchmark-print-label {
+  display: none;
   font-size: 11px;
   font-family: 'DM Mono', monospace;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+}
+
+.benchmark-table-print {
+  display: none;
 }
 
 .benchmark-table {
@@ -889,7 +1026,7 @@ body {
 }
 
 
-/* ── 19  Answer breakdown ──────────────────────────────────── */
+/* ── 19  Answer breakdown (#3 with per-category score) ──────── */
 .breakdown-title {
   font-size: 16px;
   font-weight: 600;
@@ -903,15 +1040,46 @@ body {
   margin-bottom: 2rem;
 }
 
-.breakdown-section h3 {
+/* Category header row — name left, score right */
+.breakdown-cat-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+
+.breakdown-cat-header h3 {
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-family: 'DM Mono', monospace;
-  margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid;
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+.breakdown-cat-score {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.breakdown-cat-score span:first-child {
+  font-size: 18px;
+  font-family: 'DM Mono', monospace;
+}
+
+.breakdown-cat-level {
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
 }
 
 .breakdown-item {
@@ -1047,6 +1215,20 @@ body {
     display: none !important;
   }
 
+  /* Hide the interactive benchmark toggle and collapsible wrap — show print copy instead */
+  .benchmark-toggle,
+  .benchmark-table-wrap {
+    display: none !important;
+  }
+
+  .benchmark-print-label {
+    display: block;
+  }
+
+  .benchmark-table-print {
+    display: block;
+  }
+
   /* Render the reflection textarea as plain readable text when printing */
   .reflection-on-results label {
     font-weight: 600;
@@ -1065,13 +1247,14 @@ body {
   }
 
   /* Prevent awkward page breaks */
-  .chart-container    { border: 1px solid #ddd; break-inside: avoid; }
-  .scores-grid        { break-inside: avoid; }
-  .strengths-box      { break-inside: avoid; }
-  .benchmark-section  { break-inside: avoid; }
-  .breakdown-section  { break-inside: avoid; }
-  .breakdown-item     { break-inside: avoid; border: 1px solid #ddd; }
-  .reflection-result  { break-inside: avoid; }
+  .chart-container   { border: 1px solid #ddd; break-inside: avoid; }
+  .scores-grid       { break-inside: avoid; }
+  .strengths-box     { break-inside: avoid; }
+  .focus-box         { break-inside: avoid; }
+  .benchmark-section { break-inside: avoid; }
+  .breakdown-section { break-inside: avoid; }
+  .breakdown-item    { break-inside: avoid; border: 1px solid #ddd; }
+  .reflection-wrap   { break-inside: avoid; }
 
   @page {
     margin: 1.5cm;
