@@ -1789,9 +1789,10 @@ function _init() {
       console.error('Failed to parse question bank:', err);
       document.getElementById('view-loading').style.display = 'none';
       document.getElementById('view-error').style.display   = 'block';
-    });
-}
+    }
+  })();
 
+}
 
 // ─── Intro ──────────────────────────────────────────────────────────────────
 function buildIntro() {
