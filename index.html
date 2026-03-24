@@ -299,6 +299,12 @@ let participantManager = '';
 let participantLevel  = '';
 let participantDate   = '';
 
+// ─── Helpers ────────────────────────────────────────────────────────────────
+function show(id) {
+  document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
 // ─── Boot ───────────────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
   participantDate = new Date().toLocaleDateString('en-GB', {
