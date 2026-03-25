@@ -384,30 +384,22 @@ function shuffle(arr) {
 }
 
 // ─── Build question list ─────────────────────────────────────────────────────
-// #6 — selected questions within each category are also shuffled
-// #2 — questions are interleaved across categories so they don't appear in blocks
+// Questions are grouped by category (all cat-0 questions, then all cat-1, etc.)
+// Within each category the 3 selected questions are shuffled for variety.
 function buildQuestions() {
-  // Pick and shuffle within each category
-  const perCat = categories.map((cat, ci) => {
-    const s = CATEGORY_STYLES[cat.name] || {};
-    return shuffle(cat.bank).slice(0, QUESTIONS_PER_CAT).map(q => ({
-      catIndex: ci,
-      catName:  cat.name,
-      catColor: s.color,
-      catBg:    s.bgLight,
-      ...q
-    }));
-  });
-
-  // Interleave: take one from each category in turn, then repeat
-  // Result: Q1=cat0, Q2=cat1, Q3=cat2, Q4=cat3, Q5=cat4, Q6=cat5,
-  //         Q7=cat0, Q8=cat1, ... etc.
   allQuestions = [];
-  for (let round = 0; round < QUESTIONS_PER_CAT; round++) {
-    for (let ci = 0; ci < categories.length; ci++) {
-      allQuestions.push(perCat[ci][round]);
-    }
-  }
+  categories.forEach((cat, ci) => {
+    const s = CATEGORY_STYLES[cat.name] || {};
+    shuffle(cat.bank).slice(0, QUESTIONS_PER_CAT).forEach(q => {
+      allQuestions.push({
+        catIndex: ci,
+        catName:  cat.name,
+        catColor: s.color,
+        catBg:    s.bgLight,
+        ...q
+      });
+    });
+  });
 }
 
 // ─── Start assessment ────────────────────────────────────────────────────────
@@ -420,41 +412,77 @@ function startAssessment() {
   renderQuestion();
 }
 
-// ─── #8 — Category dot indicators ───────────────────────────────────────────
+// ─── Category dot clusters ───────────────────────────────────────────────────
+// Builds six groups of 3 mini-dots, one group per category.
+// Mini-dots fill one by one as the engineer answers each question.
 function buildCatDots() {
   const wrap = document.getElementById('cat-dots');
   wrap.innerHTML = '';
+
   categories.forEach((cat, ci) => {
-    const s   = CATEGORY_STYLES[cat.name] || {};
-    const dot = document.createElement('span');
-    dot.className       = 'cat-dot';
-    dot.id              = `cat-dot-${ci}`;
-    dot.title           = cat.name;
-    dot.style.setProperty('--dot-color', s.color);
-    dot.style.setProperty('--dot-bg',    s.bgLight);
-    wrap.appendChild(dot);
+    const s = CATEGORY_STYLES[cat.name] || {};
+
+    const group = document.createElement('div');
+    group.className = 'cat-group';
+    group.id        = `cat-group-${ci}`;
+    group.style.setProperty('--dot-color', s.color);
+    group.title = cat.name;
+
+    // Row of mini-dots (one per question in this category)
+    const dotsRow = document.createElement('div');
+    dotsRow.className = 'cat-group-dots';
+
+    for (let d = 0; d < QUESTIONS_PER_CAT; d++) {
+      const mini = document.createElement('span');
+      mini.className = 'cat-mini-dot';
+      mini.id        = `cat-mini-${ci}-${d}`;
+      dotsRow.appendChild(mini);
+    }
+
+    // Short category label below the dots
+    const label = document.createElement('span');
+    label.className   = 'cat-group-label';
+    // Use first word of the category name to keep it compact
+    label.textContent = cat.name.split(' ')[0];
+    label.style.color = s.color;
+
+    group.appendChild(dotsRow);
+    group.appendChild(label);
+    wrap.appendChild(group);
   });
+
   updateCatDots();
 }
 
 function updateCatDots() {
-  categories.forEach((cat, ci) => {
-    const dot = document.getElementById(`cat-dot-${ci}`);
-    if (!dot) return;
+  const activeCatIndex = allQuestions[currentQ]?.catIndex ?? -1;
 
-    // Questions belonging to this category
+  categories.forEach((cat, ci) => {
+    const group = document.getElementById(`cat-group-${ci}`);
+    if (!group) return;
+
+    // Questions belonging to this category, in order
     const catQIdxs = allQuestions
       .map((q, i) => ({ q, i }))
       .filter(({ q }) => q.catIndex === ci)
       .map(({ i }) => i);
 
-    const answered = catQIdxs.filter(i => answers[i] !== null).length;
-    const total    = catQIdxs.length;
-    const isCurrent = allQuestions[currentQ]?.catIndex === ci;
+    const answered  = catQIdxs.filter(i => answers[i] !== null).length;
+    const isCurrent = ci === activeCatIndex;
+    const isDone    = answered === QUESTIONS_PER_CAT;
+    const isPending = answered === 0 && !isCurrent;
 
-    dot.classList.toggle('cat-dot--done',    answered === total);
-    dot.classList.toggle('cat-dot--active',  isCurrent);
-    dot.classList.toggle('cat-dot--partial', answered > 0 && answered < total);
+    // Group state classes
+    group.classList.toggle('cat-group--active',  isCurrent);
+    group.classList.toggle('cat-group--done',    isDone && !isCurrent);
+    group.classList.toggle('cat-group--pending', isPending);
+
+    // Fill mini-dots one by one
+    for (let d = 0; d < QUESTIONS_PER_CAT; d++) {
+      const mini = document.getElementById(`cat-mini-${ci}-${d}`);
+      if (!mini) continue;
+      mini.classList.toggle('cat-mini-dot--filled', d < answered);
+    }
   });
 }
 

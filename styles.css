@@ -149,40 +149,87 @@ body {
 }
 
 
-/* ── 05b  Category dot indicators (#8) ────────────────────── */
+/* ── 05b  Category dot clusters ────────────────────────────── */
+
+/* Outer row — six groups side by side */
 .cat-dots {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  gap: 8px;
+  gap: 14px;
   margin-bottom: 1.5rem;
 }
 
-.cat-dot {
-  width: 10px;
-  height: 10px;
+/* One group = one category */
+.cat-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  transition: opacity 0.2s;
+}
+
+/* Category name label — small, shown below the mini-dots */
+.cat-group-label {
+  font-size: 9px;
+  font-family: 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color 0.2s, font-weight 0.2s;
+  max-width: 52px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+/* Row of 3 mini-dots inside each group */
+.cat-group-dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Each individual mini-dot */
+.cat-mini-dot {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  border: 2px solid var(--border-hover);
+  border: 1.5px solid var(--dot-color, var(--border-hover));
   background: transparent;
-  transition: background 0.2s, border-color 0.2s, transform 0.15s;
-  display: inline-block;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+  flex-shrink: 0;
 }
 
-.cat-dot--active {
+/* Answered mini-dot */
+.cat-mini-dot--filled {
   background: var(--dot-color, var(--purple-600));
   border-color: var(--dot-color, var(--purple-600));
-  transform: scale(1.35);
 }
 
-.cat-dot--partial {
-  background: var(--dot-bg, var(--purple-50));
-  border-color: var(--dot-color, var(--purple-600));
+/* Active category — dots and label are emphasised */
+.cat-group--active .cat-group-label {
+  color: var(--dot-color, var(--purple-600));
+  font-weight: 500;
 }
 
-.cat-dot--done {
-  background: var(--dot-color, var(--purple-600));
-  border-color: var(--dot-color, var(--purple-600));
+.cat-group--active .cat-mini-dot {
+  transform: scale(1.2);
+}
+
+/* Completed category — slightly faded */
+.cat-group--done {
   opacity: 0.5;
+}
+
+.cat-group--done .cat-group-label {
+  color: var(--dot-color, var(--text-muted));
+}
+
+/* Not yet started — neutral */
+.cat-group--pending {
+  opacity: 0.45;
 }
 
 
